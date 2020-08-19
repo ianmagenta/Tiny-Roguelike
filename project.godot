@@ -8,15 +8,37 @@
 
 config_version=4
 
-_global_script_classes=[  ]
+_global_script_classes=[ {
+"base": "Node2D",
+"class": "Entity",
+"language": "GDScript",
+"path": "res://scripts/components/Entity.gd"
+}, {
+"base": "Reference",
+"class": "StartTurn",
+"language": "GDScript",
+"path": "res://scripts/commands/StartTurn.gd"
+}, {
+"base": "Sprite",
+"class": "Visual",
+"language": "GDScript",
+"path": "res://scripts/components/Visual.gd"
+} ]
 _global_script_class_icons={
-
+"Entity": "",
+"StartTurn": "",
+"Visual": ""
 }
 
 [application]
 
 config/name="Tiny Rogue"
+run/main_scene="res://scenes/screen/Screen.tscn"
 config/icon="res://icon.png"
+
+[autoload]
+
+Globals="*res://scripts/globals/Globals.gd"
 
 [display]
 
