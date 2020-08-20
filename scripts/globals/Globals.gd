@@ -7,6 +7,7 @@ var entity_group: Array
 var player_group: Array
 var ai_group: Array
 var interact_group: Array
+var rng = RandomNumberGenerator.new()
 
 func refresh_entities():
 	var tree = get_tree()
