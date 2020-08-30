@@ -1,9 +1,15 @@
+tool
 extends Node2D
 
 class_name Entity
 
 var num_commands = 0
 var end_turn = false
+var grid_position = Vector2(0, 0) setget _set_grid_position
+
+func _set_grid_position(value: Vector2):
+	grid_position = value
+	position = Globals.grid_to_world(grid_position)
 
 func _init():
 	add_to_group("Entity")

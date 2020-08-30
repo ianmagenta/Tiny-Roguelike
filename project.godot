@@ -50,6 +50,9 @@ Globals="*res://scripts/globals/Globals.gd"
 
 window/size/width=640
 window/size/height=360
+window/size/resizable=false
+window/size/test_width=1280
+window/size/test_height=720
 window/stretch/mode="viewport"
 window/stretch/aspect="keep"
 
@@ -79,3 +82,4 @@ texture={
 [rendering]
 
 quality/2d/use_pixel_snap=true
+environment/default_clear_color=Color( 0.160784, 0.160784, 0.160784, 1 )

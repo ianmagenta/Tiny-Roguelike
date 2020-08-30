@@ -7,7 +7,7 @@ var entity_group: Array
 var player_group: Array
 var ai_group: Array
 var interact_group: Array
-var rng = RandomNumberGenerator.new()
+var rng : RandomNumberGenerator = RandomNumberGenerator.new()
 
 func refresh_entities():
 	var tree = get_tree()
@@ -15,3 +15,6 @@ func refresh_entities():
 	player_group = tree.get_nodes_in_group("PC")
 	ai_group = tree.get_nodes_in_group("AI")
 	interact_group = tree.get_nodes_in_group("Interact")
+
+func grid_to_world(grid_position : Vector2):
+	return Vector2(grid_position.x * tile_size, grid_position.y * tile_size)
