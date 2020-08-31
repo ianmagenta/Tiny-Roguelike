@@ -9,10 +9,30 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Node",
+"class": "AiController",
+"language": "GDScript",
+"path": "res://scripts/components/AiController.gd"
+}, {
+"base": "Node",
+"class": "EndTurn",
+"language": "GDScript",
+"path": "res://scripts/commands/EndTurn.gd"
+}, {
 "base": "Node2D",
 "class": "Entity",
 "language": "GDScript",
 "path": "res://scripts/components/Entity.gd"
+}, {
+"base": "Node",
+"class": "Move",
+"language": "GDScript",
+"path": "res://scripts/commands/Move.gd"
+}, {
+"base": "Node",
+"class": "PlayerController",
+"language": "GDScript",
+"path": "res://scripts/components/PlayerController.gd"
 }, {
 "base": "TileMap",
 "class": "Room",
@@ -30,7 +50,11 @@ _global_script_classes=[ {
 "path": "res://scripts/components/Visual.gd"
 } ]
 _global_script_class_icons={
+"AiController": "",
+"EndTurn": "",
 "Entity": "",
+"Move": "",
+"PlayerController": "",
 "Room": "",
 "StartTurn": "",
 "Visual": ""
