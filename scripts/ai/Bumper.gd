@@ -1,14 +1,11 @@
-extends Node
+extends AiController
+
+class_name Bumper
 
 export var direction = Vector2(1, 0) setget _set_direction
 
 var has_turn = false
 var wall_bumps = 0
-
-onready var parent = get_parent()
-
-func _ready():
-	Globals.emit_group(self, "AI")
 
 func start_turn():
 	has_turn = true
@@ -28,3 +25,7 @@ func _set_direction(value):
 
 func shift():
 	parent.command(Move.new(direction))
+
+func bump(_target_position):
+	wall_bumps += 1
+	self.direction *= -1

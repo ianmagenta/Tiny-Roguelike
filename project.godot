@@ -14,7 +14,17 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scripts/components/AiController.gd"
 }, {
-"base": "Node",
+"base": "Reference",
+"class": "Bump",
+"language": "GDScript",
+"path": "res://scripts/commands/Bump.gd"
+}, {
+"base": "AiController",
+"class": "Bumper",
+"language": "GDScript",
+"path": "res://scripts/ai/Bumper.gd"
+}, {
+"base": "Reference",
 "class": "EndTurn",
 "language": "GDScript",
 "path": "res://scripts/commands/EndTurn.gd"
@@ -24,7 +34,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scripts/components/Entity.gd"
 }, {
-"base": "Node",
+"base": "Reference",
 "class": "Move",
 "language": "GDScript",
 "path": "res://scripts/commands/Move.gd"
@@ -51,6 +61,8 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "AiController": "",
+"Bump": "",
+"Bumper": "",
 "EndTurn": "",
 "Entity": "",
 "Move": "",

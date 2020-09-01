@@ -3,7 +3,7 @@ extends Node
 onready var camera = $Camera2D
 var enemy_turn_timer = 0.5
 
-func _ready():
+func start():
 	player_turn()
 
 func player_turn():

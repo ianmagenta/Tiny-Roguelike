@@ -27,5 +27,4 @@ func end_turn():
 	has_turn = false
 
 func destroy():
-	remove_from_group("PC")
-	queue_free()
+	parent.remove_from_group("PC")

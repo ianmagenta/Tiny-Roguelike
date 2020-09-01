@@ -4,8 +4,8 @@ extends Node2D
 
 var game_sceen = preload("res://scenes/game/Game.tscn").instance()
 
-func _init():
-	VisualServer.set_default_clear_color(Color("#292929"))
+func _ready():
 	add_child(game_sceen)
+	Globals.current_pc = preload("res://scenes/entities/Knight.tscn").instance()
 	game_sceen.get_node("Dungeon").level += 1
-	
+	game_sceen.get_node("TurnManager").start()

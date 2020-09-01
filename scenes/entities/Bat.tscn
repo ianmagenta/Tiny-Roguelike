@@ -1,9 +1,8 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://scripts/components/Entity.gd" type="Script" id=1]
 [ext_resource path="res://resources/roguelike_sheet.png" type="Texture" id=2]
 [ext_resource path="res://scripts/components/Visual.gd" type="Script" id=3]
-[ext_resource path="res://scripts/components/AiController.gd" type="Script" id=4]
 [ext_resource path="res://scripts/ai/Bumper.gd" type="Script" id=5]
 
 [sub_resource type="AtlasTexture" id=1]
@@ -21,6 +20,5 @@ script = ExtResource( 3 )
 col = 1
 row = 16
 
-[node name="AiController" type="Node" parent="."]
-script = ExtResource( 4 )
-ai_type = ExtResource( 5 )
+[node name="Bumper" type="Node" parent="."]
+script = ExtResource( 5 )
