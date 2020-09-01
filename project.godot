@@ -15,6 +15,11 @@ _global_script_classes=[ {
 "path": "res://scripts/components/AiController.gd"
 }, {
 "base": "Reference",
+"class": "Attack",
+"language": "GDScript",
+"path": "res://scripts/commands/Attack.gd"
+}, {
+"base": "Reference",
 "class": "Bump",
 "language": "GDScript",
 "path": "res://scripts/commands/Bump.gd"
@@ -61,6 +66,7 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "AiController": "",
+"Attack": "",
 "Bump": "",
 "Bumper": "",
 "EndTurn": "",

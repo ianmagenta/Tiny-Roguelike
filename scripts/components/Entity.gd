@@ -5,6 +5,9 @@ class_name Entity
 
 signal end_turn
 
+export var base_health = 1
+export var base_damage = 1
+
 var num_commands = 0
 var signal_end_turn = false
 var grid_position = Vector2(0, 0) setget _set_grid_position
@@ -49,16 +52,19 @@ func _valid_move(new_grid_position: Vector2):
 		return false
 	for entity in Globals.entity_group:
 		if entity and entity.grid_position == new_grid_position:
-			if entity.is_in_group("Interactable"):
+			if entity.is_in_group("Interact"):
 #				entity.command(Interact.new(entity.grid_position - grid_position))
 				command(EndTurn.new())
 			elif is_in_group("AI") and entity.is_in_group("AI"):
 				command(Bump.new(new_grid_position))
 			else:
-#				command(Attack.new(entity, entity.grid_position - grid_position))
+				command(Attack.new(entity, entity.grid_position - grid_position))
 				command(EndTurn.new())
 			return false
 	return true
 
 func bump(target_position):
 	pass
+
+func attack(target, attack_vector, damage):
+	damage += base_damage
