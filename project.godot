@@ -30,6 +30,11 @@ _global_script_classes=[ {
 "path": "res://scripts/ai/Bumper.gd"
 }, {
 "base": "Reference",
+"class": "Destroy",
+"language": "GDScript",
+"path": "res://scripts/commands/Destroy.gd"
+}, {
+"base": "Reference",
 "class": "EndTurn",
 "language": "GDScript",
 "path": "res://scripts/commands/EndTurn.gd"
@@ -59,6 +64,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scripts/commands/StartTurn.gd"
 }, {
+"base": "Reference",
+"class": "TakeDamage",
+"language": "GDScript",
+"path": "res://scripts/commands/TakeDamage.gd"
+}, {
 "base": "Sprite",
 "class": "Visual",
 "language": "GDScript",
@@ -69,12 +79,14 @@ _global_script_class_icons={
 "Attack": "",
 "Bump": "",
 "Bumper": "",
+"Destroy": "",
 "EndTurn": "",
 "Entity": "",
 "Move": "",
 "PlayerController": "",
 "Room": "",
 "StartTurn": "",
+"TakeDamage": "",
 "Visual": ""
 }
 

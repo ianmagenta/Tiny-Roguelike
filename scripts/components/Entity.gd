@@ -66,5 +66,12 @@ func _valid_move(new_grid_position: Vector2):
 func bump(target_position):
 	pass
 
-func attack(target, attack_vector, damage):
-	damage += base_damage
+func attack(damage_data):
+	damage_data.damage += base_damage
+	damage_data.source = self
+	damage_data.target.command(TakeDamage.new(damage_data))
+
+func take_damage(damage_data):
+	base_health -= damage_data.damage
+	if base_health <= 0:
+		command(Destroy.new())
