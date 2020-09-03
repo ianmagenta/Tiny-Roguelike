@@ -58,7 +58,7 @@
 script = ExtResource( 1 )
 
 [node name="Camera2D" type="Camera2D" parent="TurnManager"]
-offset = Vector2( 320, 0 )
+position = Vector2( 320, 0 )
 current = true
 
 [node name="Dungeon" type="TileMap" parent="."]

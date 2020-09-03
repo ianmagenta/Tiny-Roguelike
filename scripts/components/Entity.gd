@@ -42,8 +42,10 @@ func destroy():
 func move(direction):
 	var new_grid_position = grid_position + direction
 	if _valid_move(new_grid_position):
-#		get_parent().add_child(Shadow.new($Visual, position))
+		var old_grid_position = grid_position
 		self.grid_position = new_grid_position
+		var visual_reference: Visual = $Visual
+		scene.add_child(Shadow.new(1, 0, Color("#deeedc"), old_grid_position, -1))
 		command(EndTurn.new())
 
 func _valid_move(new_grid_position: Vector2):

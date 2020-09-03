@@ -17,7 +17,6 @@ self_modulate = Color( 0.870588, 0.933333, 0.862745, 1 )
 texture = SubResource( 1 )
 centered = false
 script = ExtResource( 2 )
-col = 1
 row = 13
 
 [node name="PlayerController" type="Node" parent="."]
