@@ -2,13 +2,14 @@ extends Visual
 
 class_name Shadow
 
-var decay_time = 0.25
+var decay_time: float
 var tween = Tween.new()
 
-func _init(col: int, row: int, color: Color, grid_position: Vector2, layer: int).(col, row, color):
+func _init(col: int, row: int, color: Color, grid_position: Vector2, layer: int, transparency: float=0.25, new_decay_time: float=0.5).(col, row, color):
 	position = Globals.grid_to_world(grid_position)
 	z_index = layer
-	self_modulate.a = 0.1
+	decay_time = new_decay_time
+	self_modulate.a = transparency
 	add_child(tween)
 
 func _ready():

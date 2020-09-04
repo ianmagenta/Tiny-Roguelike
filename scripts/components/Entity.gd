@@ -5,12 +5,13 @@ class_name Entity
 
 signal end_turn
 
-export var base_health = 1
+export var base_health = 2
 export var base_damage = 1
 
 var num_commands = 0
 var signal_end_turn = false
 var grid_position = Vector2(0, 0) setget _set_grid_position
+var prev_direction = Vector2(0, 0)
 
 onready var scene = get_parent()
 
@@ -44,8 +45,22 @@ func move(direction):
 	if _valid_move(new_grid_position):
 		var old_grid_position = grid_position
 		self.grid_position = new_grid_position
-		var visual_reference: Visual = $Visual
-		scene.add_child(Shadow.new(1, 0, Color("#deeedc"), old_grid_position, -1))
+		var new_direction = direction - prev_direction
+		var shadow_color = Color("#deeedc")
+		if new_direction.x != 0 and new_direction.y != 0:
+			if new_direction == Vector2(-1, 1):
+				scene.add_child(Shadow.new(27, 9, shadow_color, old_grid_position, -1))
+			elif new_direction == Vector2(-1, -1):
+				scene.add_child(Shadow.new(27, 11, shadow_color, old_grid_position, -1))
+			elif new_direction == Vector2(1, -1):
+				scene.add_child(Shadow.new(25, 11, shadow_color, old_grid_position, -1))
+			elif new_direction == Vector2(1, 1):
+				scene.add_child(Shadow.new(25, 9, shadow_color, old_grid_position, -1))
+		elif direction.y != 0:
+			scene.add_child(Shadow.new(25, 10, shadow_color, old_grid_position, -1))
+		else:
+			scene.add_child(Shadow.new(26, 11, shadow_color, old_grid_position, -1))
+		prev_direction = direction
 		command(EndTurn.new())
 
 func _valid_move(new_grid_position: Vector2):
@@ -71,6 +86,8 @@ func bump(target_position):
 func attack(damage_data):
 	damage_data.damage += base_damage
 	damage_data.source = self
+	var target_visual = damage_data.target.get_node("Visual")
+	scene.add_child(Shadow.new(target_visual.col, target_visual.row, Color("#d04043"), damage_data.target.grid_position, 1, 1, 0.25))
 	damage_data.target.command(TakeDamage.new(damage_data))
 
 func take_damage(damage_data):
