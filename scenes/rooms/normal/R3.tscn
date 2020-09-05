@@ -8,5 +8,5 @@ tile_set = ExtResource( 2 )
 cell_size = Vector2( 16, 16 )
 cell_custom_transform = Transform2D( 16, 0, 0, 16, 0, 0 )
 format = 1
-tile_data = PoolIntArray( 0, 0, 0, 65536, 0, 0, 65537, 1, 0, 65540, 1, 0, 131072, 0, 0, 196608, 0, 0, 196609, 1, 0, 196612, 1, 0, 262144, 0, 0 )
+tile_data = PoolIntArray( 0, 0, 0, 65536, 0, 0, 65537, 1, 0, 131072, 0, 0, 196608, 0, 0, 196612, 1, 0, 262144, 0, 0 )
 script = ExtResource( 1 )

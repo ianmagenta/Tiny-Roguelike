@@ -29,6 +29,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scripts/ai/Bumper.gd"
 }, {
+"base": "Visual",
+"class": "CmdVisual",
+"language": "GDScript",
+"path": "res://scripts/components/CmdVisual.gd"
+}, {
 "base": "Reference",
 "class": "Destroy",
 "language": "GDScript",
@@ -84,6 +89,7 @@ _global_script_class_icons={
 "Attack": "",
 "Bump": "",
 "Bumper": "",
+"CmdVisual": "",
 "Destroy": "",
 "EndTurn": "",
 "Entity": "",

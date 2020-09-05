@@ -5,7 +5,7 @@ class_name Shadow
 var decay_time: float
 var tween = Tween.new()
 
-func _init(col: int, row: int, color: Color, grid_position: Vector2, layer: int, transparency: float=0.25, new_decay_time: float=0.5).(col, row, color):
+func _init(sprite: Vector2, color: Color, grid_position: Vector2, layer: int, transparency: float=0.25, new_decay_time: float=0.5).(sprite, color):
 	position = Globals.grid_to_world(grid_position)
 	z_index = layer
 	decay_time = new_decay_time

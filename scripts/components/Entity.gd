@@ -12,6 +12,7 @@ var num_commands = 0
 var signal_end_turn = false
 var grid_position = Vector2(0, 0) setget _set_grid_position
 var prev_direction = Vector2(0, 0)
+var tail: Visual = Visual.new(Vector2(0, 0), Color("#94999e"))
 
 onready var scene = get_parent()
 
@@ -21,6 +22,10 @@ func _set_grid_position(value: Vector2):
 
 func _init():
 	add_to_group("Entity")
+
+func _ready():
+	tail.z_index = -1
+	scene.add_child(tail)
 
 func command(command):
 	num_commands += 1
@@ -38,29 +43,31 @@ func end_turn():
 
 func destroy():
 	remove_from_group("Entity")
+	var visual_ref = $CmdVisual
+	scene.add_child(Shadow.new(visual_ref.sprite, visual_ref.self_modulate, grid_position, 1))
+	tail.queue_free()
 	queue_free()
 
 func move(direction):
 	var new_grid_position = grid_position + direction
 	if _valid_move(new_grid_position):
-		var old_grid_position = grid_position
-		self.grid_position = new_grid_position
 		var new_direction = direction - prev_direction
-		var shadow_color = Color("#deeedc")
 		if new_direction.x != 0 and new_direction.y != 0:
 			if new_direction == Vector2(-1, 1):
-				scene.add_child(Shadow.new(27, 9, shadow_color, old_grid_position, -1))
+				tail.sprite = Vector2(27, 9)
 			elif new_direction == Vector2(-1, -1):
-				scene.add_child(Shadow.new(27, 11, shadow_color, old_grid_position, -1))
+				tail.sprite = Vector2(27, 11)
 			elif new_direction == Vector2(1, -1):
-				scene.add_child(Shadow.new(25, 11, shadow_color, old_grid_position, -1))
+				tail.sprite = Vector2(25, 11)
 			elif new_direction == Vector2(1, 1):
-				scene.add_child(Shadow.new(25, 9, shadow_color, old_grid_position, -1))
+				tail.sprite = Vector2(25, 9)
 		elif direction.y != 0:
-			scene.add_child(Shadow.new(25, 10, shadow_color, old_grid_position, -1))
+				tail.sprite = Vector2(25, 10)
 		else:
-			scene.add_child(Shadow.new(26, 11, shadow_color, old_grid_position, -1))
+				tail.sprite = Vector2(26, 11)
+		tail.position = Globals.grid_to_world(grid_position)
 		prev_direction = direction
+		self.grid_position = new_grid_position
 		command(EndTurn.new())
 
 func _valid_move(new_grid_position: Vector2):
@@ -81,13 +88,12 @@ func _valid_move(new_grid_position: Vector2):
 	return true
 
 func bump(target_position):
-	pass
+	scene.add_child(Shadow.new(Vector2(1, 0), $CmdVisual.self_modulate, target_position, 1, 0.75))
 
 func attack(damage_data):
+	tail.sprite = Vector2(0, 0)
 	damage_data.damage += base_damage
 	damage_data.source = self
-	var target_visual = damage_data.target.get_node("Visual")
-	scene.add_child(Shadow.new(target_visual.col, target_visual.row, Color("#d04043"), damage_data.target.grid_position, 1, 1, 0.25))
 	damage_data.target.command(TakeDamage.new(damage_data))
 
 func take_damage(damage_data):
