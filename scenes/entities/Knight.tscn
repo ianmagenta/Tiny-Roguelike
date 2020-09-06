@@ -13,7 +13,7 @@ region = Rect2( 16, 208, 16, 16 )
 script = ExtResource( 1 )
 
 [node name="CmdVisual" type="Sprite" parent="."]
-self_modulate = Color( 0.870588, 0.933333, 0.862745, 1 )
+self_modulate = Color( 0.945098, 0.945098, 0.917647, 1 )
 texture = SubResource( 1 )
 centered = false
 script = ExtResource( 5 )
