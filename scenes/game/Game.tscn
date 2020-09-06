@@ -1,22 +1,29 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://scenes/game/TurnManager.gd" type="Script" id=1]
 [ext_resource path="res://resources/roguelike_sheet.png" type="Texture" id=2]
 [ext_resource path="res://scenes/game/Dungeon.gd" type="Script" id=3]
 
-[sub_resource type="ParticlesMaterial" id=4]
+[sub_resource type="Gradient" id=4]
+offsets = PoolRealArray( 0, 0.348148, 0.614815, 1 )
+colors = PoolColorArray( 0, 0, 0, 0, 0.584314, 0.572549, 0.560784, 1, 0.533186, 0.522451, 0.511716, 0.9125, 0, 0, 0, 0 )
+
+[sub_resource type="GradientTexture" id=5]
+gradient = SubResource( 4 )
+
+[sub_resource type="ParticlesMaterial" id=1]
 emission_shape = 2
 emission_box_extents = Vector3( 30, 180, 1 )
 flag_disable_z = true
 direction = Vector3( 0, 0, 0 )
 spread = 180.0
 gravity = Vector3( 0, 0, 0 )
-initial_velocity = 5.0
+initial_velocity = 2.0
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
-color = Color( 0.584314, 0.572549, 0.560784, 1 )
+color_ramp = SubResource( 5 )
 
-[sub_resource type="TileSet" id=5]
+[sub_resource type="TileSet" id=2]
 0/name = "roguelike_sheet.png 0"
 0/texture = ExtResource( 2 )
 0/tex_offset = Vector2( 0, 0 )
@@ -75,18 +82,22 @@ current = true
 
 [node name="Particles2D" type="Particles2D" parent="TurnManager/Camera2D"]
 position = Vector2( -96, 0 )
+amount = 20
+lifetime = 5.0
 visibility_rect = Rect2( -40, -180, 80, 360 )
-process_material = SubResource( 4 )
+process_material = SubResource( 1 )
 
 [node name="Particles2D2" type="Particles2D" parent="TurnManager/Camera2D"]
 position = Vector2( 96, 0 )
+amount = 20
+lifetime = 5.0
 visibility_rect = Rect2( -40, -180, 80, 360 )
-process_material = SubResource( 4 )
+process_material = SubResource( 1 )
 
 [node name="Dungeon" type="TileMap" parent="."]
 self_modulate = Color( 0.584314, 0.572549, 0.560784, 1 )
 position = Vector2( 264, 0 )
-tile_set = SubResource( 5 )
+tile_set = SubResource( 2 )
 cell_size = Vector2( 16, 16 )
 cell_custom_transform = Transform2D( 16, 0, 0, 16, 0, 0 )
 format = 1

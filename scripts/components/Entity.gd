@@ -38,7 +38,6 @@ func end_turn():
 
 func destroy():
 	remove_from_group("Entity")
-	var visual_ref = $CmdVisual
 	queue_free()
 
 func move(direction):
@@ -81,7 +80,7 @@ func _valid_move(new_grid_position: Vector2):
 	return true
 
 func bump(target_position):
-	scene.add_child(Shadow.new(Vector2(1, 0), $CmdVisual.self_modulate, target_position, 1, 0.75))
+	scene.add_child(Shadow.new(Vector2(1, 0), $Visual.self_modulate, target_position, 1, 0.75))
 
 func attack(damage_data):
 	damage_data.damage += base_damage
