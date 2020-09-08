@@ -3,7 +3,7 @@
 [ext_resource path="res://scripts/components/Entity.gd" type="Script" id=1]
 [ext_resource path="res://scripts/components/Visual.gd" type="Script" id=2]
 [ext_resource path="res://resources/roguelike_sheet.png" type="Texture" id=3]
-[ext_resource path="res://scripts/ai/Bumper.gd" type="Script" id=5]
+[ext_resource path="res://scripts/ai/Wanderer.gd" type="Script" id=4]
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 3 )
@@ -11,6 +11,7 @@ region = Rect2( 16, 256, 16, 16 )
 
 [node name="Bat" type="Node2D"]
 script = ExtResource( 1 )
+base_health = 1
 
 [node name="Visual" type="Sprite" parent="."]
 self_modulate = Color( 0.486275, 0.247059, 0.54902, 1 )
@@ -19,5 +20,5 @@ centered = false
 script = ExtResource( 2 )
 sprite = Vector2( 1, 16 )
 
-[node name="Bumper" type="Node" parent="."]
-script = ExtResource( 5 )
+[node name="Wanderer" type="Node" parent="."]
+script = ExtResource( 4 )

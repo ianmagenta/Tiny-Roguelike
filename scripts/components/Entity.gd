@@ -43,22 +43,6 @@ func destroy():
 func move(direction):
 	var new_grid_position = grid_position + direction
 	if _valid_move(new_grid_position):
-		var new_direction = direction - prev_direction
-		var shadow_color = Color("#95928f")
-		if new_direction.x != 0 and new_direction.y != 0:
-			if new_direction == Vector2(-1, 1):
-				scene.add_child(Shadow.new(Vector2(27, 9), shadow_color, grid_position, -1))
-			elif new_direction == Vector2(-1, -1):
-				scene.add_child(Shadow.new(Vector2(27, 11), shadow_color, grid_position, -1))
-			elif new_direction == Vector2(1, -1):
-				scene.add_child(Shadow.new(Vector2(25, 11), shadow_color, grid_position, -1))
-			elif new_direction == Vector2(1, 1):
-				scene.add_child(Shadow.new(Vector2(25, 9), shadow_color, grid_position, -1))
-		elif direction.y != 0:
-			scene.add_child(Shadow.new(Vector2(25, 10), shadow_color, grid_position, -1))
-		else:
-			scene.add_child(Shadow.new(Vector2(26, 11), shadow_color, grid_position, -1))
-		prev_direction = direction
 		self.grid_position = new_grid_position
 		command(EndTurn.new())
 

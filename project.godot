@@ -54,6 +54,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scripts/components/PlayerController.gd"
 }, {
+"base": "Reference",
+"class": "PreTurn",
+"language": "GDScript",
+"path": "res://scripts/commands/PreTurn.gd"
+}, {
 "base": "TileMap",
 "class": "Room",
 "language": "GDScript",
@@ -78,6 +83,11 @@ _global_script_classes=[ {
 "class": "Visual",
 "language": "GDScript",
 "path": "res://scripts/components/Visual.gd"
+}, {
+"base": "AiController",
+"class": "Wanderer",
+"language": "GDScript",
+"path": "res://scripts/ai/Wanderer.gd"
 } ]
 _global_script_class_icons={
 "AiController": "",
@@ -89,11 +99,13 @@ _global_script_class_icons={
 "Entity": "",
 "Move": "",
 "PlayerController": "",
+"PreTurn": "",
 "Room": "",
 "Shadow": "",
 "StartTurn": "",
 "TakeDamage": "",
-"Visual": ""
+"Visual": "",
+"Wanderer": ""
 }
 
 [application]

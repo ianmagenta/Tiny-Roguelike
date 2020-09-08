@@ -9,3 +9,9 @@ func _ready():
 	Globals.current_pc = preload("res://scenes/entities/Knight.tscn").instance()
 	game_sceen.get_node("Dungeon").level += 1
 	game_sceen.get_node("TurnManager").start()
+
+func _input(event):
+	if event.is_action_pressed("ui_accept"):
+		OS.window_fullscreen = !OS.window_fullscreen
+	elif event.is_action_pressed("ui_cancel"):
+		get_tree().quit()
