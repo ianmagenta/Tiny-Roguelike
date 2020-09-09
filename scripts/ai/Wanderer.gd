@@ -15,7 +15,7 @@ func _ready():
 func pre_turn():
 	directions = [Vector2(1,0), Vector2(0,1), Vector2(-1,0), Vector2(0,-1)]
 	find_valid_move()
-	pointer.sprite = turn_action.direction + Vector2(29, 16)
+	pointer.sprite = turn_action.direction + Vector2(29, 13)
 	pointer.position = Globals.grid_to_world(parent.grid_position + turn_action.direction)
 
 func start_turn():
