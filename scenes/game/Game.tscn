@@ -1,17 +1,17 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://scenes/game/TurnManager.gd" type="Script" id=1]
 [ext_resource path="res://resources/roguelike_sheet.png" type="Texture" id=2]
 [ext_resource path="res://scenes/game/Dungeon.gd" type="Script" id=3]
 
-[sub_resource type="Gradient" id=4]
+[sub_resource type="Gradient" id=1]
 offsets = PoolRealArray( 0, 0.348148, 0.614815, 1 )
 colors = PoolColorArray( 0, 0, 0, 0, 0.584314, 0.572549, 0.560784, 1, 0.533186, 0.522451, 0.511716, 0.9125, 0, 0, 0, 0 )
 
-[sub_resource type="GradientTexture" id=5]
-gradient = SubResource( 4 )
+[sub_resource type="GradientTexture" id=2]
+gradient = SubResource( 1 )
 
-[sub_resource type="ParticlesMaterial" id=1]
+[sub_resource type="ParticlesMaterial" id=3]
 emission_shape = 2
 emission_box_extents = Vector3( 30, 180, 1 )
 flag_disable_z = true
@@ -21,9 +21,32 @@ gravity = Vector3( 0, 0, 0 )
 initial_velocity = 2.0
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
-color_ramp = SubResource( 5 )
+color_ramp = SubResource( 2 )
 
-[sub_resource type="TileSet" id=2]
+[sub_resource type="TileSet" id=4]
+0/name = "roguelike_sheet.png 0"
+0/texture = ExtResource( 2 )
+0/tex_offset = Vector2( 0, 0 )
+0/modulate = Color( 1, 1, 1, 1 )
+0/region = Rect2( 256, 192, 64, 64 )
+0/tile_mode = 2
+0/autotile/icon_coordinate = Vector2( 0, 0 )
+0/autotile/tile_size = Vector2( 16, 16 )
+0/autotile/spacing = 0
+0/autotile/occluder_map = [  ]
+0/autotile/navpoly_map = [  ]
+0/autotile/priority_map = [  ]
+0/autotile/z_index_map = [  ]
+0/occluder_offset = Vector2( 0, 0 )
+0/navigation_offset = Vector2( 0, 0 )
+0/shape_offset = Vector2( 0, 0 )
+0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+0/shape_one_way = false
+0/shape_one_way_margin = 0.0
+0/shapes = [  ]
+0/z_index = 0
+
+[sub_resource type="TileSet" id=5]
 0/name = "roguelike_sheet.png 0"
 0/texture = ExtResource( 2 )
 0/tex_offset = Vector2( 0, 0 )
@@ -48,7 +71,7 @@ color_ramp = SubResource( 5 )
 0/shapes = [  ]
 0/z_index = 0
 
-[sub_resource type="TileSet" id=3]
+[sub_resource type="TileSet" id=6]
 0/name = "wall0"
 0/texture = ExtResource( 2 )
 0/tex_offset = Vector2( 0, 0 )
@@ -85,19 +108,27 @@ position = Vector2( -96, 0 )
 amount = 20
 lifetime = 5.0
 visibility_rect = Rect2( -40, -180, 80, 360 )
-process_material = SubResource( 1 )
+process_material = SubResource( 3 )
 
 [node name="Particles2D2" type="Particles2D" parent="TurnManager/Camera2D"]
 position = Vector2( 96, 0 )
 amount = 20
 lifetime = 5.0
 visibility_rect = Rect2( -40, -180, 80, 360 )
-process_material = SubResource( 1 )
+process_material = SubResource( 3 )
+
+[node name="TileMap" type="TileMap" parent="TurnManager/Camera2D"]
+self_modulate = Color( 0.584314, 0.572549, 0.560784, 1 )
+tile_set = SubResource( 4 )
+cell_size = Vector2( 16, 16 )
+cell_custom_transform = Transform2D( 16, 0, 0, 16, 0, 0 )
+format = 1
+tile_data = PoolIntArray( -655380, 0, 0, -655379, 0, 1, -655378, 0, 1, -655377, 0, 1, -655376, 0, 1, -655375, 0, 1, -655374, 0, 1, -655373, 0, 1, -655372, 0, 1, -655371, 0, 1, -655370, 0, 3, -720887, 0, 0, -720886, 0, 1, -720885, 0, 1, -720884, 0, 1, -720883, 0, 1, -720882, 0, 1, -720881, 0, 1, -720880, 0, 1, -720879, 0, 1, -720878, 0, 1, -720877, 0, 3, -589844, 0, 65536, -589834, 0, 65536, -655351, 0, 65536, -655341, 0, 65536, -524308, 0, 65536, -524298, 0, 65536, -589815, 0, 65536, -589805, 0, 65536, -458772, 0, 65536, -458762, 0, 65536, -524279, 0, 65536, -524269, 0, 65536, -393236, 0, 65536, -393226, 0, 65536, -458743, 0, 65536, -458733, 0, 65536, -327700, 0, 65536, -327690, 0, 65536, -393207, 0, 65536, -393197, 0, 65536, -262164, 0, 65536, -262154, 0, 65536, -327671, 0, 65536, -327661, 0, 65536, -196628, 0, 65536, -196618, 0, 65536, -262135, 0, 65536, -262125, 0, 65536, -131092, 0, 65536, -131082, 0, 65536, -196599, 0, 65536, -196589, 0, 65536, -65556, 0, 65536, -65546, 0, 65536, -131063, 0, 65536, -131053, 0, 65536, -20, 0, 196608, -19, 0, 1, -18, 0, 1, -17, 0, 1, -16, 0, 1, -15, 0, 1, -14, 0, 1, -13, 0, 1, -12, 0, 1, -11, 0, 1, -10, 0, 196611, -65527, 0, 196608, -65526, 0, 1, -65525, 0, 1, -65524, 0, 1, -65523, 0, 1, -65522, 0, 1, -65521, 0, 1, -65520, 0, 1, -65519, 0, 1, -65518, 0, 1, -65517, 0, 196611, 65516, 0, 0, 65517, 0, 1, 65518, 0, 1, 65519, 0, 1, 65520, 0, 1, 65521, 0, 1, 65522, 0, 1, 65523, 0, 1, 65524, 0, 1, 65525, 0, 1, 65526, 0, 3, 9, 0, 0, 10, 0, 1, 11, 0, 1, 12, 0, 1, 13, 0, 1, 14, 0, 1, 15, 0, 1, 16, 0, 1, 17, 0, 1, 18, 0, 1, 19, 0, 3, 131052, 0, 65536, 131062, 0, 65536, 65545, 0, 65536, 65555, 0, 65536, 196588, 0, 65536, 196598, 0, 65536, 131081, 0, 65536, 131091, 0, 65536, 262124, 0, 65536, 262134, 0, 65536, 196617, 0, 65536, 196627, 0, 65536, 327660, 0, 65536, 327670, 0, 65536, 262153, 0, 65536, 262163, 0, 65536, 393196, 0, 65536, 393206, 0, 65536, 327689, 0, 65536, 327699, 0, 65536, 458732, 0, 65536, 458742, 0, 65536, 393225, 0, 65536, 393235, 0, 65536, 524268, 0, 65536, 524278, 0, 65536, 458761, 0, 65536, 458771, 0, 65536, 589804, 0, 65536, 589814, 0, 65536, 524297, 0, 65536, 524307, 0, 65536, 655340, 0, 65536, 655350, 0, 65536, 589833, 0, 65536, 589843, 0, 65536, 720876, 0, 196608, 720877, 0, 1, 720878, 0, 1, 720879, 0, 1, 720880, 0, 1, 720881, 0, 1, 720882, 0, 1, 720883, 0, 1, 720884, 0, 1, 720885, 0, 1, 720886, 0, 196611, 655369, 0, 196608, 655370, 0, 1, 655371, 0, 1, 655372, 0, 1, 655373, 0, 1, 655374, 0, 1, 655375, 0, 1, 655376, 0, 1, 655377, 0, 1, 655378, 0, 1, 655379, 0, 196611 )
 
 [node name="Dungeon" type="TileMap" parent="."]
 self_modulate = Color( 0.584314, 0.572549, 0.560784, 1 )
 position = Vector2( 264, 0 )
-tile_set = SubResource( 2 )
+tile_set = SubResource( 5 )
 cell_size = Vector2( 16, 16 )
 cell_custom_transform = Transform2D( 16, 0, 0, 16, 0, 0 )
 format = 1
@@ -106,7 +137,7 @@ script = ExtResource( 3 )
 
 [node name="Walls" type="TileMap" parent="Dungeon"]
 self_modulate = Color( 0.32549, 0.345098, 0.403922, 1 )
-tile_set = SubResource( 3 )
+tile_set = SubResource( 6 )
 cell_size = Vector2( 16, 16 )
 cell_custom_transform = Transform2D( 16, 0, 0, 16, 0, 0 )
 format = 1
