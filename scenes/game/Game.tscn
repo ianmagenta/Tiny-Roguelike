@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://scenes/game/TurnManager.gd" type="Script" id=1]
 [ext_resource path="res://resources/roguelike_sheet.png" type="Texture" id=2]
 [ext_resource path="res://scenes/game/Dungeon.gd" type="Script" id=3]
+[ext_resource path="res://resources/RulerGoldFont.tres" type="DynamicFont" id=4]
 
 [sub_resource type="Gradient" id=1]
 offsets = PoolRealArray( 0, 0.348148, 0.614815, 1 )
@@ -13,7 +14,7 @@ gradient = SubResource( 1 )
 
 [sub_resource type="ParticlesMaterial" id=3]
 emission_shape = 2
-emission_box_extents = Vector3( 30, 180, 1 )
+emission_box_extents = Vector3( 24, 180, 1 )
 flag_disable_z = true
 direction = Vector3( 0, 0, 0 )
 spread = 180.0
@@ -104,26 +105,43 @@ position = Vector2( 320, 0 )
 current = true
 
 [node name="Particles2D" type="Particles2D" parent="TurnManager/Camera2D"]
-position = Vector2( -96, 0 )
+position = Vector2( -88, 0 )
 amount = 20
 lifetime = 5.0
-visibility_rect = Rect2( -40, -180, 80, 360 )
+visibility_rect = Rect2( -24, -180, 48, 360 )
 process_material = SubResource( 3 )
 
 [node name="Particles2D2" type="Particles2D" parent="TurnManager/Camera2D"]
-position = Vector2( 96, 0 )
+position = Vector2( 88, 0 )
 amount = 20
 lifetime = 5.0
-visibility_rect = Rect2( -40, -180, 80, 360 )
+visibility_rect = Rect2( -24, -180, 48, 360 )
 process_material = SubResource( 3 )
 
 [node name="TileMap" type="TileMap" parent="TurnManager/Camera2D"]
-self_modulate = Color( 0.584314, 0.572549, 0.560784, 1 )
+self_modulate = Color( 0.945098, 0.945098, 0.917647, 1 )
 tile_set = SubResource( 4 )
 cell_size = Vector2( 16, 16 )
 cell_custom_transform = Transform2D( 16, 0, 0, 16, 0, 0 )
 format = 1
-tile_data = PoolIntArray( -655380, 0, 0, -655379, 0, 1, -655378, 0, 1, -655377, 0, 1, -655376, 0, 1, -655375, 0, 1, -655374, 0, 1, -655373, 0, 1, -655372, 0, 1, -655371, 0, 1, -655370, 0, 3, -720887, 0, 0, -720886, 0, 1, -720885, 0, 1, -720884, 0, 1, -720883, 0, 1, -720882, 0, 1, -720881, 0, 1, -720880, 0, 1, -720879, 0, 1, -720878, 0, 1, -720877, 0, 3, -589844, 0, 65536, -589834, 0, 65536, -655351, 0, 65536, -655341, 0, 65536, -524308, 0, 65536, -524298, 0, 65536, -589815, 0, 65536, -589805, 0, 65536, -458772, 0, 65536, -458762, 0, 65536, -524279, 0, 65536, -524269, 0, 65536, -393236, 0, 65536, -393226, 0, 65536, -458743, 0, 65536, -458733, 0, 65536, -327700, 0, 65536, -327690, 0, 65536, -393207, 0, 65536, -393197, 0, 65536, -262164, 0, 65536, -262154, 0, 65536, -327671, 0, 65536, -327661, 0, 65536, -196628, 0, 65536, -196618, 0, 65536, -262135, 0, 65536, -262125, 0, 65536, -131092, 0, 65536, -131082, 0, 65536, -196599, 0, 65536, -196589, 0, 65536, -65556, 0, 65536, -65546, 0, 65536, -131063, 0, 65536, -131053, 0, 65536, -20, 0, 196608, -19, 0, 1, -18, 0, 1, -17, 0, 1, -16, 0, 1, -15, 0, 1, -14, 0, 1, -13, 0, 1, -12, 0, 1, -11, 0, 1, -10, 0, 196611, -65527, 0, 196608, -65526, 0, 1, -65525, 0, 1, -65524, 0, 1, -65523, 0, 1, -65522, 0, 1, -65521, 0, 1, -65520, 0, 1, -65519, 0, 1, -65518, 0, 1, -65517, 0, 196611, 65516, 0, 0, 65517, 0, 1, 65518, 0, 1, 65519, 0, 1, 65520, 0, 1, 65521, 0, 1, 65522, 0, 1, 65523, 0, 1, 65524, 0, 1, 65525, 0, 1, 65526, 0, 3, 9, 0, 0, 10, 0, 1, 11, 0, 1, 12, 0, 1, 13, 0, 1, 14, 0, 1, 15, 0, 1, 16, 0, 1, 17, 0, 1, 18, 0, 1, 19, 0, 3, 131052, 0, 65536, 131062, 0, 65536, 65545, 0, 65536, 65555, 0, 65536, 196588, 0, 65536, 196598, 0, 65536, 131081, 0, 65536, 131091, 0, 65536, 262124, 0, 65536, 262134, 0, 65536, 196617, 0, 65536, 196627, 0, 65536, 327660, 0, 65536, 327670, 0, 65536, 262153, 0, 65536, 262163, 0, 65536, 393196, 0, 65536, 393206, 0, 65536, 327689, 0, 65536, 327699, 0, 65536, 458732, 0, 65536, 458742, 0, 65536, 393225, 0, 65536, 393235, 0, 65536, 524268, 0, 65536, 524278, 0, 65536, 458761, 0, 65536, 458771, 0, 65536, 589804, 0, 65536, 589814, 0, 65536, 524297, 0, 65536, 524307, 0, 65536, 655340, 0, 65536, 655350, 0, 65536, 589833, 0, 65536, 589843, 0, 65536, 720876, 0, 196608, 720877, 0, 1, 720878, 0, 1, 720879, 0, 1, 720880, 0, 1, 720881, 0, 1, 720882, 0, 1, 720883, 0, 1, 720884, 0, 1, 720885, 0, 1, 720886, 0, 196611, 655369, 0, 196608, 655370, 0, 1, 655371, 0, 1, 655372, 0, 1, 655373, 0, 1, 655374, 0, 1, 655375, 0, 1, 655376, 0, 1, 655377, 0, 1, 655378, 0, 1, 655379, 0, 196611 )
+tile_data = PoolIntArray( -655380, 0, 0, -655379, 0, 1, -655378, 0, 1, -655377, 0, 1, -655376, 0, 1, -655375, 0, 1, -655374, 0, 1, -655373, 0, 1, -655372, 0, 1, -655371, 0, 1, -655370, 0, 1, -655369, 0, 1, -655368, 0, 3, -720889, 0, 0, -720888, 0, 1, -720887, 0, 1, -720886, 0, 1, -720885, 0, 1, -720884, 0, 1, -720883, 0, 1, -720882, 0, 1, -720881, 0, 1, -720880, 0, 1, -720879, 0, 1, -720878, 0, 1, -720877, 0, 3, -589844, 0, 65536, -589832, 0, 65536, -655353, 0, 65536, -655341, 0, 65536, -524308, 0, 65536, -524296, 0, 65536, -589817, 0, 65536, -589805, 0, 65536, -458772, 0, 65536, -458760, 0, 65536, -524281, 0, 65536, -524269, 0, 65536, -393236, 0, 65536, -393224, 0, 65536, -458745, 0, 65536, -458733, 0, 65536, -327700, 0, 65536, -327688, 0, 65536, -393209, 0, 65536, -393197, 0, 65536, -262164, 0, 65536, -262152, 0, 65536, -327673, 0, 65536, -327661, 0, 65536, -196628, 0, 65536, -196616, 0, 65536, -262137, 0, 65536, -262125, 0, 65536, -131092, 0, 65536, -131080, 0, 65536, -196601, 0, 65536, -196589, 0, 65536, -65556, 0, 65536, -65544, 0, 65536, -131065, 0, 65536, -131053, 0, 65536, -20, 0, 196608, -19, 0, 1, -18, 0, 1, -17, 0, 1, -16, 0, 1, -15, 0, 1, -14, 0, 1, -13, 0, 1, -12, 0, 1, -11, 0, 1, -10, 0, 1, -9, 0, 1, -8, 0, 196611, -65529, 0, 196608, -65528, 0, 1, -65527, 0, 1, -65526, 0, 1, -65525, 0, 1, -65524, 0, 1, -65523, 0, 1, -65522, 0, 1, -65521, 0, 1, -65520, 0, 1, -65519, 0, 1, -65518, 0, 1, -65517, 0, 196611, 65516, 0, 0, 65517, 0, 1, 65518, 0, 1, 65519, 0, 1, 65520, 0, 1, 65521, 0, 1, 65522, 0, 1, 65523, 0, 1, 65524, 0, 1, 65525, 0, 1, 65526, 0, 1, 65527, 0, 1, 65528, 0, 3, 7, 0, 0, 8, 0, 1, 9, 0, 1, 10, 0, 1, 11, 0, 2, 12, 0, 1, 13, 0, 1, 14, 0, 1, 15, 0, 2, 16, 0, 1, 17, 0, 1, 18, 0, 1, 19, 0, 3, 131052, 0, 65536, 131053, 0, 0, 131054, 0, 1, 131055, 0, 3, 131057, 0, 0, 131058, 0, 1, 131059, 0, 3, 131061, 0, 0, 131062, 0, 1, 131063, 0, 3, 131064, 0, 65536, 65543, 0, 65536, 65547, 0, 65536, 65551, 0, 65536, 65555, 0, 65536, 196588, 0, 65536, 196589, 0, 65536, 196591, 0, 65536, 196593, 0, 65536, 196595, 0, 65536, 196597, 0, 65536, 196599, 0, 65536, 196600, 0, 65536, 131079, 0, 65536, 131083, 0, 65536, 131087, 0, 65536, 131091, 0, 65536, 262124, 0, 65536, 262125, 0, 196608, 262126, 0, 1, 262127, 0, 196611, 262129, 0, 196608, 262130, 0, 1, 262131, 0, 196611, 262133, 0, 196608, 262134, 0, 1, 262135, 0, 196611, 262136, 0, 65536, 196615, 0, 65536, 196619, 0, 65536, 196623, 0, 65536, 196627, 0, 65536, 327660, 0, 65536, 327661, 0, 0, 327662, 0, 1, 327663, 0, 3, 327665, 0, 0, 327666, 0, 1, 327667, 0, 3, 327669, 0, 0, 327670, 0, 1, 327671, 0, 3, 327672, 0, 65536, 262151, 0, 65536, 262155, 0, 65536, 262159, 0, 65536, 262163, 0, 65536, 393196, 0, 65536, 393197, 0, 65536, 393199, 0, 65536, 393201, 0, 65536, 393203, 0, 65536, 393205, 0, 65536, 393207, 0, 65536, 393208, 0, 65536, 327687, 0, 131072, 327688, 0, 1, 327689, 0, 1, 327690, 0, 1, 327691, 0, 131074, 327692, 0, 1, 327693, 0, 1, 327694, 0, 1, 327695, 0, 131074, 327696, 0, 1, 327697, 0, 1, 327698, 0, 1, 327699, 0, 131075, 458732, 0, 65536, 458733, 0, 196608, 458734, 0, 1, 458735, 0, 196611, 458737, 0, 196608, 458738, 0, 1, 458739, 0, 196611, 458741, 0, 196608, 458742, 0, 1, 458743, 0, 196611, 458744, 0, 65536, 393223, 0, 65536, 393227, 0, 65536, 393231, 0, 65536, 393235, 0, 65536, 524268, 0, 65536, 524269, 0, 0, 524270, 0, 1, 524271, 0, 3, 524273, 0, 0, 524274, 0, 1, 524275, 0, 3, 524277, 0, 0, 524278, 0, 1, 524279, 0, 3, 524280, 0, 65536, 458759, 0, 65536, 458763, 0, 65536, 458767, 0, 65536, 458771, 0, 65536, 589804, 0, 65536, 589805, 0, 65536, 589807, 0, 65536, 589809, 0, 65536, 589811, 0, 65536, 589813, 0, 65536, 589815, 0, 65536, 589816, 0, 65536, 524295, 0, 65536, 524299, 0, 65536, 524303, 0, 65536, 524307, 0, 65536, 655340, 0, 65536, 655341, 0, 196608, 655342, 0, 1, 655343, 0, 196611, 655345, 0, 196608, 655346, 0, 1, 655347, 0, 196611, 655349, 0, 196608, 655350, 0, 1, 655351, 0, 196611, 655352, 0, 65536, 589831, 0, 65536, 589835, 0, 65536, 589839, 0, 65536, 589843, 0, 65536, 720876, 0, 196608, 720877, 0, 1, 720878, 0, 1, 720879, 0, 1, 720880, 0, 1, 720881, 0, 1, 720882, 0, 1, 720883, 0, 1, 720884, 0, 1, 720885, 0, 1, 720886, 0, 1, 720887, 0, 1, 720888, 0, 196611, 655367, 0, 196608, 655368, 0, 1, 655369, 0, 1, 655370, 0, 1, 655371, 0, 196610, 655372, 0, 1, 655373, 0, 1, 655374, 0, 1, 655375, 0, 196610, 655376, 0, 1, 655377, 0, 1, 655378, 0, 1, 655379, 0, 196611 )
+
+[node name="RichTextLabel" type="RichTextLabel" parent="TurnManager/Camera2D"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 132.36
+margin_top = -162.944
+margin_right = 305.36
+margin_bottom = -10.9439
+custom_fonts/normal_font = ExtResource( 4 )
+bbcode_text = "What the fuck did you just fucking say about me, you little bitch? I'll have you know I graduated top of my class in the Navy Seals, and I've been involved in numerous secret raids on Al-Quaeda, and I have over 300 confirmed kills. I am trained in gorilla warfare and I'm the top sniper in the entire US armed forces. You are nothing to me but just another target. I will wipe you the fuck out with precision the likes of which has never been seen before on this Earth, mark my fucking words. You think you can get away with saying that shit to me over the Internet? Think again, fucker. As we speak I am contacting my secret network of spies across the USA and your IP is being traced right now so you better prepare for the storm, maggot. The storm that wipes out the pathetic little thing you call your life. You're fucking dead, kid. I can be anywhere, anytime, and I can kill you in over seven hundred ways, and that's just with my bare hands. Not only am I extensively trained in unarmed combat, but I have access to the entire arsenal of the United States Marine Corps and I will use it to its full extent to wipe your miserable ass off the face of the continent, you little shit. If only you could have known what unholy retribution your little \"clever\" comment was about to bring down upon you, maybe you would have held your fucking tongue. But you couldn't, you didn't, and now you're paying the price, you goddamn idiot. I will shit fury all over you and you will drown in it. You're fucking dead, kiddo."
+text = "What the fuck did you just fucking say about me, you little bitch? I'll have you know I graduated top of my class in the Navy Seals, and I've been involved in numerous secret raids on Al-Quaeda, and I have over 300 confirmed kills. I am trained in gorilla warfare and I'm the top sniper in the entire US armed forces. You are nothing to me but just another target. I will wipe you the fuck out with precision the likes of which has never been seen before on this Earth, mark my fucking words. You think you can get away with saying that shit to me over the Internet? Think again, fucker. As we speak I am contacting my secret network of spies across the USA and your IP is being traced right now so you better prepare for the storm, maggot. The storm that wipes out the pathetic little thing you call your life. You're fucking dead, kid. I can be anywhere, anytime, and I can kill you in over seven hundred ways, and that's just with my bare hands. Not only am I extensively trained in unarmed combat, but I have access to the entire arsenal of the United States Marine Corps and I will use it to its full extent to wipe your miserable ass off the face of the continent, you little shit. If only you could have known what unholy retribution your little \"clever\" comment was about to bring down upon you, maybe you would have held your fucking tongue. But you couldn't, you didn't, and now you're paying the price, you goddamn idiot. I will shit fury all over you and you will drown in it. You're fucking dead, kiddo."
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Dungeon" type="TileMap" parent="."]
 self_modulate = Color( 0.584314, 0.572549, 0.560784, 1 )

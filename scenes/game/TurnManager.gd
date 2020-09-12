@@ -31,5 +31,5 @@ func ai_turn():
 	pre_turn()
 
 func update_camera(entity):
-	if camera.position.y != entity.position.y:
-		camera.position.y = entity.position.y
+	if camera.position.y != entity.position.y + Globals.tile_size/2:
+		camera.position.y = entity.position.y + Globals.tile_size/2
