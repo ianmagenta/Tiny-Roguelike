@@ -106,15 +106,19 @@ current = true
 
 [node name="Particles2D" type="Particles2D" parent="TurnManager/Camera2D"]
 position = Vector2( -88, 0 )
+z_index = -1
 amount = 20
 lifetime = 5.0
+preprocess = 5.0
 visibility_rect = Rect2( -24, -180, 48, 360 )
 process_material = SubResource( 3 )
 
 [node name="Particles2D2" type="Particles2D" parent="TurnManager/Camera2D"]
 position = Vector2( 88, 0 )
+z_index = -1
 amount = 20
 lifetime = 5.0
+preprocess = 5.0
 visibility_rect = Rect2( -24, -180, 48, 360 )
 process_material = SubResource( 3 )
 
