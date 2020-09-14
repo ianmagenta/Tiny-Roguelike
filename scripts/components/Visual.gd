@@ -13,7 +13,7 @@ func _set_sprite(value: Vector2):
 func _init(new_sprite: Vector2=sprite, new_color: Color=self_modulate):
 	sprite = new_sprite
 	if new_color == Color("#ffffff"):
-		self_modulate = Color("#f1f1ea")
+		self_modulate = Color("f2f2f0")
 	else:
 		self_modulate = new_color
 	centered = false

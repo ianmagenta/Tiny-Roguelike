@@ -13,7 +13,7 @@ region = Rect2( 16, 208, 16, 16 )
 script = ExtResource( 1 )
 
 [node name="Visual" type="Sprite" parent="."]
-self_modulate = Color( 0.945098, 0.945098, 0.917647, 1 )
+self_modulate = Color( 0.94902, 0.94902, 0.941176, 1 )
 texture = SubResource( 1 )
 centered = false
 script = ExtResource( 2 )

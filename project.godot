@@ -154,4 +154,4 @@ texture={
 [rendering]
 
 quality/2d/use_pixel_snap=true
-environment/default_clear_color=Color( 0.160784, 0.152941, 0.196078, 1 )
+environment/default_clear_color=Color( 0.137255, 0.129412, 0.239216, 1 )

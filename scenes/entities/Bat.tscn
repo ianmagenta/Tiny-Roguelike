@@ -14,7 +14,7 @@ script = ExtResource( 1 )
 base_health = 1
 
 [node name="Visual" type="Sprite" parent="."]
-self_modulate = Color( 0.486275, 0.247059, 0.54902, 1 )
+self_modulate = Color( 0.4, 0.2, 0.4, 1 )
 texture = SubResource( 1 )
 centered = false
 script = ExtResource( 2 )
