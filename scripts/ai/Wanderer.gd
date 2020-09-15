@@ -23,13 +23,12 @@ func start_turn():
 
 func find_valid_move():
 	while directions:
-		var random_selection = Globals.rng.randi_range(0, directions.size() - 1)
-		var move = directions[random_selection]
+		randomize()
+		directions.shuffle()
+		var move = directions.pop_front()
 		if !Globals.space_is_wall(move + parent.grid_position):
 			turn_action = Move.new(move)
 			return
-		else:
-			directions.remove(random_selection)
 
 func destroy():
 	.destroy()

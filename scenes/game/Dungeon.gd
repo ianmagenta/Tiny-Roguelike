@@ -5,10 +5,14 @@ export var level = 0 setget _set_level
 
 var available_rooms = 0
 var available_player_rooms = 0
+var available_exit_rooms = 0
 var size = Vector2(6, 1)
 var level_props = [
+	{"min_num_of_rooms": 3, "max_num_of_rooms": 5, "enemies": [preload("res://scenes/entities/Bat.tscn")], "interactables": [], "wall_type": 0},
 	{"min_num_of_rooms": 5, "max_num_of_rooms": 7, "enemies": [preload("res://scenes/entities/Bat.tscn")], "interactables": [], "wall_type": 0},
-	{"min_num_of_rooms": 5, "max_num_of_rooms": 7, "enemies": [preload("res://scenes/entities/Bat.tscn")], "interactables": [], "wall_type": 0}
+	{"min_num_of_rooms": 7, "max_num_of_rooms": 9, "enemies": [preload("res://scenes/entities/Bat.tscn")], "interactables": [], "wall_type": 0},
+	{"min_num_of_rooms": 9, "max_num_of_rooms": 11, "enemies": [preload("res://scenes/entities/Bat.tscn")], "interactables": [], "wall_type": 0},
+	{"min_num_of_rooms": 11, "max_num_of_rooms": 13, "enemies": [preload("res://scenes/entities/Bat.tscn")], "interactables": [], "wall_type": 0}
 ]
 
 onready var room_walls: TileMap = $Walls
@@ -39,6 +43,16 @@ func _init():
 			break
 		else:
 			available_player_rooms += 1
+	# Checks the directory with exit rooms in them and counts them
+	dir.open("res://scenes/rooms/exit")
+	dir.list_dir_begin(true, true)
+	while true:
+		var file = dir.get_next()
+		if file == "":
+			available_exit_rooms -= 1
+			break
+		else:
+			available_exit_rooms += 1
 
 func _get_subtile_coord(id):
 	var selected_tile_set = room_walls.tile_set
@@ -56,10 +70,15 @@ func _generate_level():
 	room_walls.clear()
 	var level_properties = level_props[level]
 	var num_of_rooms = Globals.rng.randi_range(level_properties.min_num_of_rooms, level_properties.max_num_of_rooms)
+	var coin_flip = true if Globals.rng.randi_range(0, 1) == 1 else false
 	for room_number in range(num_of_rooms):
 		size.y += 1
 		var selected_room: TileMap
-		if room_number != floor(num_of_rooms / 2):
+		if room_number == 0 and coin_flip == true:
+			selected_room = load("res://scenes/rooms/exit/E" + str(Globals.rng.randi_range(0, available_player_rooms)) + ".tscn").instance()
+		elif room_number == num_of_rooms - 1 and coin_flip == false:
+			selected_room = load("res://scenes/rooms/exit/E" + str(Globals.rng.randi_range(0, available_player_rooms)) + ".tscn").instance()
+		elif room_number != floor(num_of_rooms / 2):
 			selected_room = load("res://scenes/rooms/normal/R" + str(Globals.rng.randi_range(0, available_rooms)) + ".tscn").instance()
 		else:
 			selected_room = load("res://scenes/rooms/player/P" + str(Globals.rng.randi_range(0, available_player_rooms)) + ".tscn").instance()
@@ -75,6 +94,10 @@ func _generate_level():
 			elif used_cell == 2:
 				Globals.current_pc.grid_position = entity_grid_position
 				add_child(Globals.current_pc)
+			elif used_cell == 3:
+				var exit_instance = preload("res://scenes/entities/Exit.tscn").instance()
+				exit_instance.grid_position = entity_grid_position
+				add_child(exit_instance)
 		size.y += selected_room.length
 	size.y += 1
 	for x in size.x + 1:

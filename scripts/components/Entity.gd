@@ -53,7 +53,7 @@ func _valid_move(new_grid_position: Vector2):
 	for entity in Globals.entity_group:
 		if entity and entity.grid_position == new_grid_position:
 			if entity.is_in_group("Interact"):
-#				entity.command(Interact.new(entity.grid_position - grid_position))
+				entity.command(Interact.new(self))
 				command(EndTurn.new())
 			elif is_in_group("AI") and entity.is_in_group("AI"):
 				command(Bump.new(new_grid_position))

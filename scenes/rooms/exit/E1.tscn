@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://scenes/rooms/Room.gd" type="Script" id=1]
+[ext_resource path="res://scenes/rooms/room_tileset.tres" type="TileSet" id=2]
+
+[node name="E1" type="TileMap"]
+tile_set = ExtResource( 2 )
+cell_size = Vector2( 16, 16 )
+cell_custom_transform = Transform2D( 16, 0, 0, 16, 0, 0 )
+format = 1
+tile_data = PoolIntArray( 65537, 0, 0, 65539, 0, 0, 131074, 3, 0, 196609, 0, 0, 196611, 0, 0 )
+script = ExtResource( 1 )
