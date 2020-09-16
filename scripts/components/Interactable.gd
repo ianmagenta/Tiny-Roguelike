@@ -7,5 +7,3 @@ onready var parent: Entity = get_parent()
 func _ready():
 	parent.add_to_group("Interact")
 
-func destroy():
-	parent.remove_from_group("Interact")

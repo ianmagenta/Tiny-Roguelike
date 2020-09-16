@@ -25,6 +25,3 @@ func start_turn():
 
 func end_turn():
 	has_turn = false
-
-func destroy():
-	parent.remove_from_group("PC")

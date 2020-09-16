@@ -57,12 +57,17 @@ _global_script_classes=[ {
 "base": "Interactable",
 "class": "LevelEnder",
 "language": "GDScript",
-"path": "res://scripts/interactable/LevelEnder.gd"
+"path": "res://scripts/interacts/LevelEnder.gd"
 }, {
 "base": "Reference",
 "class": "Move",
 "language": "GDScript",
 "path": "res://scripts/commands/Move.gd"
+}, {
+"base": "Interactable",
+"class": "Openable",
+"language": "GDScript",
+"path": "res://scripts/interacts/Openable.gd"
 }, {
 "base": "Node",
 "class": "PlayerController",
@@ -116,6 +121,7 @@ _global_script_class_icons={
 "Interactable": "",
 "LevelEnder": "",
 "Move": "",
+"Openable": "",
 "PlayerController": "",
 "PreTurn": "",
 "Room": "",

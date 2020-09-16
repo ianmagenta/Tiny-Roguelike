@@ -7,6 +7,3 @@ onready var visual: Visual = parent.get_node("Visual")
 
 func _ready():
 	parent.add_to_group("AI")
-
-func destroy():
-	parent.remove_from_group("AI")

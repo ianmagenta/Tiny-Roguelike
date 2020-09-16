@@ -1,0 +1,24 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://scripts/components/Entity.gd" type="Script" id=1]
+[ext_resource path="res://resources/roguelike_sheet.png" type="Texture" id=2]
+[ext_resource path="res://scripts/components/Visual.gd" type="Script" id=3]
+[ext_resource path="res://scripts/interacts/Openable.gd" type="Script" id=4]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 2 )
+region = Rect2( 128, 16, 16, 16 )
+
+[node name="Door" type="Node2D"]
+script = ExtResource( 1 )
+base_health = 1
+
+[node name="Visual" type="Sprite" parent="."]
+self_modulate = Color( 0.580392, 0.345098, 0.282353, 1 )
+texture = SubResource( 1 )
+centered = false
+script = ExtResource( 3 )
+sprite = Vector2( 8, 1 )
+
+[node name="Openable" type="Node" parent="."]
+script = ExtResource( 4 )

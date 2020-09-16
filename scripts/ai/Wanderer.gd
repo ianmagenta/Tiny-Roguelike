@@ -30,6 +30,5 @@ func find_valid_move():
 			turn_action = Move.new(move)
 			return
 
-func destroy():
-	.destroy()
+func _exit_tree():
 	pointer.queue_free()

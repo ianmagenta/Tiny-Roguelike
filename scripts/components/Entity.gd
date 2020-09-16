@@ -37,7 +37,6 @@ func end_turn():
 	signal_end_turn = true
 
 func destroy():
-	remove_from_group("Entity")
 	queue_free()
 
 func move(direction):
@@ -78,3 +77,10 @@ func take_damage(damage_data):
 		command(Destroy.new())
 	else:
 		scene.add_child(Shadow.new(Vector2(20, 10), Color("#cd3d3d"), grid_position, 1, 1))
+
+func queue_free():
+	remove_from_group("Entity")
+	remove_from_group("PC")
+	remove_from_group("AI")
+	remove_from_group("Interact")
+	.queue_free()

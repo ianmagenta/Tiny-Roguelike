@@ -14,6 +14,7 @@ var level_props = [
 	{"min_num_of_rooms": 9, "max_num_of_rooms": 11, "enemies": [preload("res://scenes/entities/Bat.tscn")], "interactables": [], "wall_type": 0},
 	{"min_num_of_rooms": 11, "max_num_of_rooms": 13, "enemies": [preload("res://scenes/entities/Bat.tscn")], "interactables": [], "wall_type": 0}
 ]
+var dungeon_entities = [preload("res://scenes/entities/Exit.tscn"), preload("res://scenes/entities/Door.tscn")]
 
 onready var room_walls: TileMap = $Walls
 
@@ -93,11 +94,12 @@ func _generate_level():
 				add_child(enemy_instance)
 			elif used_cell == 2:
 				Globals.current_pc.grid_position = entity_grid_position
-				add_child(Globals.current_pc)
-			elif used_cell == 3:
-				var exit_instance = preload("res://scenes/entities/Exit.tscn").instance()
-				exit_instance.grid_position = entity_grid_position
-				add_child(exit_instance)
+				if !is_a_parent_of(Globals.current_pc):
+					add_child(Globals.current_pc)
+			else:
+				var entity_instance = dungeon_entities[used_cell - 3].instance()
+				entity_instance.grid_position = entity_grid_position
+				add_child(entity_instance)
 		size.y += selected_room.length
 	size.y += 1
 	for x in size.x + 1:
