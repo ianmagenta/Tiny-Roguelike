@@ -26,3 +26,9 @@ func space_is_wall(space : Vector2):
 	if not (space in dungeon_walls) and space.x > 0 and space.x < dungeon_size.x and space.y > 0 and space.y < dungeon_size.y:
 		return false
 	return true
+
+func space_is_interact(space : Vector2):
+	for entity in get_tree().get_nodes_in_group("Interact"):
+		if space == entity.grid_position:
+			return true
+	return false

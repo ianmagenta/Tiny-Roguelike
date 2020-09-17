@@ -79,8 +79,6 @@ func take_damage(damage_data):
 		scene.add_child(Shadow.new(Vector2(20, 10), Color("#cd3d3d"), grid_position, 1, 1))
 
 func queue_free():
-	remove_from_group("Entity")
-	remove_from_group("PC")
-	remove_from_group("AI")
-	remove_from_group("Interact")
+	for group in get_groups():
+		remove_from_group(group)
 	.queue_free()

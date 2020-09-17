@@ -1,9 +1,15 @@
 extends AiController
 
-class_name Wanderer
+class_name LOSer
+
+export var sight_radius_width = 5
+export var sight_radius_height = 5
 
 var directions = []
 var turn_action: Move
+var sight_radius = Rect2(parent.grid_position - Vector2(Globals.tile_size * sight_radius_width, Globals.tile_size * sight_radius_height), Vector2(Globals.tile_size * (sight_radius_width * 2 + 1), Globals.tile_size * (sight_radius_height * 2 + 1)))
+var target: Entity
+
 onready var pointer = Visual.new(Vector2(0,0), Color("#95928f"))
 
 func _ready():
@@ -13,6 +19,7 @@ func _ready():
 	pointer.z_index = 1
 
 func pre_turn():
+#	for entity in group(PC)
 	directions = [Vector2(1,0), Vector2(0,1), Vector2(-1,0), Vector2(0,-1)]
 	find_valid_move()
 	pointer.sprite = turn_action.direction + Vector2(29, 13)
