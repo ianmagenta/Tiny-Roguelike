@@ -19,7 +19,7 @@ func _ready():
 	pointer.z_index = 1
 
 func pre_turn():
-#	for entity in group(PC)
+#	for entity in group(PC) -- if pc is in sight radius, perform line of sight. If in line of sight perform pathfinding. If pathfinding exhausted, lose line of sight.
 	directions = [Vector2(1,0), Vector2(0,1), Vector2(-1,0), Vector2(0,-1)]
 	find_valid_move()
 	pointer.sprite = turn_action.direction + Vector2(29, 13)
