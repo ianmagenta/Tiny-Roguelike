@@ -20,6 +20,7 @@ func _ready():
 
 func pre_turn():
 #	for entity in group(PC) -- if pc is in sight radius, perform line of sight. If in line of sight perform pathfinding. If pathfinding exhausted, lose line of sight.
+#	A star is possible, but it may just be easier to move in accordance with last seen position. (Decrease space between monster's position and last seen)
 	directions = [Vector2(1,0), Vector2(0,1), Vector2(-1,0), Vector2(0,-1)]
 	find_valid_move()
 	pointer.sprite = turn_action.direction + Vector2(29, 13)
