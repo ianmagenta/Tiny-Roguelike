@@ -6,13 +6,12 @@ export var sight_radius_width = 4
 export var sight_radius_height = 4
 
 var directions = []
-var turn_action: Move
 var sight_line = []
+var turn_action: Move
 var debug_color = false
 
 onready var pointer = Visual.new(Vector2(0,0), Color("#95928f"))
 onready var sight_radius = Rect2(parent.position - Vector2(Globals.tile_size * sight_radius_width, Globals.tile_size * sight_radius_height), Vector2(Globals.tile_size * (sight_radius_width * 2 + 1), Globals.tile_size * (sight_radius_height * 2 + 1)))
-onready var player_last_seen: Vector2 = parent.grid_position
 
 func _ready():
 	._ready()
@@ -33,10 +32,9 @@ func pre_turn():
 		if sight_radius.has_point(player.position):
 			if has_los(parent_grid_position, player_grid_position):
 				debug_color = true
-				player_last_seen = player_grid_position
-		if player_last_seen != parent_grid_position:
-			if parent_grid_position == sight_line[0]:
-				sight_line.remove(0)
+		if sight_line.size() > 0 and parent_grid_position == sight_line[0]:
+			sight_line.remove(0)
+		if sight_line:
 			var directions = [Vector2(1,0), Vector2(0,1), Vector2(-1,0), Vector2(0,-1)]
 			for direction in directions:
 				var new_position = parent_grid_position + direction
@@ -115,10 +113,15 @@ func has_los(start_vector: Vector2, end_vector: Vector2):
 		if point in Globals.dungeon_walls or Globals.space_is_interact(point):
 			return false
 	sight_line = points
-	return true
+	return points
 
 func _draw():
 	var color = Color("ffffff")
 	if debug_color:
 		color = Color("bd515a")
 	draw_rect(Rect2(position - Vector2(Globals.tile_size * sight_radius_width, Globals.tile_size * sight_radius_height), Vector2(Globals.tile_size * (sight_radius_width * 2 + 1), Globals.tile_size * (sight_radius_height * 2 + 1))) , color, false)
+	if sight_line:
+		draw_line(position + Vector2(8,8), (Globals.grid_to_world(sight_line[0]) - parent.position) + Vector2(8,8), color)
+		for i in range(sight_line.size()):
+			if i < sight_line.size() - 1:
+				draw_line((Globals.grid_to_world(sight_line[i]) - parent.position) + Vector2(8,8), (Globals.grid_to_world(sight_line[i + 1]) - parent.position) + Vector2(8,8), color)
