@@ -28,7 +28,7 @@ func space_is_wall(space : Vector2):
 	return true
 
 func space_is_interact(space : Vector2):
-	for entity in get_tree().get_nodes_in_group("Interact"):
+	for entity in interact_group:
 		if space == entity.grid_position:
 			return true
 	return false

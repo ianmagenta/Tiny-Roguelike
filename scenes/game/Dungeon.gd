@@ -8,9 +8,9 @@ var available_player_rooms = 0
 var available_exit_rooms = 0
 var size = Vector2(6, 1)
 var level_props = [
-	{"min_num_of_rooms": 3, "max_num_of_rooms": 5, "enemies": [preload("res://scenes/entities/Bat.tscn")], "interactables": [], "wall_type": 0},
-	{"min_num_of_rooms": 5, "max_num_of_rooms": 7, "enemies": [preload("res://scenes/entities/Bat.tscn")], "interactables": [], "wall_type": 0},
-	{"min_num_of_rooms": 7, "max_num_of_rooms": 9, "enemies": [preload("res://scenes/entities/Bat.tscn")], "interactables": [], "wall_type": 0},
+	{"min_num_of_rooms": 3, "max_num_of_rooms": 5, "enemies": [], "interactables": [], "wall_type": 0},
+	{"min_num_of_rooms": 5, "max_num_of_rooms": 7, "enemies": [preload("res://scenes/entities/Bat.tscn"), preload("res://scenes/entities/Snake.tscn")], "interactables": [], "wall_type": 0},
+	{"min_num_of_rooms": 7, "max_num_of_rooms": 9, "enemies": [preload("res://scenes/entities/Bat.tscn"), preload("res://scenes/entities/Snake.tscn")], "interactables": [], "wall_type": 0},
 	{"min_num_of_rooms": 9, "max_num_of_rooms": 11, "enemies": [preload("res://scenes/entities/Bat.tscn")], "interactables": [], "wall_type": 0},
 	{"min_num_of_rooms": 11, "max_num_of_rooms": 13, "enemies": [preload("res://scenes/entities/Bat.tscn")], "interactables": [], "wall_type": 0}
 ]
