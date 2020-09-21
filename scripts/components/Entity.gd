@@ -43,6 +43,7 @@ func move(direction):
 	var new_grid_position = grid_position + direction
 	if _valid_move(new_grid_position):
 		self.grid_position = new_grid_position
+		prev_direction = direction
 		command(EndTurn.new())
 
 func _valid_move(new_grid_position: Vector2):

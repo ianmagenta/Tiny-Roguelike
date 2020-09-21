@@ -20,5 +20,5 @@ centered = false
 script = ExtResource( 2 )
 sprite = Vector2( 1, 16 )
 
-[node name="Wanderer" type="Node2D" parent="."]
+[node name="Wanderer" type="Node" parent="."]
 script = ExtResource( 4 )

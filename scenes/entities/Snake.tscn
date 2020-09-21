@@ -19,5 +19,5 @@ centered = false
 script = ExtResource( 3 )
 sprite = Vector2( 15, 13 )
 
-[node name="LOSer" type="Node2D" parent="."]
+[node name="LOSer" type="Node" parent="."]
 script = ExtResource( 4 )
