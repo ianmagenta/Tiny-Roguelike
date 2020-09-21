@@ -32,7 +32,7 @@ func pre_turn():
 		if sight_radius.has_point(player.position):
 			if has_los(parent_grid_position, player_grid_position):
 				debug_color = true
-		if sight_line.size() > 0 and parent_grid_position == sight_line[0]:
+		if sight_line and parent_grid_position == sight_line[0]:
 			sight_line.remove(0)
 		if sight_line:
 			var directions = [Vector2(1,0), Vector2(0,1), Vector2(-1,0), Vector2(0,-1)]
