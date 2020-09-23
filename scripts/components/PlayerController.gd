@@ -4,21 +4,28 @@ class_name PlayerController
 
 var has_turn = false
 
-onready var parent = get_parent()
+onready var parent: Entity = get_parent()
 
 func _ready():
 	parent.add_to_group("PC")
 
 func _unhandled_input(event):
 	if has_turn:
+		var direction: Vector2
 		if event.is_action_pressed("ui_up"):
-			parent.command(Move.new(Vector2(0, -1)))
+			direction = Vector2(0, -1)
 		elif event.is_action_pressed("ui_right"):
-			parent.command(Move.new(Vector2(1, 0)))
+			direction = Vector2(1, 0)
 		elif event.is_action_pressed("ui_down"):
-			parent.command(Move.new(Vector2(0, 1)))
+			direction = Vector2(0, 1)
 		elif event.is_action_pressed("ui_left"):
-			parent.command(Move.new(Vector2(-1, 0)))
+			direction = Vector2(-1, 0)
+		if direction:
+			var new_position = parent.grid_position + direction
+			if !Globals.space_is_wall(new_position):
+				parent.command(Move.new(direction))
+			else:
+				parent.command(Bump.new(new_position))
 
 func start_turn():
 	has_turn = true

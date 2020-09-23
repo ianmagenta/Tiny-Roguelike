@@ -47,9 +47,6 @@ func move(direction):
 		command(EndTurn.new())
 
 func _valid_move(new_grid_position: Vector2):
-	if Globals.space_is_wall(new_grid_position):
-		command(Bump.new(new_grid_position))
-		return false
 	for entity in Globals.entity_group:
 		if entity and entity.grid_position == new_grid_position:
 			if entity.is_in_group("Interact"):
