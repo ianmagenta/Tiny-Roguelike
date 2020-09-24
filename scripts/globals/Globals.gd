@@ -10,7 +10,7 @@ var ai_group: Array
 var interact_group: Array
 var rng : RandomNumberGenerator = RandomNumberGenerator.new()
 
-onready var current_pc: Entity = preload("res://scenes/entities/Knight.tscn").instance()
+onready var current_pc: Entity = preload("res://scenes/entities/player_characters/Knight.tscn").instance()
 
 func refresh_entities():
 	var tree = get_tree()

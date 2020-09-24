@@ -54,6 +54,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scripts/components/Interactable.gd"
 }, {
+"base": "Interactable",
+"class": "Item",
+"language": "GDScript",
+"path": "res://scripts/components/Item.gd"
+}, {
 "base": "AiController",
 "class": "LOSer",
 "language": "GDScript",
@@ -124,6 +129,7 @@ _global_script_class_icons={
 "Entity": "",
 "Interact": "",
 "Interactable": "",
+"Item": "",
 "LOSer": "",
 "LevelEnder": "",
 "Move": "",
