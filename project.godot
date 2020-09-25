@@ -39,6 +39,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scripts/commands/EndTurn.gd"
 }, {
+"base": "Resource",
+"class": "Enemy",
+"language": "GDScript",
+"path": "res://scripts/resources/Enemy.gd"
+}, {
 "base": "Node2D",
 "class": "Entity",
 "language": "GDScript",
@@ -78,6 +83,11 @@ _global_script_classes=[ {
 "class": "Openable",
 "language": "GDScript",
 "path": "res://scripts/interacts/Openable.gd"
+}, {
+"base": "Resource",
+"class": "PlayerCharacter",
+"language": "GDScript",
+"path": "res://scripts/resources/PlayerCharacter.gd"
 }, {
 "base": "Node",
 "class": "PlayerController",
@@ -126,6 +136,7 @@ _global_script_class_icons={
 "Bumper": "",
 "Destroy": "",
 "EndTurn": "",
+"Enemy": "",
 "Entity": "",
 "Interact": "",
 "Interactable": "",
@@ -134,6 +145,7 @@ _global_script_class_icons={
 "LevelEnder": "",
 "Move": "",
 "Openable": "",
+"PlayerCharacter": "",
 "PlayerController": "",
 "PreTurn": "",
 "Room": "",

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/roguelike_sheet.png-59563ac4b4e125280088a2214dddba54.stex"
+path="res://.import/roguelike_sheet.png-9c00c28824791c1ba5522f76d4b623ee.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://resources/roguelike_sheet.png"
-dest_files=[ "res://.import/roguelike_sheet.png-59563ac4b4e125280088a2214dddba54.stex" ]
+source_file="res://resources/images/roguelike_sheet.png"
+dest_files=[ "res://.import/roguelike_sheet.png-9c00c28824791c1ba5522f76d4b623ee.stex" ]
 
 [params]
 

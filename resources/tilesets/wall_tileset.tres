@@ -1,10 +1,11 @@
 [gd_resource type="TileSet" load_steps=2 format=2]
 
-[ext_resource path="res://resources/roguelike_sheet.png" type="Texture" id=1]
+[sub_resource type="StreamTexture" id=1]
+load_path = "res://.import/roguelike_sheet.png-59563ac4b4e125280088a2214dddba54.stex"
 
 [resource]
 0/name = "roguelike_sheet.png 0"
-0/texture = ExtResource( 1 )
+0/texture = SubResource( 1 )
 0/tex_offset = Vector2( 0, 0 )
 0/modulate = Color( 1, 1, 1, 1 )
 0/region = Rect2( 0, 48, 64, 16 )

@@ -30,8 +30,8 @@ func _init():
 	room_walls.cell_custom_transform = Transform2D(Vector2(16,0), Vector2(0,16), Vector2(0,0))
 	fake_walls.cell_size = Vector2(16,16)
 	room_walls.cell_size = Vector2(16,16)
-	fake_walls.tile_set = preload("res://resources/wall_tileset.tres")
-	room_walls.tile_set = preload("res://resources/wall_tileset.tres")
+	fake_walls.tile_set = preload("res://resources/tilesets/wall_tileset.tres")
+	room_walls.tile_set = preload("res://resources/tilesets/wall_tileset.tres")
 	fake_walls.self_modulate = Color("57546f")
 	room_walls.self_modulate = Color("57546f")
 	# Checks the directory with rooms in them and counts them
@@ -73,7 +73,7 @@ func _init():
 			available_item_rooms += 1
 
 func _get_subtile_coord(id):
-	var selected_tile_set = preload("res://resources/wall_tileset.tres")
+	var selected_tile_set = preload("res://resources/tilesets/wall_tileset.tres")
 	var rect = selected_tile_set.tile_get_region(id)
 	var x = Globals.rng.randi() % int(rect.size.x / selected_tile_set.autotile_get_size(id).x)
 	var y = Globals.rng.randi() % int(rect.size.y / selected_tile_set.autotile_get_size(id).y)

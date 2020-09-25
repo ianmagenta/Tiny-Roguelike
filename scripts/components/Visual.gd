@@ -18,5 +18,5 @@ func _init(new_sprite: Vector2=sprite, new_color: Color=self_modulate):
 		self_modulate = new_color
 	centered = false
 	texture = AtlasTexture.new()
-	texture.atlas = preload("res://resources/roguelike_sheet.png")
+	texture.atlas = preload("res://resources/images/roguelike_sheet.png")
 	texture.region = Rect2(sprite.x * Globals.tile_size, sprite.y * Globals.tile_size, Globals.tile_size, Globals.tile_size)
