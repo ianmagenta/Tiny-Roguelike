@@ -1,22 +1,8 @@
-tool
 extends Sprite
 
 class_name Visual
 
-export var sprite = Vector2(1, 0) setget _set_sprite
-
-func _set_sprite(value: Vector2):
-	sprite = value
-	if texture:
-		texture.region = Rect2(sprite.x * Globals.tile_size, sprite.y * Globals.tile_size, Globals.tile_size, Globals.tile_size)
-
-func _init(new_sprite: Vector2=sprite, new_color: Color=self_modulate):
-	sprite = new_sprite
-	if new_color == Color("#ffffff"):
-		self_modulate = Color("f2f2f0")
-	else:
-		self_modulate = new_color
+func _init(new_texture: AtlasTexture, color):
+	texture = new_texture
+	self_modulate = color
 	centered = false
-	texture = AtlasTexture.new()
-	texture.atlas = preload("res://resources/images/roguelike_sheet.png")
-	texture.region = Rect2(sprite.x * Globals.tile_size, sprite.y * Globals.tile_size, Globals.tile_size, Globals.tile_size)

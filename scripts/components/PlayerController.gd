@@ -4,7 +4,7 @@ class_name PlayerController
 
 var has_turn = false
 
-onready var parent: Entity = get_parent()
+onready var parent = get_parent()
 
 func _ready():
 	parent.add_to_group("PC")

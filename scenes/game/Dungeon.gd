@@ -11,11 +11,11 @@ var size = Vector2(6, 1)
 var room_walls = TileMap.new()
 var fake_walls = TileMap.new()
 var level_props = [
-	{"min_num_of_rooms": 3, "max_num_of_rooms": 5, "enemies": [preload("res://scenes/entities/enemies/Bat.tscn")], "interactables": [], "wall_type": 0},
-	{"min_num_of_rooms": 5, "max_num_of_rooms": 7, "enemies": [preload("res://scenes/entities/enemies/Bat.tscn")], "interactables": [], "wall_type": 0},
-	{"min_num_of_rooms": 7, "max_num_of_rooms": 9, "enemies": [preload("res://scenes/entities/enemies/Bat.tscn"), preload("res://scenes/entities/enemies/Snake.tscn")], "interactables": [], "wall_type": 0},
-	{"min_num_of_rooms": 9, "max_num_of_rooms": 11, "enemies": [preload("res://scenes/entities/enemies/Bat.tscn")], "interactables": [], "wall_type": 0},
-	{"min_num_of_rooms": 11, "max_num_of_rooms": 13, "enemies": [preload("res://scenes/entities/enemies/Bat.tscn")], "interactables": [], "wall_type": 0}
+	{"min_num_of_rooms": 3, "max_num_of_rooms": 5, "enemies": [preload("res://resources/enemies/Bat.tres")], "interactables": [], "wall_type": 0},
+	{"min_num_of_rooms": 5, "max_num_of_rooms": 7, "enemies": [preload("res://resources/enemies/Bat.tres")], "interactables": [], "wall_type": 0},
+	{"min_num_of_rooms": 7, "max_num_of_rooms": 9, "enemies": [preload("res://resources/enemies/Bat.tres")], "interactables": [], "wall_type": 0},
+	{"min_num_of_rooms": 9, "max_num_of_rooms": 11, "enemies": [preload("res://resources/enemies/Bat.tres")], "interactables": [], "wall_type": 0},
+	{"min_num_of_rooms": 11, "max_num_of_rooms": 13, "enemies": [preload("res://resources/enemies/Bat.tres")], "interactables": [], "wall_type": 0}
 ]
 var dungeon_entities = [preload("res://scenes/entities/interactables/Exit.tscn"), preload("res://scenes/entities/interactables/Door.tscn")]
 
@@ -112,7 +112,7 @@ func _generate_level():
 			if used_cell == 0:
 				room_walls.set_cell(used_cell_position.x + 1, used_cell_position.y + size.y, level_properties.wall_type, false, false, false, _get_subtile_coord(level_properties.wall_type))
 			elif used_cell == 1:
-				var enemy_instance: Entity = level_properties.enemies[Globals.rng.randi_range(0, level_properties.enemies.size() - 1)].instance()
+				var enemy_instance = Entity.new(level_properties.enemies[Globals.rng.randi_range(0, level_properties.enemies.size() - 1)])
 				enemy_instance.grid_position = entity_grid_position
 				add_child(enemy_instance)
 			elif used_cell == 2:
@@ -122,9 +122,10 @@ func _generate_level():
 			elif used_cell == 3:
 				pass
 			else:
-				var entity_instance = dungeon_entities[used_cell - 4].instance()
-				entity_instance.grid_position = entity_grid_position
-				add_child(entity_instance)
+				pass
+#				var entity_instance = dungeon_entities[used_cell - 4]
+#				entity_instance.grid_position = entity_grid_position
+#				add_child(entity_instance)
 		size.y += selected_room.length
 	size.y += 1
 	for x in range(1, size.x):

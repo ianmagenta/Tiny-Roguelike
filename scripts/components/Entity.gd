@@ -1,13 +1,13 @@
-tool
 extends Node2D
 
 class_name Entity
 
 signal end_turn
 
-export var base_health = 2
-export var base_damage = 1
+var resource: Actor
 
+var health
+var damage
 var num_commands = 0
 var signal_end_turn = false
 var grid_position = Vector2(0, 0) setget _set_grid_position
@@ -19,8 +19,14 @@ func _set_grid_position(value: Vector2):
 	grid_position = value
 	position = Globals.grid_to_world(grid_position)
 
-func _init():
+func _init(player_character: Actor):
 	add_to_group("Entity")
+	resource = player_character
+	health = resource.health
+	damage = resource.damage
+	add_child(Visual.new(resource.texture, resource.color))
+	if resource is PlayerCharacter:
+		add_child(PlayerController.new())
 
 func command(command):
 	num_commands += 1
@@ -61,20 +67,22 @@ func _valid_move(new_grid_position: Vector2):
 	return true
 
 func bump(target_position):
-	scene.add_child(Shadow.new(Vector2(1, 0), $Visual.self_modulate, target_position, 1, 0.75))
+#	scene.add_child(Shadow.new(Vector2(1, 0), $Visual.self_modulate, target_position, 1, 0.75))
+	pass
 
 func attack(damage_data):
-	damage_data.damage += base_damage
+	damage_data.damage += damage
 	damage_data.source = self
 	damage_data.target.command(TakeDamage.new(damage_data))
 
 func take_damage(damage_data):
-	base_health -= damage_data.damage
-	if base_health <= 0:
-		scene.add_child(Shadow.new(Vector2(15, 5), Color("#cd3d3d"), grid_position, 1, 1))
+	health -= damage_data.damage
+	if health <= 0:
+#		scene.add_child(Shadow.new(Vector2(15, 5), Color("#cd3d3d"), grid_position, 1, 1))
 		command(Destroy.new())
 	else:
-		scene.add_child(Shadow.new(Vector2(20, 10), Color("#cd3d3d"), grid_position, 1, 1))
+#		scene.add_child(Shadow.new(Vector2(20, 10), Color("#cd3d3d"), grid_position, 1, 1))
+		pass
 
 func queue_free():
 	for group in get_groups():

@@ -4,7 +4,7 @@ class_name Wanderer
 
 var directions = []
 var turn_action: Move
-onready var pointer = Visual.new(Vector2(0,0), Color("#95928f"))
+onready var pointer = Visual.new(AtlasTexture.new(), Color("#95928f"))
 
 func _ready():
 	._ready()

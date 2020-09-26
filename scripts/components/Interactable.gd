@@ -1,6 +1,6 @@
 extends Node
 
-class_name Interactable
+class_name Interactables
 
 onready var parent: Entity = get_parent()
 

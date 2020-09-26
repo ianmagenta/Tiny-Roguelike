@@ -9,6 +9,16 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Resource",
+"class": "Actor",
+"language": "GDScript",
+"path": "res://scripts/resources/Actor.gd"
+}, {
+"base": "Resource",
+"class": "AiBehavior",
+"language": "GDScript",
+"path": "res://scripts/resources/characters/AiBehavior.gd"
+}, {
 "base": "Node",
 "class": "AiController",
 "language": "GDScript",
@@ -29,6 +39,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scripts/ai/Bumper.gd"
 }, {
+"base": "Actor",
+"class": "Character",
+"language": "GDScript",
+"path": "res://scripts/resources/characters/Character.gd"
+}, {
 "base": "Reference",
 "class": "Destroy",
 "language": "GDScript",
@@ -39,10 +54,10 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scripts/commands/EndTurn.gd"
 }, {
-"base": "Resource",
+"base": "Character",
 "class": "Enemy",
 "language": "GDScript",
-"path": "res://scripts/resources/Enemy.gd"
+"path": "res://scripts/resources/characters/Enemy.gd"
 }, {
 "base": "Node2D",
 "class": "Entity",
@@ -54,8 +69,13 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scripts/commands/Interact.gd"
 }, {
-"base": "Node",
+"base": "Actor",
 "class": "Interactable",
+"language": "GDScript",
+"path": "res://scripts/resources/interactables/Interactable.gd"
+}, {
+"base": "Node",
+"class": "Interactables",
 "language": "GDScript",
 "path": "res://scripts/components/Interactable.gd"
 }, {
@@ -69,7 +89,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scripts/ai/LOSer.gd"
 }, {
-"base": "Interactable",
+"base": "Interactables",
 "class": "LevelEnder",
 "language": "GDScript",
 "path": "res://scripts/interacts/LevelEnder.gd"
@@ -79,15 +99,15 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scripts/commands/Move.gd"
 }, {
-"base": "Interactable",
+"base": "Interactables",
 "class": "Openable",
 "language": "GDScript",
 "path": "res://scripts/interacts/Openable.gd"
 }, {
-"base": "Resource",
+"base": "Character",
 "class": "PlayerCharacter",
 "language": "GDScript",
-"path": "res://scripts/resources/PlayerCharacter.gd"
+"path": "res://scripts/resources/characters/PlayerCharacter.gd"
 }, {
 "base": "Node",
 "class": "PlayerController",
@@ -130,16 +150,20 @@ _global_script_classes=[ {
 "path": "res://scripts/ai/Wanderer.gd"
 } ]
 _global_script_class_icons={
+"Actor": "",
+"AiBehavior": "",
 "AiController": "",
 "Attack": "",
 "Bump": "",
 "Bumper": "",
+"Character": "",
 "Destroy": "",
 "EndTurn": "",
 "Enemy": "",
 "Entity": "",
 "Interact": "",
 "Interactable": "",
+"Interactables": "",
 "Item": "",
 "LOSer": "",
 "LevelEnder": "",

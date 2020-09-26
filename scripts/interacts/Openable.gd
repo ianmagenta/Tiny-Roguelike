@@ -1,4 +1,4 @@
-extends Interactable
+extends Interactables
 
 class_name Openable
 

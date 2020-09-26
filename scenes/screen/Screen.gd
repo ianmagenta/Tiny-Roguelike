@@ -6,7 +6,6 @@ var game_sceen = preload("res://scenes/game/Game.tscn").instance()
 
 func _ready():
 	add_child(game_sceen)
-	Globals.current_pc = preload("res://scenes/entities/player_characters/Knight.tscn").instance()
 	game_sceen.get_node("Dungeon").level += 1
 	game_sceen.get_node("TurnManager").start()
 
