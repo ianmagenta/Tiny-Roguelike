@@ -6,8 +6,8 @@ signal end_turn
 
 var resource: Actor
 
-var health
-var damage
+var health: int
+var damage: int
 var num_commands = 0
 var signal_end_turn = false
 var grid_position = Vector2(0, 0) setget _set_grid_position
@@ -19,14 +19,19 @@ func _set_grid_position(value: Vector2):
 	grid_position = value
 	position = Globals.grid_to_world(grid_position)
 
-func _init(player_character: Actor):
+func _init(new_actor: Actor):
 	add_to_group("Entity")
-	resource = player_character
-	health = resource.health
-	damage = resource.damage
+	resource = new_actor
 	add_child(Visual.new(resource.texture, resource.color))
+	if resource is Character:
+		health = resource.health
+		damage = resource.damage
 	if resource is PlayerCharacter:
 		add_child(PlayerController.new())
+	elif resource is Enemy:
+		add_child(AiController.new(self))
+	elif resource is Interactable:
+		add_child(InteractController.new(self))
 
 func command(command):
 	num_commands += 1
@@ -66,7 +71,7 @@ func _valid_move(new_grid_position: Vector2):
 			return false
 	return true
 
-func bump(target_position):
+func bump(_target_position):
 #	scene.add_child(Shadow.new(Vector2(1, 0), $Visual.self_modulate, target_position, 1, 0.75))
 	pass
 

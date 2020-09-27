@@ -1,19 +1,16 @@
 [gd_resource type="Resource" load_steps=5 format=2]
 
-[ext_resource path="res://scripts/resources/characters/Enemy.gd" type="Script" id=1]
+[ext_resource path="res://scripts/resources/interactables/Interactable.gd" type="Script" id=1]
 [ext_resource path="res://resources/images/roguelike_sheet.png" type="Texture" id=2]
-[ext_resource path="res://resources/behaviors/ai/Wander.tres" type="Resource" id=3]
+[ext_resource path="res://resources/behaviors/interact/Open.tres" type="Resource" id=3]
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 2 )
-region = Rect2( 16, 256, 16, 16 )
+region = Rect2( 128, 16, 16, 16 )
 
 [resource]
 script = ExtResource( 1 )
-name = "Bat"
+name = "Door"
 texture = SubResource( 1 )
-color = Color( 0.4, 0.2, 0.4, 1 )
-health = 1
-damage = 1
-held_items = [  ]
+color = Color( 0.580392, 0.345098, 0.282353, 1 )
 behavior = ExtResource( 3 )

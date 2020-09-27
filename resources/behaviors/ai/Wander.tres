@@ -16,9 +16,9 @@ func find_valid_move(directions, ai_controller):
 		var new_position = move + parent.grid_position
 		if !Globals.space_is_wall(new_position) and !Globals.space_is_interact(new_position):
 			return Move.new(move)
-		return null
+	return null
 "
 
 [resource]
 script = ExtResource( 1 )
-pre_turn = SubResource( 1 )
+code = SubResource( 1 )
