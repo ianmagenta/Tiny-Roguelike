@@ -1,16 +1,31 @@
-extends Node
+extends Node2D
 
+class_name Pointer
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+var action
+var sub_parent
 
+func _init(new_parent):
+	sub_parent = new_parent
+	z_index = 9
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
+func update_action(new_action):
+	action = new_action
+	update()
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func _draw():
+	if action is Move:
+		var direction = action.direction
+		var atlas_texture = AtlasTexture.new()
+		var parent = sub_parent.parent
+		var color: Color
+		var texture_location
+		if !Globals.space_is_player(parent.grid_position + direction):
+			color = Color("b9b5c3")
+			texture_location = direction + Vector2(29, 13)
+		else:
+			color = Color("bd515a")
+			texture_location = direction + Vector2(29, 13)
+		atlas_texture.atlas = preload("res://resources/images/roguelike_sheet.png")
+		atlas_texture.region = Rect2(texture_location * Globals.tile_size, Vector2(16,16))
+		draw_texture(atlas_texture, direction * Globals.tile_size, color)

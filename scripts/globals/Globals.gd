@@ -31,3 +31,9 @@ func space_is_interact(space : Vector2):
 		if space == entity.grid_position:
 			return true
 	return false
+
+func space_is_player(space : Vector2):
+	for player in player_group:
+		if space == player.grid_position:
+			return true
+	return false
