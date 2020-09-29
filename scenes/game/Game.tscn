@@ -1,9 +1,10 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://scenes/game/TurnManager.gd" type="Script" id=1]
 [ext_resource path="res://resources/images/roguelike_sheet.png" type="Texture" id=2]
 [ext_resource path="res://scenes/game/Dungeon.gd" type="Script" id=3]
 [ext_resource path="res://resources/fonts/RulerGoldFont.tres" type="DynamicFont" id=4]
+[ext_resource path="res://scripts/resources/text_effects/Typewriter.gd" type="Script" id=5]
 
 [sub_resource type="Gradient" id=1]
 offsets = PoolRealArray( 0, 0.348148, 0.614815, 1 )
@@ -46,6 +47,9 @@ color_ramp = SubResource( 2 )
 0/shape_one_way_margin = 0.0
 0/shapes = [  ]
 0/z_index = 0
+
+[sub_resource type="RichTextEffect" id=8]
+script = ExtResource( 5 )
 
 [sub_resource type="TileSet" id=5]
 0/name = "roguelike_sheet.png 0"
@@ -143,9 +147,11 @@ margin_top = -162.944
 margin_right = 305.36
 margin_bottom = -10.9439
 custom_fonts/normal_font = ExtResource( 4 )
-bbcode_text = "Placeholder message text."
+bbcode_enabled = true
+bbcode_text = "[type]Placeholder message text.[/type]"
 text = "Placeholder message text."
 scroll_active = false
+custom_effects = [ SubResource( 8 ) ]
 __meta__ = {
 "_edit_use_anchors_": false
 }
