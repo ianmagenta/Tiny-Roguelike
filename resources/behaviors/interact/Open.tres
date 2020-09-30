@@ -5,6 +5,7 @@
 [sub_resource type="GDScript" id=1]
 script/source = "func execute(interact_conroller: InteractController, _interacting_entity: Entity):
 	interact_conroller.parent.queue_free()
+	Globals.message_log.add_message(\"You destroyed the door!\")
 "
 
 [resource]
