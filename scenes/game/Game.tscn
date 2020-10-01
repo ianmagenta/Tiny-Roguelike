@@ -127,19 +127,22 @@ anchor_right = 0.9875
 anchor_bottom = 0.5
 margin_left = 20.0
 margin_top = 19.0
-margin_right = -21.0
-margin_bottom = -20.0
+margin_right = -19.0
+margin_bottom = -18.0
+focus_mode = 2
 custom_fonts/normal_font = ExtResource( 4 )
 custom_colors/default_color = Color( 0.94902, 0.94902, 0.941176, 1 )
 bbcode_enabled = true
-bbcode_text = "You enter the scary cavern..."
-text = "You enter the scary cavern..."
 scroll_active = false
+scroll_following = true
+selection_enabled = true
 custom_effects = [ SubResource( 1 ), SubResource( 2 ) ]
 script = ExtResource( 6 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
+
+[node name="Tween" type="Tween" parent="CanvasLayer/Log"]
 
 [node name="UI" type="TileMap" parent="CanvasLayer"]
 self_modulate = Color( 0.72549, 0.709804, 0.764706, 1 )

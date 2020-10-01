@@ -1,24 +1,44 @@
 extends RichTextLabel
 
-var entries = []
+export var text_speed = 0.25
+
+var entries = ['\n', '\n', '\n', '\n', '\n', '\n', '\n', '\n', '\n']
+var message_queue = []
 var repeat_counter = 1
+var processing_update = false
+
+onready var tween: Tween = $Tween
 
 func add_message(message: String):
+	message_queue.append(message)
+	if !processing_update:
+		processing_update = true
+		var divider = "---------------------"
+		while message_queue:
+			var new_message = message_queue.pop_front()
+			clear()
+			append_bbcode(new_message)
+			var new_message_length = text.length()
+			clear()
+			for i in range(entries.size()):
+				if entries[i] == "\n":
+					newline()
+					continue
+				append_bbcode(entries[i])
+				newline()
+			append_bbcode(divider)
+			newline()
+			append_bbcode(new_message)
+			entries.push_back(new_message)
+			var num_characters = text.length() - entries.size() - new_message_length
+			visible_characters = num_characters
+			tween.interpolate_property(self, "visible_characters", num_characters, num_characters + new_message_length, text_speed)
+			tween.start()
+			yield(tween, "tween_completed")
+		processing_update = false
+
+func clear_log():
 	clear()
-	if entries and message == entries[0]:
-		repeat_counter += 1
-		append_bbcode(message + " x" + str(repeat_counter))
-	elif repeat_counter > 1:
-		entries[0] += " x" + str(repeat_counter)
-		repeat_counter = 1
-		append_bbcode(message)
-	else:
-		append_bbcode(message)
-	newline()
-	for i in entries:
-		append_bbcode(i)
-		newline()
-	if entries and message == entries[0]:
-		return
-	else:
-		entries.push_front(message)
+	entries = ['\n', '\n', '\n', '\n', '\n', '\n', '\n', '\n', '\n']
+	message_queue.clear()
+	repeat_counter = 1

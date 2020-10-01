@@ -8,6 +8,7 @@ func _ready():
 	add_child(game_sceen)
 	Globals.message_log = game_sceen.get_node("CanvasLayer/Log")
 	game_sceen.get_node("Dungeon").level += 1
+	Globals.message_log.add_message("You enter the scary cavern...")
 	game_sceen.get_node("TurnManager").start()
 
 func _input(event):

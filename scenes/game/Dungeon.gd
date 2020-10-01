@@ -12,8 +12,8 @@ var room_walls = TileMap.new()
 var fake_walls = TileMap.new()
 var level_props = [
 	{"min_num_of_rooms": 3, "max_num_of_rooms": 5, "enemies": [preload("res://resources/enemies/Bat.tres")], "interactables": [], "wall_type": 0},
-	{"min_num_of_rooms": 5, "max_num_of_rooms": 7, "enemies": [preload("res://resources/enemies/Bat.tres"), preload("res://resources/enemies/Snake.tres")], "interactables": [], "wall_type": 0},
-	{"min_num_of_rooms": 7, "max_num_of_rooms": 9, "enemies": [preload("res://resources/enemies/Bat.tres")], "interactables": [], "wall_type": 0},
+	{"min_num_of_rooms": 5, "max_num_of_rooms": 7, "enemies": [preload("res://resources/enemies/Bat.tres")], "interactables": [], "wall_type": 0},
+	{"min_num_of_rooms": 7, "max_num_of_rooms": 9, "enemies": [preload("res://resources/enemies/Bat.tres"), preload("res://resources/enemies/Snake.tres")], "interactables": [], "wall_type": 0},
 	{"min_num_of_rooms": 9, "max_num_of_rooms": 11, "enemies": [preload("res://resources/enemies/Bat.tres")], "interactables": [], "wall_type": 0},
 	{"min_num_of_rooms": 11, "max_num_of_rooms": 13, "enemies": [preload("res://resources/enemies/Bat.tres")], "interactables": [], "wall_type": 0}
 ]

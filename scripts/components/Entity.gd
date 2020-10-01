@@ -48,6 +48,7 @@ func end_turn():
 	signal_end_turn = true
 
 func destroy():
+	Globals.message_log.add_message("A " + resource.name + " was killed...")
 	queue_free()
 
 func move(direction):
@@ -81,6 +82,7 @@ func attack(damage_data):
 	damage_data.target.command(TakeDamage.new(damage_data))
 
 func take_damage(damage_data):
+	Globals.message_log.add_message(damage_data.source.resource.name + " attacked " + damage_data.target.resource.name + " for " + str(damage_data.damage) + " damage.")	
 	health -= damage_data.damage
 	if health <= 0:
 #		scene.add_child(Shadow.new(Vector2(15, 5), Color("#cd3d3d"), grid_position, 1, 1))
