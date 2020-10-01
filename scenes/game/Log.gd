@@ -20,16 +20,25 @@ func add_message(message: String):
 			append_bbcode(new_message)
 			var new_message_length = text.length()
 			clear()
-			for i in range(entries.size()):
-				if entries[i] == "\n":
-					newline()
-					continue
-				append_bbcode(entries[i])
+			for i in range(entries.size() - 1):
+				if entries[i] != "\n":
+					append_bbcode(entries[i])
 				newline()
-			append_bbcode(divider)
-			newline()
-			append_bbcode(new_message)
-			entries.push_back(new_message)
+			if new_message == entries.back():
+				repeat_counter += 1
+				append_bbcode(divider)
+				newline()
+				append_bbcode(new_message + " x" + str(repeat_counter))
+			else:
+				if repeat_counter > 1:
+					entries[-1] = entries[-1] + " x" + str(repeat_counter)
+					repeat_counter = 1
+				append_bbcode(entries[-1])
+				newline()
+				append_bbcode(divider)
+				newline()
+				append_bbcode(new_message)
+				entries.push_back(new_message)
 			var num_characters = text.length() - entries.size() - new_message_length
 			visible_characters = num_characters
 			tween.interpolate_property(self, "visible_characters", num_characters, num_characters + new_message_length, text_speed)
