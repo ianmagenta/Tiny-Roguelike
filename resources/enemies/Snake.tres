@@ -11,6 +11,7 @@ region = Rect2( 240, 208, 16, 16 )
 [resource]
 script = ExtResource( 1 )
 name = "Snake"
+article = "A"
 texture = SubResource( 1 )
 color = Color( 0.764706, 0.831373, 0.258824, 1 )
 health = 2

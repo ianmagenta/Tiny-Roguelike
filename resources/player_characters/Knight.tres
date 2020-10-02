@@ -10,6 +10,7 @@ region = Rect2( 16, 208, 16, 16 )
 [resource]
 script = ExtResource( 1 )
 name = "Knight"
+article = "The"
 texture = SubResource( 1 )
 color = Color( 0.94902, 0.94902, 0.941176, 1 )
 health = 2

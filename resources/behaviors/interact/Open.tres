@@ -3,9 +3,16 @@
 [ext_resource path="res://scripts/resources/interactables/InteractBehavior.gd" type="Script" id=1]
 
 [sub_resource type="GDScript" id=1]
-script/source = "func execute(interact_conroller: InteractController, _interacting_entity: Entity):
-	interact_conroller.parent.queue_free()
-	Globals.message_log.add_message(\"You destroyed the door!\")
+script/source = "func execute(interact_conroller: InteractController, interacting_entity: Entity):
+	var ic_parent = interact_conroller.parent
+	ic_parent.queue_free()
+	emit_message(ic_parent.resource, interacting_entity.resource)
+
+func emit_message(ic_resource: Actor, ie_resource: Actor):
+	if ie_resource is PlayerCharacter:
+		Globals.message_log.add_message(ie_resource.get_fp_bbcode_name() + \" opened \" + ic_resource.get_bbcode_name(false))
+	else:
+		Globals.message_log.add_message(ie_resource.get_bbcode_name() + \" opened \" + ic_resource.get_bbcode_name(false))
 "
 
 [resource]

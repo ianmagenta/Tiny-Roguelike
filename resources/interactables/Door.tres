@@ -11,6 +11,7 @@ region = Rect2( 128, 16, 16, 16 )
 [resource]
 script = ExtResource( 1 )
 name = "Door"
+article = "A"
 texture = SubResource( 1 )
 color = Color( 0.580392, 0.345098, 0.282353, 1 )
 behavior = ExtResource( 3 )

@@ -17,7 +17,7 @@ var level_props = [
 	{"min_num_of_rooms": 9, "max_num_of_rooms": 11, "enemies": [preload("res://resources/enemies/Bat.tres")], "interactables": [], "wall_type": 0},
 	{"min_num_of_rooms": 11, "max_num_of_rooms": 13, "enemies": [preload("res://resources/enemies/Bat.tres")], "interactables": [], "wall_type": 0}
 ]
-var dungeon_entities = [preload("res://resources/interactables/Exit.tres"), preload("res://resources/interactables/Door.tres")]
+var dungeon_entities = [preload("res://resources/interactables/Stairs.tres"), preload("res://resources/interactables/Door.tres")]
 
 func _set_level(value):
 	level = value
