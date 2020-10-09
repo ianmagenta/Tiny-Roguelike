@@ -13,4 +13,4 @@ func _ready():
 	parent.add_to_group("Interact")
 
 func interact(interacting_entity):
-	interact_code.execute(self, interacting_entity)
+	interact_code.execute(parent, interacting_entity)

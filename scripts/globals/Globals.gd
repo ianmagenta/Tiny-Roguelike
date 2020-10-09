@@ -9,7 +9,7 @@ var player_group: Array
 var ai_group: Array
 var interact_group: Array
 var rng : RandomNumberGenerator = RandomNumberGenerator.new()
-var current_pc: Entity = Entity.new(preload("res://resources/player_characters/Knight.tres"))
+var current_pc: Entity
 var message_log: RichTextLabel
 
 func refresh_entities():

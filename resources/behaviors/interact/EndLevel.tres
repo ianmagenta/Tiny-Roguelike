@@ -3,27 +3,22 @@
 [ext_resource path="res://scripts/resources/interactables/InteractBehavior.gd" type="Script" id=1]
 
 [sub_resource type="GDScript" id=1]
-script/source = "func execute(interact_conroller: InteractController, interacting_entity: Entity):
-	var parent = interact_conroller.parent
+script/source = "func execute(parent: Entity, interacting_entity: Entity):
 	if interacting_entity.is_in_group(\"PC\"):
-		var turn_manager = parent.scene.get_parent().get_node(\"TurnManager\")
+		var scene = parent.get_parent()
+		var turn_manager = scene.get_parent().get_node(\"TurnManager\")
 		turn_manager.stop()
 		yield(turn_manager, \"turn_loop_ended\")
-		parent.scene.level += 1
+		scene.level += 1
 		turn_manager.start()
 	elif interacting_entity.is_in_group(\"AI\"):
-		var next_level_enemies = parent.scene.level_props[parent.scene.level + 1].enemies
+		var scene = parent.get_parent()
+		var next_level_enemies = parent.get_parent().level_props[scene.level + 1].enemies
 		var enemy_scene = load(interacting_entity.filename)
 		if !(enemy_scene in next_level_enemies):
 			next_level_enemies.append(enemy_scene)
 		interacting_entity.queue_free()
-	emit_message(interact_conroller.parent.resource, interacting_entity.resource)
-
-func emit_message(ic_resource: Actor, ie_resource: Actor):
-	if ie_resource is PlayerCharacter:
-		Globals.message_log.add_message(ie_resource.get_fp_bbcode_name() + \" decended \" + ic_resource.get_bbcode_name(false) + \"...\")
-	else:
-		Globals.message_log.add_message(ie_resource.get_bbcode_name() + \" decended \" + ic_resource.get_bbcode_name(false) + \"...\")
+	Globals.message_log.add_message(interacting_entity.get_name() + \" decended \" + parent.get_name(false) + \"...\")
 "
 
 [resource]
