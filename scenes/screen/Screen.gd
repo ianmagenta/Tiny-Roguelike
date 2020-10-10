@@ -8,10 +8,11 @@ func _ready():
 	get_tree().connect("screen_resized", self, "_screen_resized") # related to _screen_resized
 	add_child(game_sceen)
 	Globals.message_log = game_sceen.get_node("CanvasLayer/Log")
+	Globals.info_box = game_sceen.get_node("CanvasLayer/Info")
 	Globals.current_pc = Entity.new()
 	Globals.current_pc.resource = preload("res://resources/player_characters/Knight.tres")
 	game_sceen.get_node("Dungeon").level += 1
-	Globals.message_log.add_message("You enter the scary cavern...")
+	Globals.message_log.add_message(Globals.current_pc.get_name() + " enter the Lurching Labyrinth...")
 	game_sceen.get_node("TurnManager").start()
 
 func _input(event):

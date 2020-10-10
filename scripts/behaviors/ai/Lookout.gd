@@ -1,9 +1,4 @@
-[gd_resource type="Resource" load_steps=3 format=2]
-
-[ext_resource path="res://scripts/resources/characters/AiBehavior.gd" type="Script" id=1]
-
-[sub_resource type="GDScript" id=1]
-script/source = "var sight_line = []
+var sight_line = []
 
 func execute(ai_controller: AiController):
 	var parent = ai_controller.parent
@@ -88,8 +83,3 @@ func generate_sight_line(start_vector: Vector2, end_vector: Vector2):
 		if point in Globals.dungeon_walls or Globals.space_is_interact(point):
 			return
 	sight_line = points
-"
-
-[resource]
-script = ExtResource( 1 )
-code = SubResource( 1 )

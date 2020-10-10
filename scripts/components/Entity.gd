@@ -86,25 +86,19 @@ func move(direction):
 	if _valid_move(new_grid_position):
 		self.grid_position = new_grid_position
 		prev_direction = direction
-		command(EndTurn.new())
+	command(EndTurn.new())
 
 func _valid_move(new_grid_position: Vector2):
 	for entity in Globals.entity_group:
-		if entity and entity.grid_position == new_grid_position:
-			if entity.is_in_group("Interact"):
+		if !entity.is_queued_for_deletion() and entity.grid_position == new_grid_position:
+			if entity.type == types.INTERACTABLE:
 				entity.command(Interact.new(self))
-				command(EndTurn.new())
-			elif is_in_group("AI") and entity.is_in_group("AI"):
+			elif type == types.ENEMY and entity.type == types.ENEMY:
 				command(Bump.new(new_grid_position))
 			else:
 				command(Attack.new(entity, entity.grid_position - grid_position))
-				command(EndTurn.new())
 			return false
 	return true
-
-func bump(_target_position):
-#	scene.add_child(Shadow.new(Vector2(1, 0), $Visual.self_modulate, target_position, 1, 0.75))
-	pass
 
 func attack(damage_data):
 	damage_data.damage += damage
@@ -115,13 +109,8 @@ func take_damage(damage_data):
 	Globals.message_log.add_message(damage_data.source.get_name() + " attacked " + damage_data.target.get_name(false) + " for " + str(damage_data.damage) + " damage.")	
 	health -= damage_data.damage
 	if health <= 0:
-		Globals.message_log.add_message(damage_data.source.get_name() + " destroyed " + damage_data.target.get_name(false))	
-#		scene.add_child(Shadow.new(Vector2(15, 5), Color("#cd3d3d"), grid_position, 1, 1))
-		
+		Globals.message_log.add_message(damage_data.source.get_name() + " killed " + damage_data.target.get_name(false) + "!")
 		command(Destroy.new())
-	else:
-#		scene.add_child(Shadow.new(Vector2(20, 10), Color("#cd3d3d"), grid_position, 1, 1))
-		pass
 
 func queue_free():
 	for group in get_groups():

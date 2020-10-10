@@ -1,10 +1,10 @@
 [gd_resource type="Resource" load_steps=5 format=2]
 
-[ext_resource path="res://resources/behaviors/interact/EndLevel.tres" type="Resource" id=1]
+[ext_resource path="res://scripts/behaviors/interact/EndLevel.gd" type="Script" id=1]
 [ext_resource path="res://resources/images/roguelike_sheet.png" type="Texture" id=2]
 [ext_resource path="res://scripts/resources/interactables/Interactable.gd" type="Script" id=3]
 
-[sub_resource type="AtlasTexture" id=1]
+[sub_resource type="AtlasTexture" id=3]
 atlas = ExtResource( 2 )
 region = Rect2( 80, 144, 16, 16 )
 
@@ -12,6 +12,6 @@ region = Rect2( 80, 144, 16, 16 )
 script = ExtResource( 3 )
 name = "Stairs"
 article = "The"
-texture = SubResource( 1 )
+texture = SubResource( 3 )
 color = Color( 0.952941, 0.815686, 0.25098, 1 )
 behavior = ExtResource( 1 )

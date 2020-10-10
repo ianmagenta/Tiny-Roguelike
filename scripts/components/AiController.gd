@@ -10,7 +10,7 @@ var pointer = Pointer.new(self)
 func _init(new_parent):
 	add_child(pointer)
 	parent = new_parent
-	ai_code = parent.resource.behavior.code.new()
+	ai_code = parent.resource.behavior.new()
 
 func _ready():
 	parent.add_to_group("AI")

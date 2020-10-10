@@ -7,7 +7,7 @@ var interact_code
 
 func _init(new_parent):
 	parent = new_parent
-	interact_code = parent.resource.behavior.code.new()
+	interact_code = parent.resource.behavior.new()
 
 func _ready():
 	parent.add_to_group("Interact")

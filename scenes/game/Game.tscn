@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://scenes/game/TurnManager.gd" type="Script" id=1]
 [ext_resource path="res://resources/images/roguelike_sheet.png" type="Texture" id=2]
@@ -7,6 +7,8 @@
 [ext_resource path="res://scripts/resources/text_effects/Typewriter.gd" type="Script" id=5]
 [ext_resource path="res://scenes/game/Log.gd" type="Script" id=6]
 [ext_resource path="res://scripts/resources/text_effects/Matrix.gd" type="Script" id=7]
+[ext_resource path="res://scenes/game/Info.gd" type="Script" id=8]
+[ext_resource path="res://scenes/game/Reader.gd" type="Script" id=9]
 
 [sub_resource type="RichTextEffect" id=1]
 script = ExtResource( 5 )
@@ -104,6 +106,10 @@ tracks/0/keys = {
 "values": [ Vector2( 328, 180 ), Vector2( 328, 164 ) ]
 }
 
+[sub_resource type="AtlasTexture" id=10]
+atlas = ExtResource( 2 )
+region = Rect2( 416, 160, 16, 16 )
+
 [node name="Game" type="Node2D"]
 
 [node name="TurnManager" type="Node" parent="."]
@@ -129,6 +135,7 @@ margin_left = 20.0
 margin_top = 19.0
 margin_right = -19.0
 margin_bottom = -18.0
+mouse_filter = 2
 custom_fonts/normal_font = ExtResource( 4 )
 custom_colors/default_color = Color( 0.72549, 0.709804, 0.764706, 1 )
 bbcode_enabled = true
@@ -141,6 +148,30 @@ __meta__ = {
 }
 
 [node name="Tween" type="Tween" parent="CanvasLayer/Log"]
+
+[node name="Info" type="RichTextLabel" parent="CanvasLayer"]
+visible = false
+anchor_left = 0.6625
+anchor_top = 0.0111111
+anchor_right = 0.9875
+anchor_bottom = 0.5
+margin_left = 20.0
+margin_top = 19.0
+margin_right = -19.0
+margin_bottom = -18.0
+mouse_filter = 2
+custom_fonts/normal_font = ExtResource( 4 )
+custom_colors/default_color = Color( 0.72549, 0.709804, 0.764706, 1 )
+bbcode_enabled = true
+scroll_active = false
+scroll_following = true
+custom_effects = [ SubResource( 1 ), SubResource( 2 ) ]
+script = ExtResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Tween" type="Tween" parent="CanvasLayer/Info"]
 
 [node name="UI" type="TileMap" parent="CanvasLayer"]
 self_modulate = Color( 0.72549, 0.709804, 0.764706, 1 )
@@ -194,3 +225,9 @@ tile_data = PoolIntArray( -786430, 0, 0, -720894, 0, 0, -655358, 0, 0, -589822, 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/RightWall"]
 autoplay = "Scroll"
 anims/Scroll = SubResource( 9 )
+
+[node name="Reader" type="Sprite" parent="CanvasLayer"]
+position = Vector2( 264, 172 )
+texture = SubResource( 10 )
+centered = false
+script = ExtResource( 9 )

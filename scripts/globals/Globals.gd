@@ -11,6 +11,7 @@ var interact_group: Array
 var rng : RandomNumberGenerator = RandomNumberGenerator.new()
 var current_pc: Entity
 var message_log: RichTextLabel
+var info_box: RichTextLabel
 
 func refresh_entities():
 	var tree = get_tree()
@@ -19,8 +20,11 @@ func refresh_entities():
 	ai_group = tree.get_nodes_in_group("AI")
 	interact_group = tree.get_nodes_in_group("Interact")
 
-func grid_to_world(grid_position : Vector2):
-	return Vector2(grid_position.x * tile_size, grid_position.y * tile_size)
+func grid_to_world(grid_position: Vector2, offset: Vector2 = Vector2(0,0)):
+	return Vector2(grid_position.x * tile_size + offset.x, grid_position.y * tile_size + offset.y)
+
+func world_to_grid(position: Vector2, offset: Vector2 = Vector2(0,0)):
+	return Vector2(floor((position.x - offset.x) / tile_size), floor((position.y - offset.y) / tile_size))
 
 func space_is_wall(space : Vector2):
 	if not (space in dungeon_walls) and space.x > 0 and space.x < dungeon_size.x and space.y > 0 and space.y < dungeon_size.y:

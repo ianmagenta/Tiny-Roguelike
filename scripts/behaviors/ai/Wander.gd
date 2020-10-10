@@ -1,9 +1,4 @@
-[gd_resource type="Resource" load_steps=3 format=2]
-
-[ext_resource path="res://scripts/resources/characters/AiBehavior.gd" type="Script" id=1]
-
-[sub_resource type="GDScript" id=1]
-script/source = "func execute(ai_controller: AiController):
+func execute(ai_controller: AiController):
 	var directions = [Vector2(1,0), Vector2(0,1), Vector2(-1,0), Vector2(0,-1)]
 	return find_valid_move(directions, ai_controller)
 
@@ -17,8 +12,3 @@ func find_valid_move(directions, ai_controller):
 		if !Globals.space_is_wall(new_position) and !Globals.space_is_interact(new_position):
 			return Move.new(move)
 	return null
-"
-
-[resource]
-script = ExtResource( 1 )
-code = SubResource( 1 )
