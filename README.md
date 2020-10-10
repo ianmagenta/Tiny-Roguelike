@@ -10,6 +10,7 @@ Tiny roguelike is a traditional, turn-based roguelike with a few small twists. T
 - Procedurally generated dungeons
 - Enemies telegraph their turns in advance
 - Message log displays important actions taken by players and enemies
+- Info box displays details about individual entities
 - Animations, particle effects, and other modern touches
 
 ## Technologies Used
