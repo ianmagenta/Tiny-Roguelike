@@ -6,8 +6,10 @@ var enemy_turn_timer = 0.5
 var stop_turn_loop = false
 
 onready var camera = $Camera2D
+onready var reader = get_node("../CanvasLayer/Reader")
 
 func start():
+	update_camera(Globals.current_pc)
 	pre_turn()
 
 func pre_turn():
@@ -19,13 +21,14 @@ func pre_turn():
 
 func player_turn():
 	if Globals.player_group:
-		for entity in Globals.player_group:
-			update_camera(entity)
-			entity.command(StartTurn.new())
-			yield(entity, "end_turn")
-			update_camera(entity)
+		var player = Globals.current_pc
+		player.command(StartTurn.new())
+		yield(player, "end_turn")
+		update_camera(player)
+		reader.pass_along_info()
 	else:
 		yield(get_tree().create_timer(enemy_turn_timer), "timeout")
+		reader.pass_along_info()
 	if stop_turn_loop:
 		stop_turn_loop = false
 		emit_signal("turn_loop_ended")
