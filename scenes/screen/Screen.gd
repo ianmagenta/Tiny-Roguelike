@@ -7,8 +7,8 @@ var game_sceen = preload("res://scenes/game/Game.tscn").instance()
 func _ready():
 	get_tree().connect("screen_resized", self, "_screen_resized") # related to _screen_resized
 	add_child(game_sceen)
-	Globals.message_log = game_sceen.get_node("CanvasLayer/Log")
-	Globals.info_box = game_sceen.get_node("CanvasLayer/Info")
+	Globals.message_log = game_sceen.get_node("CanvasLayer/MessageBox/Log")
+	Globals.info_box = game_sceen.get_node("CanvasLayer/MessageBox/Info")
 	Globals.current_pc = Entity.new()
 	Globals.current_pc.resource = preload("res://resources/player_characters/Knight.tres")
 	game_sceen.get_node("Dungeon").level += 1
