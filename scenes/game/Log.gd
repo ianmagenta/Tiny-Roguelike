@@ -2,12 +2,18 @@ extends RichTextLabel
 
 export var text_speed = 0.25
 
-var entries = ['\n', '\n', '\n', '\n', '\n', '\n', '\n', '\n', '\n']
+var entries = ['Message log start!', '\n', '\n', '\n', '\n', '\n', '\n']
 var message_queue = []
 var repeat_counter = 1
 var processing_update = false
 
 onready var tween: Tween = $Tween
+
+func _unhandled_input(event):
+	if event.is_action_pressed("ui_scroll_down"):
+		get_v_scroll().value += 18
+	elif event.is_action_pressed("ui_scroll_up"):
+		get_v_scroll().value -= 18
 
 func add_message(message: String):
 	message_queue.append(message)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://scenes/game/TurnManager.gd" type="Script" id=1]
 [ext_resource path="res://resources/images/roguelike_sheet.png" type="Texture" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://scripts/resources/text_effects/Matrix.gd" type="Script" id=7]
 [ext_resource path="res://scenes/game/Info.gd" type="Script" id=8]
 [ext_resource path="res://scenes/game/Reader.gd" type="Script" id=9]
+[ext_resource path="res://resources/themes/rogue_theme.tres" type="Theme" id=10]
 
 [sub_resource type="RichTextEffect" id=1]
 script = ExtResource( 5 )
@@ -132,14 +133,14 @@ anchor_top = 0.0111111
 anchor_right = 0.9875
 anchor_bottom = 0.5
 margin_left = 20.0
-margin_top = 19.0
-margin_right = -19.0
+margin_top = 17.0
+margin_right = -4.0
 margin_bottom = -18.0
-mouse_filter = 2
+mouse_filter = 1
+theme = ExtResource( 10 )
 custom_fonts/normal_font = ExtResource( 4 )
 custom_colors/default_color = Color( 0.72549, 0.709804, 0.764706, 1 )
 bbcode_enabled = true
-scroll_active = false
 scroll_following = true
 custom_effects = [ SubResource( 1 ), SubResource( 2 ) ]
 script = ExtResource( 6 )
@@ -175,6 +176,7 @@ __meta__ = {
 [node name="UI" type="TileMap" parent="CanvasLayer"]
 self_modulate = Color( 0.72549, 0.709804, 0.764706, 1 )
 position = Vector2( 328, 180 )
+z_index = -1
 tile_set = SubResource( 3 )
 cell_size = Vector2( 16, 16 )
 cell_custom_transform = Transform2D( 16, 0, 0, 16, 0, 0 )
