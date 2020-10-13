@@ -12,6 +12,7 @@ Tiny roguelike is a traditional, turn-based roguelike with a few small twists. T
 - Scrollable message log displays important actions taken by players and enemies
 - Info box displays details about individual entities
 - Animations, particle effects, mouse support, and other modern touches
+- A variety of accessable input methods
 
 ## Technologies Used
 - [Godot](https://godotengine.org/)
