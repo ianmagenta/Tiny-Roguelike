@@ -3,8 +3,7 @@ extends RichTextLabel
 func display_info(entity: Entity):
 	clear()
 	if entity:
-		get_node("../Log").visible = false
-		visible = true
+		get_parent().swap()
 	else:
 		visible = false
 		get_node("../Log").visible = true

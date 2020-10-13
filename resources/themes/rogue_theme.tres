@@ -29,7 +29,7 @@ corner_detail = 1
 anti_aliasing = false
 
 [sub_resource type="StyleBoxFlat" id=4]
-border_width_left = 9
+border_width_left = 7
 border_color = Color( 0.8, 0.8, 0.8, 0 )
 anti_aliasing = false
 
