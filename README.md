@@ -8,6 +8,7 @@ Tiny roguelike is a traditional, turn-based roguelike with a few small twists. T
 ## Current Features
 - Turn-based combat
 - Procedurally generated dungeons
+- A lovely tileset
 - Enemies telegraph their turns in advance
 - Scrollable message log displays important actions taken by players and enemies
 - Info box displays details about individual entities
