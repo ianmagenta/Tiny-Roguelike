@@ -1,13 +1,13 @@
 extends Node
 
 signal turn_loop_ended
+signal player_updated(player)
 
 var enemy_turn_timer = 0.5
 var stop_turn_loop = false
 
-onready var camera = $Camera2D
-
 func start():
+	emit_signal("player_updated", Globals.current_pc)
 	pre_turn()
 
 func pre_turn():
@@ -19,11 +19,10 @@ func pre_turn():
 
 func player_turn():
 	if Globals.player_group:
-		for entity in Globals.player_group:
-			update_camera(entity)
-			entity.command(StartTurn.new())
-			yield(entity, "end_turn")
-			update_camera(entity)
+		var player: Entity = Globals.current_pc
+		player.command(StartTurn.new())
+		yield(player, "end_turn")
+		emit_signal("player_updated", player)
 	else:
 		yield(get_tree().create_timer(enemy_turn_timer), "timeout")
 	if stop_turn_loop:
@@ -40,7 +39,3 @@ func ai_turn():
 
 func stop():
 	stop_turn_loop = true
-
-func update_camera(entity):
-	if camera.position.y != entity.position.y + Globals.tile_size/2:
-		camera.position.y = entity.position.y + Globals.tile_size/2
