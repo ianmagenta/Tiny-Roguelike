@@ -2,15 +2,12 @@ extends Node
 
 class_name InteractController
 
-var parent
 var interact_code
 
-func _init(new_parent):
-	parent = new_parent
+func _init(parent):
+	parent.add_to_group("Interact")
 	interact_code = parent.resource.behavior.code.new()
 
-func _ready():
-	parent.add_to_group("Interact")
 
-func interact(interacting_entity):
-	interact_code.execute(self, interacting_entity)
+func interact(command: Interact):
+	interact_code.execute(command.receiver, command.invoker)

@@ -3,10 +3,8 @@ extends Node2D
 class_name Pointer
 
 var action
-var sub_parent
 
-func _init(new_parent):
-	sub_parent = new_parent
+func _init():
 	z_index = 9
 
 func update_action(new_action):
@@ -17,7 +15,7 @@ func _draw():
 	if action is Move:
 		var direction = action.direction
 		var atlas_texture = AtlasTexture.new()
-		var parent = sub_parent.parent
+		var parent = action.receiver
 		var color: Color
 		var texture_location
 		if !Globals.space_is_player(parent.grid_position + direction):

@@ -8,8 +8,8 @@ var entity_group: Array
 var player_group: Array
 var ai_group: Array
 var interact_group: Array
-var rng : RandomNumberGenerator = RandomNumberGenerator.new()
-var current_pc: Entity = Entity.new(preload("res://resources/player_characters/Knight.tres"))
+var rng: RandomNumberGenerator = RandomNumberGenerator.new()
+var current_pc = Entity.new(preload("res://resources/player_characters/Knight.tres"))
 var message_log: RichTextLabel
 
 func refresh_entities():
@@ -19,21 +19,24 @@ func refresh_entities():
 	ai_group = tree.get_nodes_in_group("AI")
 	interact_group = tree.get_nodes_in_group("Interact")
 
-func grid_to_world(grid_position : Vector2):
+func process_command(command: Command):
+	command.receiver.propagate_call(command.method, [command])
+
+func grid_to_world(grid_position: Vector2):
 	return Vector2(grid_position.x * tile_size, grid_position.y * tile_size)
 
-func space_is_wall(space : Vector2):
+func space_is_wall(space: Vector2):
 	if not (space in dungeon_walls) and space.x > 0 and space.x < dungeon_size.x and space.y > 0 and space.y < dungeon_size.y:
 		return false
 	return true
 
-func space_is_interact(space : Vector2):
+func space_is_interact(space: Vector2):
 	for entity in interact_group:
 		if space == entity.grid_position:
 			return true
 	return false
 
-func space_is_player(space : Vector2):
+func space_is_player(space: Vector2):
 	for player in player_group:
 		if space == player.grid_position:
 			return true

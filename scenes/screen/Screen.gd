@@ -6,7 +6,7 @@ var game_sceen = preload("res://scenes/game/Game.tscn").instance()
 
 func _ready():
 	add_child(game_sceen)
-	Globals.message_log = game_sceen.get_node("CanvasLayer/Log")
+	Globals.message_log = game_sceen.get_node("InterfaceLayer/Log")
 	game_sceen.get_node("Dungeon").level += 1
 	Globals.message_log.add_message("You enter the scary cavern...")
 	game_sceen.get_node("TurnManager").start()

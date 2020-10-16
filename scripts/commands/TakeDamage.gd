@@ -1,10 +1,11 @@
+extends Command
 class_name TakeDamage
 
-var damage_data: Dictionary
+var attack_data: Attack
 
-func _init(value: Dictionary):
-	damage_data = value
+func _init(invoker: Node, receiver: Node, new_attack_data: Attack).(invoker, receiver, "take_damage"):
+	attack_data = new_attack_data
 
 func execute(node: Object):
 	if node.has_method("take_damage"):
-		node.take_damage(damage_data)
+		node.take_damage(self)

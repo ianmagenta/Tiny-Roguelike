@@ -1,17 +1,11 @@
-[gd_resource type="Resource" load_steps=3 format=2]
+var sight_line = []
 
-[ext_resource path="res://scripts/resources/characters/AiBehavior.gd" type="Script" id=1]
-
-[sub_resource type="GDScript" id=1]
-script/source = "var sight_line = []
-
-func execute(ai_controller: AiController):
-	var parent = ai_controller.parent
+func execute(parent: Node):
 	var sight_radius_width = 4
 	var sight_radius_height = 4
 	var sight_radius = Rect2(parent.position - Vector2(Globals.tile_size * sight_radius_width, Globals.tile_size * sight_radius_height), Vector2(Globals.tile_size * (sight_radius_width * 2 + 1), Globals.tile_size * (sight_radius_height * 2 + 1)))
 	if Globals.player_group:
-		var player: Entity = Globals.player_group[0]
+		var player: Entity = Globals.current_pc
 		var player_grid_position: Vector2 = player.grid_position
 		var parent_grid_position: Vector2 = parent.grid_position
 		if sight_radius.has_point(player.position):
@@ -27,7 +21,7 @@ func execute(ai_controller: AiController):
 			for direction in directions:
 				var new_position = parent_grid_position + direction
 				if !Globals.space_is_wall(new_position) and !Globals.space_is_interact(new_position) and sight_line[0].distance_to(new_position) < sight_line[0].distance_to(parent.grid_position):
-					return Move.new(direction)
+					return Move.new(parent, parent, direction)
 	return null
 
 func generate_sight_line(start_vector: Vector2, end_vector: Vector2):
@@ -88,8 +82,3 @@ func generate_sight_line(start_vector: Vector2, end_vector: Vector2):
 		if point in Globals.dungeon_walls or Globals.space_is_interact(point):
 			return
 	sight_line = points
-"
-
-[resource]
-script = ExtResource( 1 )
-code = SubResource( 1 )

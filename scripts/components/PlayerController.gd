@@ -3,10 +3,10 @@ extends Node
 class_name PlayerController
 
 var has_turn = false
+var parent: Node
 
-onready var parent = get_parent()
-
-func _ready():
+func _init(new_parent):
+	parent = new_parent
 	parent.add_to_group("PC")
 
 func _unhandled_input(event):
@@ -23,12 +23,12 @@ func _unhandled_input(event):
 		if direction:
 			var new_position = parent.grid_position + direction
 			if !Globals.space_is_wall(new_position):
-				parent.command(Move.new(direction))
+				Globals.process_command(Move.new(parent, parent, direction))
 			else:
-				parent.command(Bump.new(new_position))
+				Globals.process_command(Bump.new(parent, parent, new_position))
 
-func start_turn():
+func start_turn(_command: StartTurn):
 	has_turn = true
 
-func end_turn():
+func end_turn(_command: EndTurn):
 	has_turn = false

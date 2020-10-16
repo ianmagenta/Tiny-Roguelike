@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://scenes/game/TurnManager.gd" type="Script" id=1]
 [ext_resource path="res://resources/images/roguelike_sheet.png" type="Texture" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://scenes/game/Log.gd" type="Script" id=6]
 [ext_resource path="res://scripts/resources/text_effects/Matrix.gd" type="Script" id=7]
 [ext_resource path="res://scenes/game/MainCamera.gd" type="Script" id=8]
+[ext_resource path="res://scenes/game/CommandManager.gd" type="Script" id=9]
 
 [sub_resource type="RichTextEffect" id=1]
 script = ExtResource( 5 )
@@ -107,6 +108,9 @@ tracks/0/keys = {
 
 [node name="Game" type="Node2D"]
 
+[node name="CommandManager" type="Node" parent="."]
+script = ExtResource( 9 )
+
 [node name="TurnManager" type="Node" parent="."]
 script = ExtResource( 1 )
 
@@ -120,9 +124,9 @@ self_modulate = Color( 0.462745, 0.454902, 0.490196, 1 )
 position = Vector2( 264, 0 )
 script = ExtResource( 3 )
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="InterfaceLayer" type="CanvasLayer" parent="."]
 
-[node name="Log" type="RichTextLabel" parent="CanvasLayer"]
+[node name="Log" type="RichTextLabel" parent="InterfaceLayer"]
 anchor_left = 0.6625
 anchor_top = 0.0111111
 anchor_right = 0.9875
@@ -144,9 +148,9 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Tween" type="Tween" parent="CanvasLayer/Log"]
+[node name="Tween" type="Tween" parent="InterfaceLayer/Log"]
 
-[node name="UI" type="TileMap" parent="CanvasLayer"]
+[node name="UI" type="TileMap" parent="InterfaceLayer"]
 self_modulate = Color( 0.72549, 0.709804, 0.764706, 1 )
 position = Vector2( 328, 180 )
 tile_set = SubResource( 3 )
@@ -155,7 +159,7 @@ cell_custom_transform = Transform2D( 16, 0, 0, 16, 0, 0 )
 format = 1
 tile_data = PoolIntArray( -655380, 0, 0, -655379, 0, 1, -655378, 0, 1, -655377, 0, 1, -655376, 0, 1, -655375, 0, 1, -655374, 0, 1, -655373, 0, 1, -655372, 0, 1, -655371, 0, 1, -655370, 0, 1, -655369, 0, 1, -655368, 0, 3, -720890, 0, 0, -720889, 0, 1, -720888, 0, 1, -720887, 0, 1, -720886, 0, 1, -720885, 0, 1, -720884, 0, 1, -720883, 0, 1, -720882, 0, 1, -720881, 0, 1, -720880, 0, 1, -720879, 0, 1, -720878, 0, 3, -589844, 0, 65536, -589832, 0, 65536, -655354, 0, 65536, -655342, 0, 65536, -524308, 0, 65536, -524296, 0, 65536, -589818, 0, 65536, -589806, 0, 65536, -458772, 0, 65536, -458760, 0, 65536, -524282, 0, 65536, -524270, 0, 65536, -393236, 0, 65536, -393224, 0, 65536, -458746, 0, 65536, -458734, 0, 65536, -327700, 0, 65536, -327688, 0, 65536, -393210, 0, 65536, -393198, 0, 65536, -262164, 0, 65536, -262152, 0, 65536, -327674, 0, 65536, -327662, 0, 65536, -196628, 0, 65536, -196616, 0, 65536, -262138, 0, 65536, -262126, 0, 65536, -131092, 0, 65536, -131080, 0, 65536, -196602, 0, 65536, -196590, 0, 65536, -65556, 0, 65536, -65544, 0, 65536, -131066, 0, 65536, -131054, 0, 65536, -20, 0, 196608, -19, 0, 1, -18, 0, 1, -17, 0, 1, -16, 0, 1, -15, 0, 1, -14, 0, 1, -13, 0, 1, -12, 0, 1, -11, 0, 1, -10, 0, 1, -9, 0, 1, -8, 0, 196611, -65530, 0, 196608, -65529, 0, 1, -65528, 0, 1, -65527, 0, 1, -65526, 0, 1, -65525, 0, 1, -65524, 0, 1, -65523, 0, 1, -65522, 0, 1, -65521, 0, 1, -65520, 0, 1, -65519, 0, 1, -65518, 0, 196611, 65516, 0, 0, 65517, 0, 1, 65518, 0, 1, 65519, 0, 1, 65520, 0, 1, 65521, 0, 1, 65522, 0, 1, 65523, 0, 1, 65524, 0, 1, 65525, 0, 1, 65526, 0, 1, 65527, 0, 1, 65528, 0, 3, 6, 0, 0, 7, 0, 1, 8, 0, 1, 9, 0, 1, 10, 0, 2, 11, 0, 1, 12, 0, 1, 13, 0, 1, 14, 0, 2, 15, 0, 1, 16, 0, 1, 17, 0, 1, 18, 0, 3, 131052, 0, 65536, 131053, 0, 0, 131054, 0, 1, 131055, 0, 3, 131057, 0, 0, 131058, 0, 1, 131059, 0, 3, 131061, 0, 0, 131062, 0, 1, 131063, 0, 3, 131064, 0, 65536, 65542, 0, 65536, 65546, 0, 65536, 65550, 0, 65536, 65554, 0, 65536, 196588, 0, 65536, 196589, 0, 65536, 196591, 0, 65536, 196593, 0, 65536, 196595, 0, 65536, 196597, 0, 65536, 196599, 0, 65536, 196600, 0, 65536, 131078, 0, 65536, 131082, 0, 65536, 131086, 0, 65536, 131090, 0, 65536, 262124, 0, 65536, 262125, 0, 196608, 262126, 0, 1, 262127, 0, 196611, 262129, 0, 196608, 262130, 0, 1, 262131, 0, 196611, 262133, 0, 196608, 262134, 0, 1, 262135, 0, 196611, 262136, 0, 65536, 196614, 0, 65536, 196618, 0, 65536, 196622, 0, 65536, 196626, 0, 65536, 327660, 0, 65536, 327661, 0, 0, 327662, 0, 1, 327663, 0, 3, 327665, 0, 0, 327666, 0, 1, 327667, 0, 3, 327669, 0, 0, 327670, 0, 1, 327671, 0, 3, 327672, 0, 65536, 262150, 0, 65536, 262154, 0, 65536, 262158, 0, 65536, 262162, 0, 65536, 393196, 0, 65536, 393197, 0, 65536, 393199, 0, 65536, 393201, 0, 65536, 393203, 0, 65536, 393205, 0, 65536, 393207, 0, 65536, 393208, 0, 65536, 327686, 0, 131072, 327687, 0, 1, 327688, 0, 1, 327689, 0, 1, 327690, 0, 131074, 327691, 0, 1, 327692, 0, 1, 327693, 0, 1, 327694, 0, 131074, 327695, 0, 1, 327696, 0, 1, 327697, 0, 1, 327698, 0, 131075, 458732, 0, 65536, 458733, 0, 196608, 458734, 0, 1, 458735, 0, 196611, 458737, 0, 196608, 458738, 0, 1, 458739, 0, 196611, 458741, 0, 196608, 458742, 0, 1, 458743, 0, 196611, 458744, 0, 65536, 393222, 0, 65536, 393226, 0, 65536, 393230, 0, 65536, 393234, 0, 65536, 524268, 0, 65536, 524269, 0, 0, 524270, 0, 1, 524271, 0, 3, 524273, 0, 0, 524274, 0, 1, 524275, 0, 3, 524277, 0, 0, 524278, 0, 1, 524279, 0, 3, 524280, 0, 65536, 458758, 0, 65536, 458762, 0, 65536, 458766, 0, 65536, 458770, 0, 65536, 589804, 0, 65536, 589805, 0, 65536, 589807, 0, 65536, 589809, 0, 65536, 589811, 0, 65536, 589813, 0, 65536, 589815, 0, 65536, 589816, 0, 65536, 524294, 0, 65536, 524298, 0, 65536, 524302, 0, 65536, 524306, 0, 65536, 655340, 0, 65536, 655341, 0, 196608, 655342, 0, 1, 655343, 0, 196611, 655345, 0, 196608, 655346, 0, 1, 655347, 0, 196611, 655349, 0, 196608, 655350, 0, 1, 655351, 0, 196611, 655352, 0, 65536, 589830, 0, 65536, 589834, 0, 65536, 589838, 0, 65536, 589842, 0, 65536, 720876, 0, 196608, 720877, 0, 1, 720878, 0, 1, 720879, 0, 1, 720880, 0, 1, 720881, 0, 1, 720882, 0, 1, 720883, 0, 1, 720884, 0, 1, 720885, 0, 1, 720886, 0, 1, 720887, 0, 1, 720888, 0, 196611, 655366, 0, 196608, 655367, 0, 1, 655368, 0, 1, 655369, 0, 1, 655370, 0, 196610, 655371, 0, 1, 655372, 0, 1, 655373, 0, 1, 655374, 0, 196610, 655375, 0, 1, 655376, 0, 1, 655377, 0, 1, 655378, 0, 196611 )
 
-[node name="Particles2D" type="Particles2D" parent="CanvasLayer"]
+[node name="Particles2D" type="Particles2D" parent="InterfaceLayer"]
 position = Vector2( 240, 180 )
 z_index = -1
 amount = 20
@@ -164,7 +168,7 @@ preprocess = 5.0
 visibility_rect = Rect2( -16, -180, 32, 360 )
 process_material = SubResource( 6 )
 
-[node name="Particles2D2" type="Particles2D" parent="CanvasLayer"]
+[node name="Particles2D2" type="Particles2D" parent="InterfaceLayer"]
 position = Vector2( 400, 180 )
 z_index = -1
 amount = 20
@@ -173,7 +177,7 @@ preprocess = 5.0
 visibility_rect = Rect2( -16, -180, 32, 360 )
 process_material = SubResource( 6 )
 
-[node name="LeftWall" type="TileMap" parent="CanvasLayer"]
+[node name="LeftWall" type="TileMap" parent="InterfaceLayer"]
 self_modulate = Color( 0.462745, 0.454902, 0.490196, 1 )
 position = Vector2( 328, 180 )
 tile_set = SubResource( 7 )
@@ -182,11 +186,11 @@ cell_custom_transform = Transform2D( 16, 0, 0, 16, 0, 0 )
 format = 1
 tile_data = PoolIntArray( -786436, 0, 0, -720900, 0, 0, -655364, 0, 0, -589828, 0, 0, -524292, 0, 0, -458756, 0, 0, -393220, 0, 0, -327684, 0, 0, -262148, 0, 0, -196612, 0, 0, -131076, 0, 0, -65540, 0, 0, -4, 0, 0, 65532, 0, 0, 131068, 0, 0, 196604, 0, 0, 262140, 0, 0, 327676, 0, 0, 393212, 0, 0, 458748, 0, 0, 524284, 0, 0, 589820, 0, 0, 655356, 0, 0, 720892, 0, 0, 786428, 0, 0 )
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/LeftWall"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="InterfaceLayer/LeftWall"]
 autoplay = "Scroll"
 anims/Scroll = SubResource( 8 )
 
-[node name="RightWall" type="TileMap" parent="CanvasLayer"]
+[node name="RightWall" type="TileMap" parent="InterfaceLayer"]
 self_modulate = Color( 0.462745, 0.454902, 0.490196, 1 )
 position = Vector2( 328, 180 )
 tile_set = SubResource( 7 )
@@ -195,6 +199,6 @@ cell_custom_transform = Transform2D( 16, 0, 0, 16, 0, 0 )
 format = 1
 tile_data = PoolIntArray( -786430, 0, 0, -720894, 0, 0, -655358, 0, 0, -589822, 0, 0, -524286, 0, 0, -458750, 0, 0, -393214, 0, 0, -327678, 0, 0, -262142, 0, 0, -196606, 0, 0, -131070, 0, 0, -65534, 0, 0, 2, 0, 0, 65538, 0, 0, 131074, 0, 0, 196610, 0, 0, 262146, 0, 0, 327682, 0, 0, 393218, 0, 0, 458754, 0, 0, 524290, 0, 0, 589826, 0, 0, 655362, 0, 0, 720898, 0, 0, 786434, 0, 0 )
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/RightWall"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="InterfaceLayer/RightWall"]
 autoplay = "Scroll"
 anims/Scroll = SubResource( 9 )

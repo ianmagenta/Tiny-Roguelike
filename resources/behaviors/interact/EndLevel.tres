@@ -3,8 +3,7 @@
 [ext_resource path="res://scripts/resources/interactables/InteractBehavior.gd" type="Script" id=1]
 
 [sub_resource type="GDScript" id=1]
-script/source = "func execute(interact_conroller: InteractController, interacting_entity: Entity):
-	var parent = interact_conroller.parent
+script/source = "func execute(parent: Node, interacting_entity: Node):
 	if interacting_entity.is_in_group(\"PC\"):
 		var turn_manager = parent.scene.get_parent().get_node(\"TurnManager\")
 		turn_manager.stop()
@@ -17,7 +16,7 @@ script/source = "func execute(interact_conroller: InteractController, interactin
 		if !(enemy_scene in next_level_enemies):
 			next_level_enemies.append(enemy_scene)
 		interacting_entity.queue_free()
-	emit_message(interact_conroller.parent.resource, interacting_entity.resource)
+	emit_message(parent.resource, interacting_entity.resource)
 
 func emit_message(ic_resource: Actor, ie_resource: Actor):
 	if ie_resource is PlayerCharacter:
