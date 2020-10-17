@@ -6,7 +6,7 @@ var interact_code
 
 func _init(parent):
 	parent.add_to_group("Interact")
-	interact_code = parent.resource.behavior.code.new()
+	interact_code = parent.resource.behavior.new()
 
 
 func interact(command: Interact):
