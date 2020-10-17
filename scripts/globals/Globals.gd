@@ -9,7 +9,7 @@ var player_group: Array
 var ai_group: Array
 var interact_group: Array
 var rng: RandomNumberGenerator = RandomNumberGenerator.new()
-var current_pc = Entity.new(preload("res://resources/player_characters/Knight.tres"))
+var current_pc = Entity.new()
 var message_log: RichTextLabel
 
 func refresh_entities():
@@ -21,6 +21,7 @@ func refresh_entities():
 
 func process_command(command: Command):
 	command.receiver.propagate_call(command.method, [command])
+	command.execute()
 
 func grid_to_world(grid_position: Vector2):
 	return Vector2(grid_position.x * tile_size, grid_position.y * tile_size)

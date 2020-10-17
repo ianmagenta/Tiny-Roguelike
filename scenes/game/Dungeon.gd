@@ -112,7 +112,8 @@ func _generate_level():
 			if used_cell == 0:
 				room_walls.set_cell(used_cell_position.x + 1, used_cell_position.y + size.y, level_properties.wall_type, false, false, false, _get_subtile_coord(level_properties.wall_type))
 			elif used_cell == 1:
-				var enemy_instance = Entity.new(level_properties.enemies[Globals.rng.randi_range(0, level_properties.enemies.size() - 1)])
+				var enemy_instance = Entity.new()
+				enemy_instance.resource = level_properties.enemies[Globals.rng.randi_range(0, level_properties.enemies.size() - 1)]
 				enemy_instance.grid_position = entity_grid_position
 				add_child(enemy_instance)
 			elif used_cell == 2:
@@ -122,7 +123,8 @@ func _generate_level():
 			elif used_cell == 3:
 				pass
 			else:
-				var entity_instance = Entity.new(dungeon_entities[used_cell - 4])
+				var entity_instance = Entity.new()
+				entity_instance.resource = dungeon_entities[used_cell - 4]
 				entity_instance.grid_position = entity_grid_position
 				add_child(entity_instance)
 		size.y += selected_room.length

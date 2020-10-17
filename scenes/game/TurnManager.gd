@@ -19,8 +19,9 @@ func pre_turn():
 func player_turn():
 	if Globals.player_group:
 		var player: Entity = Globals.current_pc
-		Globals.process_command(StartTurn.new(player, player))
+		Globals.process_command(StartTurn.new(null, player))
 		yield(player, "end_turn")
+		Globals.process_command(EndTurn.new(null, player))
 		emit_signal("player_updated", player)
 	else:
 		yield(get_tree().create_timer(enemy_turn_timer), "timeout")
@@ -33,7 +34,8 @@ func player_turn():
 func ai_turn():
 	Globals.refresh_entities()
 	for entity in Globals.ai_group:
-		Globals.process_command(StartTurn.new(entity, entity))
+		Globals.process_command(StartTurn.new(null, entity))
+		Globals.process_command(EndTurn.new(null, entity))
 	pre_turn()
 
 func stop():
