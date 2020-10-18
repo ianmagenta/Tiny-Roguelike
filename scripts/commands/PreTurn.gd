@@ -1,5 +1,5 @@
 extends Command
 class_name PreTurn
 
-func _init(invoker: Node, receiver: Node).(invoker, receiver, "pre_turn"):
+func _init(invoker: Node=null, receiver: Node=null).(invoker, receiver, "pre_turn"):
 	pass

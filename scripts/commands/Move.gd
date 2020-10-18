@@ -1,10 +1,10 @@
 extends Command
 class_name Move
 
-var direction: Vector2
+export var direction: Vector2
 
-func _init(invoker: Node, receiver: Node, value: Vector2).(invoker, receiver, "move"):
-	direction = value
+func _init(invoker: Node=null, receiver: Node=null, new_direction: Vector2=Vector2(0,0)).(invoker, receiver, "move"):
+	direction = new_direction
 
 func execute():
 	var new_grid_position = receiver.grid_position + direction
@@ -21,6 +21,6 @@ func _valid_move(new_grid_position: Vector2):
 			elif receiver.type == types.ENEMY and entity.type == types.ENEMY:
 				Globals.process_command(Bump.new(entity, receiver, new_grid_position))
 			else:
-				Globals.process_command(Attack.new(entity, receiver, entity.grid_position - receiver.grid_position))
+				Globals.process_command(Attack.new(entity, receiver))
 			return false
 	return true

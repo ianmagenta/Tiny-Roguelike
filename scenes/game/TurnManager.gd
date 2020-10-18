@@ -21,7 +21,6 @@ func player_turn():
 		var player: Entity = Globals.current_pc
 		Globals.process_command(StartTurn.new(null, player))
 		yield(player, "end_turn")
-		Globals.process_command(EndTurn.new(null, player))
 		emit_signal("player_updated", player)
 	else:
 		yield(get_tree().create_timer(enemy_turn_timer), "timeout")

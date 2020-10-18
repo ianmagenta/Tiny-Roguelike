@@ -3,5 +3,5 @@ class_name Interact
 
 var interacting_entity
 
-func _init(invoker: Node, receiver: Node).(invoker, receiver, "interact"):
+func _init(invoker: Node=null, receiver: Node=null).(invoker, receiver, "interact"):
 	pass

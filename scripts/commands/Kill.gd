@@ -1,7 +1,7 @@
 extends Command
 class_name Kill
 
-func _init(invoker: Node, receiver: Node).(invoker, receiver, "kill"):
+func _init(invoker: Node=null, receiver: Node=null).(invoker, receiver, "kill"):
 	pass
 
 func execute():

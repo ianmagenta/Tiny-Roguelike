@@ -1,7 +1,7 @@
 extends Command
 class_name EndTurn
 
-func _init(invoker: Node, receiver: Node).(invoker, receiver, "end_turn"):
+func _init(invoker: Node=null, receiver: Node=null).(invoker, receiver, "end_turn"):
 	pass
 
 func execute():

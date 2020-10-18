@@ -23,9 +23,10 @@ func _unhandled_input(event):
 		if direction:
 			var new_position = parent.grid_position + direction
 			if !Globals.space_is_wall(new_position):
-				Globals.process_command(Move.new(parent, parent, direction))
+				Globals.process_command(Move.new(null, parent, direction))
+				Globals.process_command(EndTurn.new(null, parent))
 			else:
-				Globals.process_command(Bump.new(parent, parent, new_position))
+				Globals.process_command(Bump.new(null, parent, new_position))
 
 func start_turn(_command: StartTurn):
 	has_turn = true
