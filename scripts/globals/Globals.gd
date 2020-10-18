@@ -42,3 +42,14 @@ func space_is_player(space: Vector2):
 		if space == player.grid_position:
 			return true
 	return false
+
+func get_random_position(position: Vector2, directions: Array, cautious=false):
+	randomize()
+	directions.shuffle()
+	for i in directions:
+		var new_position = i + position
+		if !Globals.space_is_wall(new_position):
+			if !cautious:
+				return i
+			elif !Globals.space_is_interact(new_position):
+				return i
