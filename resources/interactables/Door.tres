@@ -4,7 +4,7 @@
 [ext_resource path="res://resources/images/roguelike_sheet.png" type="Texture" id=2]
 [ext_resource path="res://scripts/behaviors/interactables/Open.gd" type="Script" id=3]
 
-[sub_resource type="AtlasTexture" id=3]
+[sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 2 )
 region = Rect2( 128, 16, 16, 16 )
 
@@ -12,6 +12,6 @@ region = Rect2( 128, 16, 16, 16 )
 script = ExtResource( 1 )
 name = "Door"
 article = "A"
-texture = SubResource( 3 )
+texture = SubResource( 1 )
 color = Color( 0.580392, 0.345098, 0.282353, 1 )
 behavior = ExtResource( 3 )
