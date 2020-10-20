@@ -1,18 +1,8 @@
-[gd_resource type="Resource" load_steps=8 format=2]
+[gd_resource type="Resource" load_steps=5 format=2]
 
-[ext_resource path="res://scripts/resources/interactables/Message.gd" type="Script" id=1]
+[ext_resource path="res://scripts/behaviors/interactables/LevelEnder.gd" type="Script" id=1]
 [ext_resource path="res://resources/images/roguelike_sheet.png" type="Texture" id=2]
 [ext_resource path="res://scripts/resources/interactables/Interactable.gd" type="Script" id=3]
-[ext_resource path="res://scripts/commands/EndLevel.gd" type="Script" id=4]
-
-[sub_resource type="Resource" id=1]
-script = ExtResource( 1 )
-before_first_actor = ""
-between_actors = " descended "
-after_second_actor = "..."
-
-[sub_resource type="Resource" id=2]
-script = ExtResource( 4 )
 
 [sub_resource type="AtlasTexture" id=3]
 atlas = ExtResource( 2 )
@@ -24,6 +14,4 @@ name = "Stairs"
 article = "The"
 texture = SubResource( 3 )
 color = Color( 0.952941, 0.815686, 0.25098, 1 )
-receiver_behavior = [ SubResource( 2 ) ]
-invoker_behavior = [  ]
-message = SubResource( 1 )
+behavior = ExtResource( 1 )
