@@ -2,11 +2,7 @@
 
 [ext_resource path="res://scripts/resources/characters/Enemy.gd" type="Script" id=1]
 [ext_resource path="res://resources/images/roguelike_sheet.png" type="Texture" id=2]
-
-[sub_resource type="GDScript" id=2]
-script/source = "static func pre_turn(command: PreTurn):
-	return Move.new(command.invoker, command.receiver, Globals.get_random_position(command.receiver.grid_position, [Vector2(1,0), Vector2(0,1), Vector2(-1,0), Vector2(0,-1)], true))
-"
+[ext_resource path="res://scripts/behaviors/ai/Wander.gd" type="Script" id=3]
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 2 )
@@ -21,4 +17,4 @@ color = Color( 0.4, 0.2, 0.4, 1 )
 health = 1
 damage = 1
 held_items = [  ]
-command_script = SubResource( 2 )
+behavior = ExtResource( 3 )

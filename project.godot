@@ -34,7 +34,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scripts/resources/characters/Character.gd"
 }, {
-"base": "Resource",
+"base": "Reference",
 "class": "Command",
 "language": "GDScript",
 "path": "res://scripts/commands/Command.gd"
@@ -58,6 +58,11 @@ _global_script_classes=[ {
 "class": "Enemy",
 "language": "GDScript",
 "path": "res://scripts/resources/characters/Enemy.gd"
+}, {
+"base": "Enemy",
+"class": "EnemyWithSight",
+"language": "GDScript",
+"path": "res://scripts/resources/characters/EnemyWithSight.gd"
 }, {
 "base": "Node2D",
 "class": "Entity",
@@ -98,6 +103,16 @@ _global_script_classes=[ {
 "class": "Move",
 "language": "GDScript",
 "path": "res://scripts/commands/Move.gd"
+}, {
+"base": "Move",
+"class": "MoveCloser",
+"language": "GDScript",
+"path": "res://scripts/commands/MoveCloser.gd"
+}, {
+"base": "Move",
+"class": "MoveRandomly",
+"language": "GDScript",
+"path": "res://scripts/commands/MoveRandomly.gd"
 }, {
 "base": "Character",
 "class": "PlayerCharacter",
@@ -160,6 +175,7 @@ _global_script_class_icons={
 "EndLevel": "",
 "EndTurn": "",
 "Enemy": "",
+"EnemyWithSight": "",
 "Entity": "",
 "Interact": "",
 "InteractController": "",
@@ -168,6 +184,8 @@ _global_script_class_icons={
 "Matrix": "",
 "Message": "",
 "Move": "",
+"MoveCloser": "",
+"MoveRandomly": "",
 "PlayerCharacter": "",
 "PlayerController": "",
 "Pointer": "",
