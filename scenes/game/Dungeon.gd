@@ -12,7 +12,7 @@ var room_walls = TileMap.new()
 var fake_walls = TileMap.new()
 var level_props = [
 	{"min_num_of_rooms": 3, "max_num_of_rooms": 5, "enemies": [preload("res://resources/enemies/Bat.tres")], "interactables": [], "wall_type": 0},
-	{"min_num_of_rooms": 5, "max_num_of_rooms": 7, "enemies": [preload("res://resources/enemies/Bat.tres")], "interactables": [], "wall_type": 0},
+	{"min_num_of_rooms": 5, "max_num_of_rooms": 7, "enemies": [preload("res://resources/enemies/Bat.tres")], "interactables": [], "wall_type": 0, "items": [preload("res://resources/items/RealSword.tres")]},
 	{"min_num_of_rooms": 7, "max_num_of_rooms": 9, "enemies": [preload("res://resources/enemies/Bat.tres"), preload("res://resources/enemies/Snake.tres")], "interactables": [], "wall_type": 0},
 	{"min_num_of_rooms": 9, "max_num_of_rooms": 11, "enemies": [preload("res://resources/enemies/Bat.tres")], "interactables": [], "wall_type": 0},
 	{"min_num_of_rooms": 11, "max_num_of_rooms": 13, "enemies": [preload("res://resources/enemies/Bat.tres")], "interactables": [], "wall_type": 0}
@@ -121,7 +121,10 @@ func _generate_level():
 				if !is_a_parent_of(Globals.current_pc):
 					add_child(Globals.current_pc)
 			elif used_cell == 3:
-				pass
+				var entity_instance = Entity.new()
+				entity_instance.resource = level_properties.items[0]
+				entity_instance.grid_position = entity_grid_position
+				add_child(entity_instance)
 			else:
 				var entity_instance = Entity.new()
 				entity_instance.resource = dungeon_entities[used_cell - 4]

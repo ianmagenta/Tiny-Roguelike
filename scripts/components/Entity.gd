@@ -14,6 +14,7 @@ var damage: int
 var grid_position = Vector2(0, 0) setget _set_grid_position
 var prev_direction = Vector2(0, 0)
 
+
 func _set_resource(new_resource: Actor):
 	resource = new_resource
 	for node in get_children():
@@ -30,6 +31,9 @@ func _set_resource(new_resource: Actor):
 		type = types.ENEMY
 	elif resource is Interactable:
 		add_child(InteractController.new(self))
+		type = types.INTERACTABLE
+	elif resource is Item:
+		add_child(PickupController.new(self))
 		type = types.INTERACTABLE
 
 func _set_type(new_type: int):

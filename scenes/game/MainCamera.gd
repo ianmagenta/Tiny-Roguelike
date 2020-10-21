@@ -4,4 +4,4 @@ func _ready():
 	get_node("../TurnManager").connect("player_updated", self, "_update_camera_position")
 
 func _update_camera_position(player: Entity):
-	position.y = player.position.y
+	position.y = player.position.y + Globals.tile_size / 2
