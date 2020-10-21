@@ -9,7 +9,6 @@ var available_exit_rooms = -1
 var available_item_rooms = -1
 var size = Vector2(6, 1)
 var room_walls = TileMap.new()
-var fake_walls = TileMap.new()
 var level_props = [
 	{"min_num_of_rooms": 3, "max_num_of_rooms": 5, "enemies": [preload("res://resources/enemies/Bat.tres")], "interactables": [], "wall_type": 0},
 	{"min_num_of_rooms": 5, "max_num_of_rooms": 7, "enemies": [preload("res://resources/enemies/Bat.tres")], "interactables": [], "wall_type": 0, "items": [preload("res://resources/items/RealSword.tres")]},
@@ -24,15 +23,10 @@ func _set_level(value):
 	_generate_level()
 
 func _init():
-	add_child(fake_walls)
 	add_child(room_walls)
-	fake_walls.cell_custom_transform = Transform2D(Vector2(16,0), Vector2(0,16), Vector2(0,0))
 	room_walls.cell_custom_transform = Transform2D(Vector2(16,0), Vector2(0,16), Vector2(0,0))
-	fake_walls.cell_size = Vector2(16,16)
 	room_walls.cell_size = Vector2(16,16)
-	fake_walls.tile_set = preload("res://resources/tilesets/wall_tileset.tres")
 	room_walls.tile_set = preload("res://resources/tilesets/wall_tileset.tres")
-	fake_walls.self_modulate = Color("57546f")
 	room_walls.self_modulate = Color("57546f")
 	# Checks the directory with rooms in them and counts them
 	var dir = Directory.new()
@@ -82,10 +76,9 @@ func _get_subtile_coord(id):
 func _generate_level():
 	size = Vector2(6, 1)
 	for node in get_children():
-		if node != room_walls and node != Globals.current_pc and node != fake_walls:
+		if node != room_walls and node != Globals.current_pc:
 			node.queue_free()
 	room_walls.clear()
-	fake_walls.clear()
 	var level_properties = level_props[level]
 	var num_of_rooms = Globals.rng.randi_range(level_properties.min_num_of_rooms, level_properties.max_num_of_rooms)
 	var coin_flip = true if Globals.rng.randi_range(0, 1) == 1 else false
@@ -134,8 +127,8 @@ func _generate_level():
 	size.y += 1
 	for x in range(1, size.x):
 		for y in range(size.y, size.y + 11):
-			fake_walls.set_cell(x, y, level_properties.wall_type, false, false, false, _get_subtile_coord(level_properties.wall_type))
+			room_walls.set_cell(x, y, level_properties.wall_type, false, false, false, _get_subtile_coord(level_properties.wall_type))
 		for y in range(0, -11, -1):
-			fake_walls.set_cell(x, y, level_properties.wall_type, false, false, false, _get_subtile_coord(level_properties.wall_type))
+			room_walls.set_cell(x, y, level_properties.wall_type, false, false, false, _get_subtile_coord(level_properties.wall_type))
 	Globals.dungeon_size = size
-	Globals.dungeon_walls = room_walls.get_used_cells()
+	Globals.dungeon_walls = room_walls

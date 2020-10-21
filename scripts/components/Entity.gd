@@ -49,13 +49,16 @@ func _set_type(new_type: int):
 		add_child(InteractController.new(self))
 
 func _set_grid_position(value: Vector2):
+	Globals.entity_map.erase(grid_position)
 	grid_position = value
 	position = Globals.grid_to_world(grid_position)
+	Globals.entity_map[grid_position] = self
 
 func _init():
 	add_to_group("Entity")
 
 func queue_free():
+	Globals.entity_map.erase(grid_position)
 	for group in get_groups():
 		remove_from_group(group)
 	.queue_free()

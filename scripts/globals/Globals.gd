@@ -3,7 +3,7 @@ extends Node
 
 var tile_size = 16
 var dungeon_size: Vector2
-var dungeon_walls: Array
+var dungeon_walls: TileMap
 var entity_group: Array
 var player_group: Array
 var ai_group: Array
@@ -11,6 +11,7 @@ var interact_group: Array
 var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 var current_pc = Entity.new()
 var message_log: RichTextLabel
+var entity_map = {}
 
 func refresh_entities():
 	var tree = get_tree()
@@ -27,20 +28,20 @@ func grid_to_world(grid_position: Vector2):
 	return Vector2(grid_position.x * tile_size, grid_position.y * tile_size)
 
 func space_is_wall(space: Vector2):
-	if not (space in dungeon_walls) and space.x > 0 and space.x < dungeon_size.x and space.y > 0 and space.y < dungeon_size.y:
+	if dungeon_walls.get_cellv(space) != 0 and space.x > 0 and space.x < dungeon_size.x:
 		return false
 	return true
 
 func space_is_interact(space: Vector2):
-	for entity in interact_group:
-		if space == entity.grid_position:
-			return true
+	var entity = entity_map.get(space)
+	if entity and entity.type == entity.types.INTERACTABLE:
+		return true
 	return false
 
 func space_is_player(space: Vector2):
-	for player in player_group:
-		if space == player.grid_position:
-			return true
+	var entity = entity_map.get(space)
+	if entity and entity.type == entity.types.PLAYER:
+		return true
 	return false
 
 func can_see(entity1, entity2):
@@ -98,7 +99,7 @@ func can_see(entity1, entity2):
 		points.invert()
 	
 	for point in points:
-		if point in Globals.dungeon_walls or Globals.space_is_interact(point):
+		if space_is_wall(point) or space_is_interact(point):
 			return false
 	return true
 
@@ -109,12 +110,12 @@ func aligned_with(entity1, entity2):
 	var entity2_pos_y = entity2.grid_position.y
 	if entity1_pos_x == entity2_pos_x:
 		for i in range(entity1_pos_y, entity2_pos_y, entity1.grid_position.direction_to(entity2.grid_position).y):
-			if Globals.space_is_wall(Vector2(entity1_pos_x,i)) or Globals.space_is_interact(Vector2(entity1_pos_x,i)):
+			if space_is_wall(Vector2(entity1_pos_x,i)) or space_is_interact(Vector2(entity1_pos_x,i)):
 				return false
 		return true
 	elif entity1_pos_y == entity2_pos_y:
 		for i in range(entity1_pos_x, entity2_pos_x, entity1.grid_position.direction_to(entity2.grid_position).x):
-			if Globals.space_is_wall(Vector2(i,entity1_pos_y)) or Globals.space_is_interact(Vector2(i,entity1_pos_y)):
+			if space_is_wall(Vector2(i,entity1_pos_y)) or space_is_interact(Vector2(i,entity1_pos_y)):
 				return false
 		return true
 	return false

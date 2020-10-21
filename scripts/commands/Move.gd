@@ -14,13 +14,13 @@ func execute():
 
 func _valid_move(new_grid_position: Vector2):
 	var types = receiver.types
-	for entity in Globals.entity_group:
-		if !entity.is_queued_for_deletion() and entity.grid_position == new_grid_position:
-			if entity.type == types.INTERACTABLE:
-				Globals.process_command(Interact.new(receiver, entity))
-			elif receiver.type == types.ENEMY and entity.type == types.ENEMY:
-				Globals.process_command(Bump.new(entity, receiver, new_grid_position))
-			else:
-				Globals.process_command(Attack.new(entity, receiver))
-			return false
+	var entity = Globals.entity_map.get(new_grid_position)
+	if entity:
+		if entity.type == types.INTERACTABLE:
+			Globals.process_command(Interact.new(receiver, entity))
+		elif receiver.type == types.ENEMY and entity.type == types.ENEMY:
+			Globals.process_command(Bump.new(entity, receiver, new_grid_position))
+		else:
+			Globals.process_command(Attack.new(entity, receiver))
+		return false
 	return true
