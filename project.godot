@@ -14,7 +14,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scripts/resources/Actor.gd"
 }, {
-"base": "Node",
+"base": "Controller",
 "class": "AiController",
 "language": "GDScript",
 "path": "res://scripts/components/AiController.gd"
@@ -38,6 +38,11 @@ _global_script_classes=[ {
 "class": "Command",
 "language": "GDScript",
 "path": "res://scripts/commands/Command.gd"
+}, {
+"base": "Node",
+"class": "Controller",
+"language": "GDScript",
+"path": "res://scripts/components/Controller.gd"
 }, {
 "base": "Command",
 "class": "Destroy",
@@ -69,7 +74,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scripts/commands/Interact.gd"
 }, {
-"base": "Node",
+"base": "Controller",
 "class": "InteractController",
 "language": "GDScript",
 "path": "res://scripts/components/InteractController.gd"
@@ -129,7 +134,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scripts/resources/characters/PlayerCharacter.gd"
 }, {
-"base": "Node",
+"base": "Controller",
 "class": "PlayerController",
 "language": "GDScript",
 "path": "res://scripts/components/PlayerController.gd"
@@ -181,6 +186,7 @@ _global_script_class_icons={
 "Bump": "",
 "Character": "",
 "Command": "",
+"Controller": "",
 "Destroy": "",
 "EndTurn": "",
 "Enemy": "",

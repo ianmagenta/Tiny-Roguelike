@@ -1,4 +1,4 @@
-extends Node
+extends Controller
 
 class_name PlayerController
 

@@ -5,6 +5,7 @@ signal player_updated(player)
 
 var enemy_turn_timer = 0.5
 var stop_turn_loop = false
+var player_is_dead = false
 
 onready var tree = get_tree()
 
@@ -32,7 +33,10 @@ func _start_turn_loop():
 		for entity in Globals.ai_group:
 			Globals.process_command(entity, StartTurn.new())
 			Globals.process_command(entity, EndTurn.new())
+		if player_is_dead:
+			break
 	stop_turn_loop = false
+	player_is_dead = false
 	emit_signal("turn_loop_ended")
 
 func stop():

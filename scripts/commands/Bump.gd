@@ -1,7 +1,7 @@
 extends Command
 class_name Bump
 
-export var target_position: Vector2
+var target_position: Vector2
 
 func _init(new_target_position):
 	method = "bump"

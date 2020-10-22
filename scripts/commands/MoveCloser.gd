@@ -1,5 +1,8 @@
 extends Move
 class_name MoveCloser
 
-func _init().(Vector2(0,0)):
+var target_entity: Node
+
+func _init(new_target_entity: Node).():
 	method = "move_closer"
+	target_entity = new_target_entity

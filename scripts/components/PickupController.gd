@@ -5,4 +5,5 @@ func _init(parent).(parent):
 	pass
 
 func interact(command: Interact):
-	Globals.process_command(command.interacting_entity, Pickup.new(command.receiver.resource))
+	Globals.message_log.add_message(command.interacting_entity.get_bbcode_name() + " picked up " + parent.get_bbcode_name(false) + ".")
+	parent.queue_free()

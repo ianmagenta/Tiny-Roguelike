@@ -32,7 +32,7 @@ func add_to_group(group_name, persistent=false):
 	for group in get_groups():
 		remove_from_group(group)
 	for node in get_children():
-		if node is PlayerController or node is AiController or node is InteractController or node is PickupController:
+		if node is Controller:
 			node.queue_free()
 	if group_name == "Player":
 		add_child(PlayerController.new(self))
@@ -52,6 +52,8 @@ func _set_grid_position(value: Vector2):
 
 func queue_free():
 	Globals.entity_map.erase(grid_position)
+	for group in get_groups():
+		remove_from_group(group)
 	.queue_free()
 
 func get_bbcode_name(capitalize=true, color_data=true):
@@ -72,7 +74,7 @@ func move(command: Move):
 func _valid_move(new_grid_position: Vector2):
 	var entity: Entity = Globals.entity_map.get(new_grid_position)
 	if entity:
-		if entity.is_in_group("Interactable"):
+		if entity.is_in_group("Interactable") or entity.is_in_group("Pickup"):
 			Globals.process_command(entity, Interact.new(self))
 		elif is_in_group("AI") and entity.is_in_group("AI"):
 			Globals.process_command(self, Bump.new(new_grid_position))
@@ -81,6 +83,53 @@ func _valid_move(new_grid_position: Vector2):
 		return false
 	return true
 
+func move_closer(command: MoveCloser):
+	var directions: Array
+	if prev_direction.y:
+		directions = [Vector2(0,1), Vector2(0,-1), Vector2(1,0), Vector2(-1,0)]
+	else:
+		directions = [Vector2(1,0), Vector2(-1,0), Vector2(0,1), Vector2(0,-1)]
+	for i in directions:
+		var new_position = i + grid_position
+		if !Globals.space_is_wall(new_position) and !Globals.space_is_interact(new_position) and \
+		command.target_entity.grid_position.distance_to(new_position) < command.target_entity.grid_position.distance_to(grid_position):
+			Globals.process_command(self, Move.new(i))
+			break
+
+func attack(command: Attack):
+	command.damage += damage
+	Globals.process_command(command.target, TakeDamage.new(self, command.damage))
+
+func take_damage(command: TakeDamage):
+	health -= command.damage
+	Globals.message_log.add_message(command.source.get_bbcode_name() + " dealt " + str(damage) + " damage to " + get_bbcode_name(false) + ".")
+	if health <= 0:
+		Globals.message_log.add_message(command.source.get_bbcode_name() + " killed " + get_bbcode_name(false) + "!")
+		Globals.process_command(self, Kill.new())
+
+func kill(command: Kill):
+	if self != Globals.current_pc:
+		queue_free()
+	else:
+		get_node("../../TurnManager").player_is_dead = true
+		Globals.message_log.add_message("[shake rate=15 level=7][color=#bd515a]Game Over![/color][/shake]")
+
 func end_turn(_command: EndTurn):
 	if is_in_group("Player"):
 		emit_signal("end_turn")
+
+func leave_level(command: LeaveLevel):
+	var scene = get_parent()
+	if is_in_group("Player"):
+		var turn_manager = scene.get_node("../TurnManager")
+		turn_manager.stop()
+		yield(turn_manager, "turn_loop_ended")
+		scene.level += 1
+		turn_manager.start()
+	elif is_in_group("AI"):
+		var next_level_enemies = scene.level_props[scene.level + 1].enemies
+		var ai_scene = load(resource.filename)
+		if !(ai_scene in next_level_enemies):
+			next_level_enemies.append(ai_scene)
+		queue_free()
+	Globals.message_log.add_message(get_bbcode_name() + " descended " + command.level_exit_source.get_bbcode_name(false) + "...")
