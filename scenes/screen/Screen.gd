@@ -12,7 +12,7 @@ func _ready():
 	Globals.message_log.add_message(Globals.current_pc.get_bbcode_name() + " enter the Lurching Labyrinth...")
 	game_sceen.get_node("TurnManager").start()
 
-func _input(event):
+func _unhandled_input(event):
 	if event.is_action_pressed("ui_accept"):
 		OS.window_fullscreen = !OS.window_fullscreen
 	elif event.is_action_pressed("ui_cancel"):

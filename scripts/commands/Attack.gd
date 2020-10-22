@@ -2,10 +2,8 @@ extends Command
 class_name Attack
 
 var damage = 0
+var target
 
-func _init(invoker: Node=null, receiver: Node=null).(invoker, receiver, "attack"):
-	pass
-
-func execute():
-	damage += receiver.damage
-	Globals.process_command(TakeDamage.new(receiver, invoker, damage))
+func _init(new_target: Node):
+	method = "attack"
+	target = new_target

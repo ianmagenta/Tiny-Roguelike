@@ -4,7 +4,6 @@ extends Node
 var tile_size = 16
 var dungeon_size: Vector2
 var dungeon_walls: TileMap
-var entity_group: Array
 var player_group: Array
 var ai_group: Array
 var interact_group: Array
@@ -15,14 +14,12 @@ var entity_map = {}
 
 func refresh_entities():
 	var tree = get_tree()
-	entity_group = tree.get_nodes_in_group("Entity")
-	player_group = tree.get_nodes_in_group("PC")
+	player_group = tree.get_nodes_in_group("Player")
 	ai_group = tree.get_nodes_in_group("AI")
-	interact_group = tree.get_nodes_in_group("Interact")
+	interact_group = tree.get_nodes_in_group("Interactable")
 
-func process_command(command: Command):
-	command.receiver.propagate_call(command.method, [command])
-	command.execute()
+func process_command(target_entity, command: Command):
+	target_entity.propagate_call(command.method, [command])
 
 func grid_to_world(grid_position: Vector2):
 	return Vector2(grid_position.x * tile_size, grid_position.y * tile_size)
@@ -34,13 +31,13 @@ func space_is_wall(space: Vector2):
 
 func space_is_interact(space: Vector2):
 	var entity = entity_map.get(space)
-	if entity and entity.type == entity.types.INTERACTABLE:
+	if entity and entity.is_in_group("Interactable"):
 		return true
 	return false
 
 func space_is_player(space: Vector2):
 	var entity = entity_map.get(space)
-	if entity and entity.type == entity.types.PLAYER:
+	if entity and entity.is_in_group("Player"):
 		return true
 	return false
 

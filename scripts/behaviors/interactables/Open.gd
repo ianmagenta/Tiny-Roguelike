@@ -1,3 +1,3 @@
-func execute(command: Interact):
-	Globals.message_log.add_message(command.invoker.get_bbcode_name() + " opened " + command.receiver.get_bbcode_name() + ".")
-	Globals.process_command(Destroy.new(command.invoker, command.receiver))
+func execute(parent, command: Interact):
+	Globals.message_log.add_message(command.interacting_entity.get_bbcode_name() + " opened " + parent.get_bbcode_name() + ".")
+	parent.queue_free()

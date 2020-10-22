@@ -5,4 +5,4 @@ func _init(parent).(parent):
 	pass
 
 func interact(command: Interact):
-	Globals.process_command(Pickup.new(command.receiver, command.invoker, command.receiver.resource))
+	Globals.process_command(command.interacting_entity, Pickup.new(command.receiver.resource))

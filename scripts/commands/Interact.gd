@@ -3,5 +3,6 @@ class_name Interact
 
 var interacting_entity
 
-func _init(invoker: Node=null, receiver: Node=null).(invoker, receiver, "interact"):
-	pass
+func _init(new_interacting_entity: Node):
+	method = "interact"
+	interacting_entity = new_interacting_entity

@@ -4,16 +4,12 @@ class_name Entity
 
 signal end_turn
 
-enum types {PLAYER, ENEMY, INTERACTABLE}
-
 export var resource: Resource setget _set_resource
 
-var type: int setget _set_type
 var health: int
 var damage: int
 var grid_position = Vector2(0, 0) setget _set_grid_position
 var prev_direction = Vector2(0, 0)
-
 
 func _set_resource(new_resource: Actor):
 	resource = new_resource
@@ -24,29 +20,29 @@ func _set_resource(new_resource: Actor):
 		health = resource.health
 		damage = resource.damage
 	if resource is PlayerCharacter:
-		add_child(PlayerController.new(self))
-		type = types.PLAYER
+		add_to_group("Player")
 	elif resource is Enemy:
-		add_child(AiController.new(self))
-		type = types.ENEMY
+		add_to_group("AI")
 	elif resource is Interactable:
-		add_child(InteractController.new(self))
-		type = types.INTERACTABLE
+		add_to_group("Interactable")
 	elif resource is Item:
-		add_child(PickupController.new(self))
-		type = types.INTERACTABLE
+		add_to_group("Pickup")
 
-func _set_type(new_type: int):
-	type = new_type
+func add_to_group(group_name, persistent=false):
+	for group in get_groups():
+		remove_from_group(group)
 	for node in get_children():
-		if node is PlayerController or node is AiController or node is InteractController:
+		if node is PlayerController or node is AiController or node is InteractController or node is PickupController:
 			node.queue_free()
-	if type == types.PLAYER:
+	if group_name == "Player":
 		add_child(PlayerController.new(self))
-	elif type == types.ENEMY:
+	elif group_name == "AI":
 		add_child(AiController.new(self))
-	elif type == types.INTERACTABLE:
+	elif group_name == "Interactable":
 		add_child(InteractController.new(self))
+	elif group_name == "Pickup":
+		add_child(PickupController.new(self))
+	.add_to_group(group_name, persistent)
 
 func _set_grid_position(value: Vector2):
 	Globals.entity_map.erase(grid_position)
@@ -54,20 +50,37 @@ func _set_grid_position(value: Vector2):
 	position = Globals.grid_to_world(grid_position)
 	Globals.entity_map[grid_position] = self
 
-func _init():
-	add_to_group("Entity")
-
 func queue_free():
 	Globals.entity_map.erase(grid_position)
-	for group in get_groups():
-		remove_from_group(group)
 	.queue_free()
 
 func get_bbcode_name(capitalize=true, color_data=true):
-	if type != types.PLAYER:
+	if !is_in_group("Player"):
 		return resource.get_bbcode_name(capitalize, color_data)
 	else:
 		var new_name = "You"
 		if color_data:
 			new_name = "[color=#" + resource.color.to_html(false) + "]" + new_name + "[/color]"
 		return new_name
+
+func move(command: Move):
+	var new_grid_position = grid_position + command.direction
+	if _valid_move(new_grid_position):
+		self.grid_position = new_grid_position
+		prev_direction = command.direction
+
+func _valid_move(new_grid_position: Vector2):
+	var entity: Entity = Globals.entity_map.get(new_grid_position)
+	if entity:
+		if entity.is_in_group("Interactable"):
+			Globals.process_command(entity, Interact.new(self))
+		elif is_in_group("AI") and entity.is_in_group("AI"):
+			Globals.process_command(self, Bump.new(new_grid_position))
+		else:
+			Globals.process_command(self, Attack.new(entity))
+		return false
+	return true
+
+func end_turn(_command: EndTurn):
+	if is_in_group("Player"):
+		emit_signal("end_turn")

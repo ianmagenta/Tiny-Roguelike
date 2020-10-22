@@ -7,7 +7,6 @@ var parent: Node
 
 func _init(new_parent):
 	parent = new_parent
-	parent.add_to_group("PC")
 
 func _unhandled_input(event):
 	if has_turn:
@@ -23,10 +22,10 @@ func _unhandled_input(event):
 		if direction:
 			var new_position = parent.grid_position + direction
 			if !Globals.space_is_wall(new_position):
-				Globals.process_command(Move.new(null, parent, direction))
-				Globals.process_command(EndTurn.new(null, parent))
+				Globals.process_command(parent, Move.new(direction))
+				Globals.process_command(parent, EndTurn.new())
 			else:
-				Globals.process_command(Bump.new(null, parent, new_position))
+				Globals.process_command(parent, Bump.new(new_position))
 
 func start_turn(_command: StartTurn):
 	has_turn = true
