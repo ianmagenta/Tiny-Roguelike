@@ -6,5 +6,5 @@ func execute(parent, command: PreTurn):
 		if !player_sighted and sight_resource.in_sight_radius(parent, Globals.current_pc) and Globals.aligned_with(parent, Globals.current_pc):
 			player_sighted = true
 		if player_sighted:
-			return MoveCloser.new(Globals.current_pc)
+			return MoveCloser.new(parent, Globals.current_pc)
 	return null

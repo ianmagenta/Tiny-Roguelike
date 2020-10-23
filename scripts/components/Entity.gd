@@ -83,19 +83,6 @@ func _valid_move(new_grid_position: Vector2):
 		return false
 	return true
 
-func move_closer(command: MoveCloser):
-	var directions: Array
-	if prev_direction.y:
-		directions = [Vector2(0,1), Vector2(0,-1), Vector2(1,0), Vector2(-1,0)]
-	else:
-		directions = [Vector2(1,0), Vector2(-1,0), Vector2(0,1), Vector2(0,-1)]
-	for i in directions:
-		var new_position = i + grid_position
-		if !Globals.space_is_wall(new_position) and !Globals.space_is_interact(new_position) and \
-		command.target_entity.grid_position.distance_to(new_position) < command.target_entity.grid_position.distance_to(grid_position):
-			Globals.process_command(self, Move.new(i))
-			break
-
 func attack(command: Attack):
 	command.damage += damage
 	Globals.process_command(command.target, TakeDamage.new(self, command.damage))
@@ -108,7 +95,7 @@ func take_damage(command: TakeDamage):
 		Globals.process_command(self, Kill.new())
 
 func kill(command: Kill):
-	if self != Globals.current_pc:
+	if !is_in_group("Player"):
 		queue_free()
 	else:
 		get_node("../../TurnManager").player_is_dead = true
