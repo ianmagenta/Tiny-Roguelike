@@ -31,9 +31,8 @@ func _start_turn_loop():
 			break
 		Globals.refresh_entities()
 		for entity in Globals.ai_group:
-			Globals.process_command(entity, StartTurn.new())
-			if player_is_dead:
-				break
+			if !player_is_dead:
+				Globals.process_command(entity, StartTurn.new())
 			Globals.process_command(entity, EndTurn.new())
 		if player_is_dead:
 			break

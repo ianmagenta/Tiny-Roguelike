@@ -4,6 +4,7 @@ class_name Pointer
 
 var action
 var parent
+var dont_clear = false
 
 func _init(new_parent):
 	z_index = 9
@@ -12,6 +13,17 @@ func _init(new_parent):
 func update_action(new_action):
 	action = new_action
 	update()
+
+func end_turn(_command: EndTurn):
+	if !dont_clear:
+		action = null
+		update()
+	else:
+		dont_clear = false
+
+func attack(command: Attack):
+	if command.target.is_in_group("Player"):
+		dont_clear = true
 
 func _draw():
 	if action is Move:

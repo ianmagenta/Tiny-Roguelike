@@ -10,6 +10,7 @@ var health: int
 var damage: int
 var grid_position = Vector2(0, 0) setget _set_grid_position
 var prev_direction = Vector2(0, 0)
+var items = []
 
 func _set_resource(new_resource: Actor):
 	resource = new_resource
@@ -91,10 +92,10 @@ func take_damage(command: TakeDamage):
 	health -= command.damage
 	Globals.message_log.add_message(command.source.get_bbcode_name() + " dealt " + str(damage) + " damage to " + get_bbcode_name(false) + ".")
 	if health <= 0:
-		Globals.message_log.add_message(command.source.get_bbcode_name() + " killed " + get_bbcode_name(false) + "!")
-		Globals.process_command(self, Kill.new())
+		Globals.process_command(self, Kill.new(command.source))
 
 func kill(command: Kill):
+	Globals.message_log.add_message(command.killing_entity.get_bbcode_name() + " killed " + get_bbcode_name(false) + "!")
 	if !is_in_group("Player"):
 		queue_free()
 	else:
@@ -120,3 +121,6 @@ func leave_level(command: LeaveLevel):
 			next_level_enemies.append(ai_scene)
 		queue_free()
 	Globals.message_log.add_message(get_bbcode_name() + " descended " + command.level_exit_source.get_bbcode_name(false) + "...")
+
+func pickup(command: Pickup):
+	items.append(command.item_resource)
