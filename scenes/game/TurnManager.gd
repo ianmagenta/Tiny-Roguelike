@@ -6,8 +6,10 @@ signal player_updated(player)
 var enemy_turn_timer = 0.5
 var stop_turn_loop = false
 var player_is_dead = false
+var ai_that_can_move = []
 
 onready var tree = get_tree()
+onready var camera: Camera2D = get_node("../MainCamera")
 
 func start():
 	emit_signal("player_updated", Globals.current_pc)
@@ -16,8 +18,11 @@ func start():
 func _start_turn_loop():
 	while true:
 		Globals.refresh_entities()
+		ai_that_can_move.clear()
 		for entity in Globals.ai_group:
-			Globals.process_command(entity, PreTurn.new())
+			if camera.camera_view.has_point(entity.position):
+				Globals.process_command(entity, PreTurn.new())
+				ai_that_can_move.append(entity)
 		yield(tree, "idle_frame")
 		if Globals.player_group:
 			var player: Entity = Globals.current_pc
@@ -30,10 +35,11 @@ func _start_turn_loop():
 		if stop_turn_loop:
 			break
 		Globals.refresh_entities()
-		for entity in Globals.ai_group:
-			if !player_is_dead:
-				Globals.process_command(entity, StartTurn.new())
-			Globals.process_command(entity, EndTurn.new())
+		for entity in ai_that_can_move:
+			if entity and !entity.is_queued_for_deletion():
+				if !player_is_dead:
+					Globals.process_command(entity, StartTurn.new())
+				Globals.process_command(entity, EndTurn.new())
 		if player_is_dead:
 			break
 	stop_turn_loop = false

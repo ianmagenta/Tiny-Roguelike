@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://scenes/game/TurnManager.gd" type="Script" id=1]
 [ext_resource path="res://resources/images/roguelike_sheet.png" type="Texture" id=2]
@@ -8,7 +8,6 @@
 [ext_resource path="res://scenes/game/Log.gd" type="Script" id=6]
 [ext_resource path="res://scripts/resources/text_effects/Matrix.gd" type="Script" id=7]
 [ext_resource path="res://scenes/game/MainCamera.gd" type="Script" id=8]
-[ext_resource path="res://scenes/game/CommandManager.gd" type="Script" id=9]
 [ext_resource path="res://resources/themes/ui_theme.tres" type="Theme" id=10]
 
 [sub_resource type="RichTextEffect" id=1]
@@ -108,9 +107,6 @@ tracks/0/keys = {
 }
 
 [node name="Game" type="Node2D"]
-
-[node name="CommandManager" type="Node" parent="."]
-script = ExtResource( 9 )
 
 [node name="TurnManager" type="Node" parent="."]
 script = ExtResource( 1 )
