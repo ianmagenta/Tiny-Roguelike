@@ -7,6 +7,7 @@ var parent: Node
 
 func _init(new_parent):
 	parent = new_parent
+	name = "PlayerController"
 
 func _unhandled_input(event):
 	if has_turn:

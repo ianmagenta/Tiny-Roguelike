@@ -9,6 +9,7 @@ var dont_clear = false
 func _init(new_parent):
 	z_index = 9
 	parent = new_parent
+	name = "Pointer"
 
 func update_action(new_action):
 	action = new_action
@@ -22,7 +23,7 @@ func end_turn(_command: EndTurn):
 		dont_clear = false
 
 func attack(command: Attack):
-	if command.target.is_in_group("Player"):
+	if command.target.is_in_group("player"):
 		dont_clear = true
 
 func _draw():

@@ -8,7 +8,8 @@ func _init(new_texture: AtlasTexture, color):
 	texture = new_texture
 	self_modulate = color
 	centered = false
+	name = "Visual"
 
 func kill(_command: Kill):
-	if parent.is_in_group("Player"):
+	if parent.is_in_group("player"):
 		texture.region = Rect2(Vector2(12 * Globals.tile_size, 8 * Globals.tile_size),Vector2(Globals.tile_size, Globals.tile_size))

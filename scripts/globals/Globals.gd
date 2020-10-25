@@ -7,16 +7,20 @@ var dungeon_walls: TileMap
 var player_group: Array
 var ai_group: Array
 var interact_group: Array
+var ally_group: Array
 var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 var current_pc = Entity.new()
 var message_log: RichTextLabel
 var entity_map = {}
+var player_is_dead = false
+var ai_that_can_move = []
 
 func refresh_entities():
 	var tree = get_tree()
-	player_group = tree.get_nodes_in_group("Player")
-	ai_group = tree.get_nodes_in_group("AI")
-	interact_group = tree.get_nodes_in_group("Interactable")
+	player_group = tree.get_nodes_in_group("player")
+	ai_group = tree.get_nodes_in_group("ai")
+	interact_group = tree.get_nodes_in_group("interactable")
+	ally_group = tree.get_nodes_in_group("player_ally")
 
 func process_command(target_entity, command: Command):
 	target_entity.propagate_call(command.method, [command])
@@ -31,13 +35,13 @@ func space_is_wall(space: Vector2):
 
 func space_is_interact(space: Vector2):
 	var entity = entity_map.get(space)
-	if entity and entity.is_in_group("Interactable"):
+	if entity and entity.is_in_group("interactable"):
 		return true
 	return false
 
 func space_is_player(space: Vector2):
 	var entity = entity_map.get(space)
-	if entity and entity.is_in_group("Player"):
+	if entity and entity.is_in_group("player"):
 		return true
 	return false
 

@@ -12,6 +12,7 @@ func _init(new_parent):
 	pointer = Pointer.new(parent)
 	parent.add_child(pointer)
 	ai_code = parent.resource.behavior.new()
+	name = "AiController"
 
 func pre_turn(command: PreTurn):
 	turn_action = ai_code.execute(parent, command)
