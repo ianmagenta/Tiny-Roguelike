@@ -4,8 +4,10 @@
 [ext_resource path="res://resources/images/roguelike_sheet.png" type="Texture" id=2]
 
 [sub_resource type="GDScript" id=1]
-script/source = "func pickup(command):
-	command.receiver.damage += 1
+script/source = "extends ItemBehavior
+
+func _ready():
+	parent.damage += 1
 "
 
 [sub_resource type="AtlasTexture" id=2]

@@ -15,6 +15,11 @@ _global_script_classes=[ {
 "path": "res://scripts/resources/Actor.gd"
 }, {
 "base": "Controller",
+"class": "AiBehavior",
+"language": "GDScript",
+"path": "res://scripts/behaviors/ai/AiBehavior.gd"
+}, {
+"base": "Controller",
 "class": "AiController",
 "language": "GDScript",
 "path": "res://scripts/components/AiController.gd"
@@ -89,6 +94,16 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scripts/resources/items/Item.gd"
 }, {
+"base": "Controller",
+"class": "ItemBehavior",
+"language": "GDScript",
+"path": "res://scripts/behaviors/items/ItemBehavior.gd"
+}, {
+"base": "Controller",
+"class": "ItemController",
+"language": "GDScript",
+"path": "res://scripts/components/ItemController.gd"
+}, {
 "base": "Command",
 "class": "Kill",
 "language": "GDScript",
@@ -124,7 +139,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scripts/commands/Pickup.gd"
 }, {
-"base": "InteractController",
+"base": "Controller",
 "class": "PickupController",
 "language": "GDScript",
 "path": "res://scripts/components/PickupController.gd"
@@ -181,6 +196,7 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "Actor": "",
+"AiBehavior": "",
 "AiController": "",
 "Attack": "",
 "Bump": "",
@@ -196,6 +212,8 @@ _global_script_class_icons={
 "InteractController": "",
 "Interactable": "",
 "Item": "",
+"ItemBehavior": "",
+"ItemController": "",
 "Kill": "",
 "LeaveLevel": "",
 "Matrix": "",
