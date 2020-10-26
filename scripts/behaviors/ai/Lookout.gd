@@ -2,7 +2,7 @@ extends AiBehavior
 
 var target: Entity
 
-func execute(command: PreTurn):
+func execute(_command: PreTurn):
 	var targets: Array
 	if parent.is_in_group("player_ally"):
 		targets = Globals.ai_that_can_move

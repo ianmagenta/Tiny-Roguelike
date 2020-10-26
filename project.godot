@@ -243,6 +243,7 @@ config/icon="res://icon.png"
 [autoload]
 
 Globals="*res://scripts/globals/Globals.gd"
+Events="*res://scripts/globals/Events.gd"
 
 [display]
 

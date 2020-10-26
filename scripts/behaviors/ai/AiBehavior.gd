@@ -14,5 +14,5 @@ func start_turn(_command: StartTurn):
 	if turn_action:
 		Globals.process_command(parent, turn_action)
 
-func execute(command: PreTurn):
+func execute(_command: PreTurn):
 	pass

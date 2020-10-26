@@ -17,3 +17,5 @@ func _unhandled_input(event):
 		OS.window_fullscreen = !OS.window_fullscreen
 	elif event.is_action_pressed("ui_cancel"):
 		get_tree().quit()
+	elif event.is_action_pressed("ui_home", true):
+		Events.emit_signal("item_picked_up", preload("res://resources/items/RealSword.tres"))

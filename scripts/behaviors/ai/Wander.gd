@@ -1,4 +1,4 @@
 extends AiBehavior
 
-func execute(command: PreTurn):
+func execute(_command: PreTurn):
 	return MoveRandomly.new(parent)
