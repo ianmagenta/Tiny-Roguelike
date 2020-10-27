@@ -12,6 +12,7 @@ Tiny roguelike is a traditional, turn-based roguelike with a few small twists. T
 - Enemies telegraph their turns in advance
 - Scrollable message log displays important actions taken by players and enemies
 - Info box displays details about individual entities
+- Item UI shows inventory and info about items
 - Animations, particle effects, mouse support, and other modern touches
 - A variety of accessable input methods
 
