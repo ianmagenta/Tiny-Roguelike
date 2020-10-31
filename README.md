@@ -16,6 +16,7 @@ Tiny roguelike is a traditional, turn-based roguelike with a few small twists. T
 - Animations, particle effects, mouse support, and other modern touches
 - A variety of accessable input methods
 - A flexible entity / event system with potential for easy modding
+- Various items that change how the game plays
 
 ## Technologies Used
 - [Godot](https://godotengine.org/)
