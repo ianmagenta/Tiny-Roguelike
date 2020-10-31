@@ -2,11 +2,14 @@ extends Controller
 
 class_name PlayerController
 
-var has_turn = false
-var parent: Node
+signal move(data)
+signal end_turn(data)
+signal bump(data)
+signal get_grid_position(data)
 
-func _init(new_parent):
-	parent = new_parent
+var has_turn = false
+
+func _init():
 	name = "PlayerController"
 
 func _unhandled_input(event):
@@ -21,15 +24,23 @@ func _unhandled_input(event):
 		elif event.is_action_pressed("ui_left"):
 			direction = Vector2(-1, 0)
 		if direction:
-			var new_position = parent.grid_position + direction
+			var parent_grid_position = Vector2(0,0)
+			emit_signal("get_grid_position", {"grid_position": parent_grid_position})
+			var new_position = parent_grid_position + direction
 			if !Globals.space_is_wall(new_position):
-				Globals.process_command(parent, Move.new(direction))
-				Globals.process_command(parent, EndTurn.new())
+				emit_signal("move", {"direction": direction})
+				emit_signal("end_turn")
+				Events.emit_signal("player_turn_ended")
 			else:
-				Globals.process_command(parent, Bump.new(new_position))
+				emit_signal("bump")
 
-func start_turn(_command: StartTurn):
+func _on_start_turn_event(_data):
 	has_turn = true
 
-func end_turn(_command: EndTurn):
+func _one_end_turn_event(_data):
 	has_turn = false
+
+func register():
+	var callbacks = ["start_turn", "end_turn"]
+	var signals = ["move", "end_turn", "bump", "get_grid_position"]
+	return {"callbacks": callbacks, "signals": signals}

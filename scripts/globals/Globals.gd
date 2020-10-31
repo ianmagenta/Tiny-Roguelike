@@ -22,9 +22,6 @@ func refresh_entities():
 	interact_group = tree.get_nodes_in_group("interactable")
 	ally_group = tree.get_nodes_in_group("player_ally")
 
-func process_command(target_entity, command: Command):
-	target_entity.propagate_call(command.method, [command])
-
 func grid_to_world(grid_position: Vector2):
 	return Vector2(grid_position.x * tile_size, grid_position.y * tile_size)
 
