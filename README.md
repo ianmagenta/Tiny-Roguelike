@@ -5,7 +5,7 @@
 ## Overview
 Tiny roguelike is a traditional, turn-based roguelike with a few small twists. The game is being developed openly and feedback is welcomed.
 
-## Current Features
+## Game Features
 - Turn-based combat
 - Procedurally generated dungeons
 - A lovely tileset
@@ -17,6 +17,9 @@ Tiny roguelike is a traditional, turn-based roguelike with a few small twists. T
 - A variety of accessable input methods
 - A flexible entity / event system with potential for easy modding
 - Various items that change how the game plays
+
+## Technical Features
+- Game uses and entity / component framework based on this talk: https://www.youtube.com/watch?v=U03XXzcThGU
 
 ## Technologies Used
 - [Godot](https://godotengine.org/)
