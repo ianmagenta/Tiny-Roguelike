@@ -1,13 +1,13 @@
 [gd_resource type="Resource" load_steps=4 format=2]
 
-[ext_resource path="res://scripts/resources/RcEntity.gd" type="Script" id=1]
-[ext_resource path="res://scripts/resources/RcPlayerController.gd" type="Script" id=2]
+[ext_resource path="res://scripts/resources/ComponentEntity.gd" type="Script" id=1]
+[ext_resource path="res://scripts/resources/PlayerController.gd" type="Script" id=2]
 
 [sub_resource type="Resource" id=1]
-resource_name = "RcPlayerController"
+resource_name = "test"
 script = ExtResource( 2 )
 
 [resource]
-resource_name = "RcEntity"
+resource_name = "Component"
 script = ExtResource( 1 )
 components = [ SubResource( 1 ) ]
