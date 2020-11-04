@@ -10,19 +10,20 @@ var available_item_rooms = -1
 var size = Vector2(6, 1)
 var room_walls = TileMap.new()
 var level_props = [
-	{"min_num_of_rooms": 3, "max_num_of_rooms": 5, "enemies": [preload("res://resources/enemies/Bat.tres")], "interactables": [], "wall_type": 0},
-	{"min_num_of_rooms": 5, "max_num_of_rooms": 7, "enemies": [preload("res://resources/enemies/Bat.tres")], "interactables": [], "wall_type": 0, "items": [preload("res://resources/items/RealSword.tres")]},
-	{"min_num_of_rooms": 7, "max_num_of_rooms": 9, "enemies": [preload("res://resources/enemies/Bat.tres"), preload("res://resources/enemies/Snake.tres")], "interactables": [], "wall_type": 0, "items": [preload("res://resources/items/RealSword.tres")]},
-	{"min_num_of_rooms": 9, "max_num_of_rooms": 11, "enemies": [preload("res://resources/enemies/Bat.tres")], "interactables": [], "wall_type": 0},
-	{"min_num_of_rooms": 11, "max_num_of_rooms": 13, "enemies": [preload("res://resources/enemies/Bat.tres")], "interactables": [], "wall_type": 0}
+	{"min_num_of_rooms": 3, "max_num_of_rooms": 5, "enemies": [], "interactables": [], "wall_type": 0},
+	{"min_num_of_rooms": 5, "max_num_of_rooms": 7, "enemies": [], "interactables": [], "wall_type": 0, "items": []},
+	{"min_num_of_rooms": 7, "max_num_of_rooms": 9, "enemies": [], "interactables": [], "wall_type": 0, "items": []},
+	{"min_num_of_rooms": 9, "max_num_of_rooms": 11, "enemies": [], "interactables": [], "wall_type": 0},
+	{"min_num_of_rooms": 11, "max_num_of_rooms": 13, "enemies": [], "interactables": [], "wall_type": 0}
 ]
-var dungeon_entities = [preload("res://resources/interactables/Stairs.tres"), preload("res://resources/interactables/Door.tres")]
+var dungeon_entities = []
 
 func _set_level(value):
 	level = value
 	_generate_level()
 
 func _init():
+	Globals.dungeon_position = position
 	add_child(room_walls)
 	room_walls.cell_custom_transform = Transform2D(Vector2(16,0), Vector2(0,16), Vector2(0,0))
 	room_walls.cell_size = Vector2(16,16)
@@ -105,24 +106,29 @@ func _generate_level():
 			if used_cell == 0:
 				room_walls.set_cell(used_cell_position.x + 1, used_cell_position.y + size.y, level_properties.wall_type, false, false, false, _get_subtile_coord(level_properties.wall_type))
 			elif used_cell == 1:
-				var enemy_instance = Entity.new()
-				enemy_instance.resource = level_properties.enemies[Globals.rng.randi_range(0, level_properties.enemies.size() - 1)]
-				enemy_instance.grid_position = entity_grid_position
-				add_child(enemy_instance)
+				pass
+#				var enemy_instance = Entity.new()
+#				enemy_instance.resource = level_properties.enemies[Globals.rng.randi_range(0, level_properties.enemies.size() - 1)]
+#				enemy_instance.grid_position = entity_grid_position
+#				add_child(enemy_instance)
 			elif used_cell == 2:
-				Globals.current_pc.grid_position = entity_grid_position
+				var new_pos = Globals.grid_to_world(entity_grid_position)
+				Globals.current_pc.get_node("Visual").position = new_pos
+				Events.emit_signal("player_moved", new_pos)
 				if !is_a_parent_of(Globals.current_pc):
 					add_child(Globals.current_pc)
 			elif used_cell == 3:
-				var entity_instance = Entity.new()
-				entity_instance.resource = level_properties.items[0]
-				entity_instance.grid_position = entity_grid_position
-				add_child(entity_instance)
+				pass
+#				var entity_instance = Entity.new()
+#				entity_instance.resource = level_properties.items[0]
+#				entity_instance.grid_position = entity_grid_position
+#				add_child(entity_instance)
 			else:
-				var entity_instance = Entity.new()
-				entity_instance.resource = dungeon_entities[used_cell - 4]
-				entity_instance.grid_position = entity_grid_position
-				add_child(entity_instance)
+				pass
+#				var entity_instance = Entity.new()
+#				entity_instance.resource = dungeon_entities[used_cell - 4]
+#				entity_instance.grid_position = entity_grid_position
+#				add_child(entity_instance)
 		size.y += selected_room.length
 	size.y += 1
 	for x in range(1, size.x):

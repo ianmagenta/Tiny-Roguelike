@@ -4,12 +4,13 @@ extends Node
 var tile_size = 16
 var dungeon_size: Vector2
 var dungeon_walls: TileMap
+var dungeon_position: Vector2
 var player_group: Array
 var ai_group: Array
 var interact_group: Array
 var ally_group: Array
 var rng: RandomNumberGenerator = RandomNumberGenerator.new()
-var current_pc = Entity.new()
+var current_pc: Entity
 var message_log: RichTextLabel
 var entity_map = {}
 var player_is_dead = false
@@ -23,7 +24,7 @@ func refresh_entities():
 	ally_group = tree.get_nodes_in_group("player_ally")
 
 func grid_to_world(grid_position: Vector2):
-	return Vector2(grid_position.x * tile_size, grid_position.y * tile_size)
+	return Vector2((grid_position.x * tile_size) + dungeon_position.x, (grid_position.y * tile_size) + dungeon_position.y)
 
 func space_is_wall(space: Vector2):
 	if dungeon_walls.get_cellv(space) != 0 and space.x > 0 and space.x < dungeon_size.x:

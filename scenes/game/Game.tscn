@@ -1,9 +1,8 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://resources/images/roguelike_sheet.png" type="Texture" id=2]
 [ext_resource path="res://scenes/game/Dungeon.gd" type="Script" id=3]
 [ext_resource path="res://resources/fonts/AweMonoFont.tres" type="DynamicFont" id=4]
-[ext_resource path="res://scripts/resources/text_effects/Typewriter.gd" type="Script" id=5]
 [ext_resource path="res://scenes/game/Log.gd" type="Script" id=6]
 [ext_resource path="res://scripts/resources/text_effects/Matrix.gd" type="Script" id=7]
 [ext_resource path="res://scenes/game/MainCamera.gd" type="Script" id=8]
@@ -11,12 +10,9 @@
 [ext_resource path="res://scenes/game/ItemList.gd" type="Script" id=11]
 
 [sub_resource type="RichTextEffect" id=1]
-script = ExtResource( 5 )
-
-[sub_resource type="RichTextEffect" id=2]
 script = ExtResource( 7 )
 
-[sub_resource type="TileSet" id=3]
+[sub_resource type="TileSet" id=2]
 0/name = "roguelike_sheet.png 0"
 0/texture = ExtResource( 2 )
 0/tex_offset = Vector2( 0, 0 )
@@ -39,14 +35,14 @@ script = ExtResource( 7 )
 0/shapes = [  ]
 0/z_index = 0
 
-[sub_resource type="Gradient" id=4]
+[sub_resource type="Gradient" id=3]
 offsets = PoolRealArray( 0, 0.348148, 0.614815, 1 )
 colors = PoolColorArray( 0, 0, 0, 0, 0.462745, 0.454902, 0.490196, 1, 0.462745, 0.454902, 0.490196, 1, 0, 0, 0, 0 )
 
-[sub_resource type="GradientTexture" id=5]
-gradient = SubResource( 4 )
+[sub_resource type="GradientTexture" id=4]
+gradient = SubResource( 3 )
 
-[sub_resource type="ParticlesMaterial" id=6]
+[sub_resource type="ParticlesMaterial" id=5]
 emission_shape = 2
 emission_box_extents = Vector3( 16, 180, 1 )
 flag_disable_z = true
@@ -56,9 +52,9 @@ gravity = Vector3( 0, 0, 0 )
 initial_velocity = 2.0
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
-color_ramp = SubResource( 5 )
+color_ramp = SubResource( 4 )
 
-[sub_resource type="TileSet" id=7]
+[sub_resource type="TileSet" id=6]
 0/name = "roguelike_sheet.png 0"
 0/texture = ExtResource( 2 )
 0/tex_offset = Vector2( 0, 0 )
@@ -74,7 +70,7 @@ color_ramp = SubResource( 5 )
 0/shapes = [  ]
 0/z_index = 0
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=7]
 length = 2.0
 loop = true
 tracks/0/type = "value"
@@ -90,7 +86,7 @@ tracks/0/keys = {
 "values": [ Vector2( 328, 180 ), Vector2( 328, 196 ) ]
 }
 
-[sub_resource type="Animation" id=9]
+[sub_resource type="Animation" id=8]
 length = 2.0
 loop = true
 tracks/0/type = "value"
@@ -150,7 +146,7 @@ custom_fonts/normal_font = ExtResource( 4 )
 custom_colors/default_color = Color( 0.72549, 0.709804, 0.764706, 1 )
 bbcode_enabled = true
 scroll_following = true
-custom_effects = [ SubResource( 1 ), SubResource( 2 ) ]
+custom_effects = [ SubResource( 1 ) ]
 script = ExtResource( 6 )
 __meta__ = {
 "_edit_use_anchors_": true
@@ -178,7 +174,7 @@ __meta__ = {
 self_modulate = Color( 0.72549, 0.709804, 0.764706, 1 )
 position = Vector2( 328, 180 )
 z_index = -1
-tile_set = SubResource( 3 )
+tile_set = SubResource( 2 )
 cell_size = Vector2( 16, 16 )
 cell_custom_transform = Transform2D( 16, 0, 0, 16, 0, 0 )
 format = 1
@@ -191,7 +187,7 @@ amount = 20
 lifetime = 5.0
 preprocess = 5.0
 visibility_rect = Rect2( -16, -180, 32, 360 )
-process_material = SubResource( 6 )
+process_material = SubResource( 5 )
 
 [node name="Particles2D2" type="Particles2D" parent="InterfaceLayer"]
 position = Vector2( 400, 180 )
@@ -200,12 +196,12 @@ amount = 20
 lifetime = 5.0
 preprocess = 5.0
 visibility_rect = Rect2( -16, -180, 32, 360 )
-process_material = SubResource( 6 )
+process_material = SubResource( 5 )
 
 [node name="LeftWall" type="TileMap" parent="InterfaceLayer"]
 self_modulate = Color( 0.462745, 0.454902, 0.490196, 1 )
 position = Vector2( 328, 180 )
-tile_set = SubResource( 7 )
+tile_set = SubResource( 6 )
 cell_size = Vector2( 16, 16 )
 cell_custom_transform = Transform2D( 16, 0, 0, 16, 0, 0 )
 format = 1
@@ -213,12 +209,12 @@ tile_data = PoolIntArray( -786436, 0, 0, -720900, 0, 0, -655364, 0, 0, -589828, 
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="InterfaceLayer/LeftWall"]
 autoplay = "Scroll"
-anims/Scroll = SubResource( 8 )
+anims/Scroll = SubResource( 7 )
 
 [node name="RightWall" type="TileMap" parent="InterfaceLayer"]
 self_modulate = Color( 0.462745, 0.454902, 0.490196, 1 )
 position = Vector2( 328, 180 )
-tile_set = SubResource( 7 )
+tile_set = SubResource( 6 )
 cell_size = Vector2( 16, 16 )
 cell_custom_transform = Transform2D( 16, 0, 0, 16, 0, 0 )
 format = 1
@@ -226,4 +222,4 @@ tile_data = PoolIntArray( -786430, 0, 0, -720894, 0, 0, -655358, 0, 0, -589822, 
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="InterfaceLayer/RightWall"]
 autoplay = "Scroll"
-anims/Scroll = SubResource( 9 )
+anims/Scroll = SubResource( 8 )

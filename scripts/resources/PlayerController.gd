@@ -2,15 +2,11 @@ tool
 extends Component
 class_name PlayerController
 
-signal move(data)
-signal end_turn(data)
-signal bump(data)
-signal get_grid_position(data)
-
 var has_turn = false
 
 func _init():
 	resource_name = "PlayerController"
+	priority = -1
 
 func _unhandled_input(event):
 	if has_turn:
@@ -25,19 +21,19 @@ func _unhandled_input(event):
 			direction = Vector2(-1, 0)
 		if direction:
 			var parent_grid_position = {"grid_position": Vector2(0,0)}
-			emit_signal("get_grid_position", parent_grid_position)
+			emit_event("get_grid_position", parent_grid_position)
 			var new_position = parent_grid_position + direction
 			if !Globals.space_is_wall(new_position):
-				emit_signal("move", {"direction": direction})
-				emit_signal("end_turn")
-				Events.emit_signal("player_turn_ended")
+				emit_event("move", {"direction": direction})
+				emit_event("end_turn")
+				Events.emit_event("player_turn_ended")
 			else:
-				emit_signal("bump")
+				emit_event("bump")
 
-func _on_start_turn_event(_data):
+func start_turn(_data):
 	has_turn = true
 
-func _one_end_turn_event(_data):
+func end_turn(_data):
 	has_turn = false
 
 func get_signal_list():

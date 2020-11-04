@@ -6,7 +6,7 @@ var game_sceen = preload("res://scenes/game/Game.tscn").instance()
 
 func _ready():
 	add_child(game_sceen)
-#	Globals.current_pc.resource = preload("res://resources/player_characters/Knight.tres")
+	Globals.current_pc = Entity.new(preload("res://resources/player_characters/Knight.tres"))
 	Globals.message_log = game_sceen.get_node("InterfaceLayer/Interface/MessageFrame/Log")
 	game_sceen.get_node("Dungeon").level += 1
 #	Globals.message_log.add_message(Globals.current_pc.get_bbcode_name() + " enter the Lurching Labyrinth...")
