@@ -6,7 +6,7 @@ var _event_map = {}
 
 func _init(entity: EntityComponent):
 	for component in entity.components:
-		insert_component(component)
+		insert_component(component.duplicate())
 	insert_component(preload("res://scripts/resources/Physics.gd").new())
 	name = entity.resource_name
 
