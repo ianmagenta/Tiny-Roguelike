@@ -1,17 +1,19 @@
-extends Node
+extends Node2D
 class_name Entity
 
 var _components: Array = []
 var _event_map = {}
 
-func _init(entity: ComponentEntity):
+func _init(entity: EntityComponent):
 	for component in entity.components:
 		insert_component(component)
+	insert_component(preload("res://scripts/resources/Physics.gd").new())
 	name = entity.resource_name
 
 func insert_component(component: Component):
 	_register_callbacks(component)
 	_register_signals(component)
+	component.connect("free_entity", self, "queue_free")
 	if component.priority == 1:
 		_components.push_front(component)
 	elif component.priority == -1:
@@ -50,6 +52,10 @@ func _un_register_callbacks(component: Component):
 		if event_map_callback_list.size() == 0:
 			_event_map.erase(callback)
 
-func emit_event(event_name, data):
+func emit_event(event_name, data={}):
 	for component in _event_map.get(event_name, []):
 		component.call(event_name, data)
+
+func queue_free():
+	emit_event("entity_freed", {"entity": self})
+	.queue_free()

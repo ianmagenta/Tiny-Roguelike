@@ -16,14 +16,13 @@ var level_props = [
 	{"min_num_of_rooms": 9, "max_num_of_rooms": 11, "enemies": [], "interactables": [], "wall_type": 0},
 	{"min_num_of_rooms": 11, "max_num_of_rooms": 13, "enemies": [], "interactables": [], "wall_type": 0}
 ]
-var dungeon_entities = []
+var dungeon_entities = [preload("res://resources/interactables/Door.tres"), preload("res://resources/interactables/Door.tres")]
 
 func _set_level(value):
 	level = value
 	_generate_level()
 
 func _init():
-	Globals.dungeon_position = position
 	add_child(room_walls)
 	room_walls.cell_custom_transform = Transform2D(Vector2(16,0), Vector2(0,16), Vector2(0,0))
 	room_walls.cell_size = Vector2(16,16)
@@ -112,9 +111,8 @@ func _generate_level():
 #				enemy_instance.grid_position = entity_grid_position
 #				add_child(enemy_instance)
 			elif used_cell == 2:
-				var new_pos = Globals.grid_to_world(entity_grid_position)
-				Globals.current_pc.get_node("Visual").position = new_pos
-				Events.emit_signal("player_moved", new_pos)
+				Globals.current_pc.emit_event("move_to", {"grid_position": entity_grid_position})
+				Events.emit_signal("player_moved", Globals.grid_to_world(entity_grid_position))
 				if !is_a_parent_of(Globals.current_pc):
 					add_child(Globals.current_pc)
 			elif used_cell == 3:
@@ -124,11 +122,9 @@ func _generate_level():
 #				entity_instance.grid_position = entity_grid_position
 #				add_child(entity_instance)
 			else:
-				pass
-#				var entity_instance = Entity.new()
-#				entity_instance.resource = dungeon_entities[used_cell - 4]
-#				entity_instance.grid_position = entity_grid_position
-#				add_child(entity_instance)
+				var entity_instance = Entity.new(dungeon_entities[used_cell - 4])
+				entity_instance.emit_event("move_to", {"grid_position": entity_grid_position})
+				add_child(entity_instance)
 		size.y += selected_room.length
 	size.y += 1
 	for x in range(1, size.x):

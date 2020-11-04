@@ -4,11 +4,9 @@ class_name Component
 
 signal component_event_emitted(name, data)
 signal component_freed(self_reference)
+signal free_entity
 
 var priority = 1
-
-func _init():
-	resource_name = "Component"
 
 func get_callback_list():
 	return []

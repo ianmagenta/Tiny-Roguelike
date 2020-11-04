@@ -9,6 +9,7 @@ func _ready():
 	Globals.current_pc = Entity.new(preload("res://resources/player_characters/Knight.tres"))
 	Globals.message_log = game_sceen.get_node("InterfaceLayer/Interface/MessageFrame/Log")
 	game_sceen.get_node("Dungeon").level += 1
+	Globals.current_pc.emit_event("start_turn")
 #	Globals.message_log.add_message(Globals.current_pc.get_bbcode_name() + " enter the Lurching Labyrinth...")
 #	game_sceen.get_node("TurnManager").start()
 
