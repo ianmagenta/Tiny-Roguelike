@@ -1,5 +1,5 @@
-extends Node
-class_name NodeComponent
+extends Sprite
+class_name SpriteComponent
 
 signal emit_event(event_name, data)
 signal queue_parent_free

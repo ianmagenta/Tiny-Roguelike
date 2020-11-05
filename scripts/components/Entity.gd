@@ -1,6 +1,8 @@
 extends Node2D
 class_name Entity
 
+signal parent_freed(self_reference)
+
 var _event_map = {}
 
 var grid_position: Vector2 = Vector2(0,0) setget _set_grid_position
@@ -16,17 +18,29 @@ func _set_grid_position(new_grid_position):
 	Globals.entity_map[grid_position] = self
 
 func _register_component(component):
-	_register_component_events(component)
-	component.connect("emit_event", self, "emit_event")
+	_register_component_event_handlers(component)
+	_register_component_event_emitters(component)
+	component.connect("emit_event", self, "emit_signal")
 	component.connect("queue_parent_free", self, "queue_free")
 	component.added_to_parent(self)
 
-func _register_component_events(component):
-	for callback in component.get_event_list():
-		if _event_map.has(callback):
-			_event_map[callback].push_front(component)
-		else:
-			_event_map[callback] = [component]
+func _register_component_event_handlers(component):
+	for event_handler in component.get_event_handlers():
+		if !has_user_signal(event_handler):
+			add_user_signal(event_handler)
+		connect(event_handler, component, event_handler)
+
+func _register_component_event_emitters(component):
+	for event_emitter in component.get_event_emitters():
+		if !has_user_signal(event_emitter):
+			add_user_signal(event_emitter)
+
+func _disconnect_component(component):
+	component.disconnect("emit_event", self, "emit_signal")
+	component.disconnect("queue_parent_free", self, "queue_free")
+	for event_handler in component.get_event_handlers():
+		disconnect(event_handler, component, event_handler)
+	component.removed_from_parent(self)
 
 func add_child(node: Node, legible_unique_name=false):
 	.add_child(node, legible_unique_name)
@@ -34,12 +48,8 @@ func add_child(node: Node, legible_unique_name=false):
 
 func remove_child(node: Node):
 	.remove_child(node)
-	node.removed_from_parent(self)
+	_disconnect_component(node)
 
 func queue_free():
-	emit_event("parent_freed")
+	emit_signal("parent_freed", {"parent": self})
 	.queue_free()
-
-func emit_event(event_name: String, data=null):
-	for component in _event_map.get(event_name, []):
-		component.call(event_name, data)

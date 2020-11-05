@@ -1,5 +1,5 @@
-extends Node
-class_name NodeComponent
+extends Node2D
+class_name Node2DComponent
 
 signal emit_event(event_name, data)
 signal queue_parent_free
