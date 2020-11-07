@@ -20,6 +20,7 @@ Tiny roguelike is a traditional, turn-based roguelike with a few small twists. T
 
 ## Technical Features
 - Game uses and entity / component framework based on this talk: https://www.youtube.com/watch?v=U03XXzcThGU
+- Entites talk to one another using observer pattern: https://gameprogrammingpatterns.com/observer.html
 
 ## Technologies Used
 - [Godot](https://godotengine.org/)
