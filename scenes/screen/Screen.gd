@@ -6,7 +6,7 @@ var game_sceen = preload("res://scenes/game/Game.tscn").instance()
 
 func _ready():
 	add_child(game_sceen)
-	Globals.current_pc = Entity.new(preload("res://resources/player_characters/Knight.tres"))
+	Globals.current_pc = preload("res://scenes/entities/player_characters/Knight.tscn").instance()
 	Globals.message_log = game_sceen.get_node("InterfaceLayer/Interface/MessageFrame/Log")
 	game_sceen.get_node("Dungeon").level += 1
 	Globals.current_pc.emit_event("start_turn")

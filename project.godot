@@ -9,10 +9,15 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "NodeComponent",
+"class": "Destructible",
+"language": "GDScript",
+"path": "res://scripts/components/interactable/Destructible.gd"
+}, {
 "base": "Node2D",
 "class": "Entity",
 "language": "GDScript",
-"path": "res://scripts/components/Entity.gd"
+"path": "res://scripts/components/general/Entity.gd"
 }, {
 "base": "RichTextEffect",
 "class": "Matrix",
@@ -22,12 +27,22 @@ _global_script_classes=[ {
 "base": "Node2D",
 "class": "Node2DComponent",
 "language": "GDScript",
-"path": "res://scripts/components/Node2DComponent.gd"
+"path": "res://scripts/components/general/Node2DComponent.gd"
 }, {
 "base": "Node",
 "class": "NodeComponent",
 "language": "GDScript",
-"path": "res://scripts/components/NodeComponent.gd"
+"path": "res://scripts/components/general/NodeComponent.gd"
+}, {
+"base": "NodeComponent",
+"class": "PlayerController",
+"language": "GDScript",
+"path": "res://scripts/components/player/PlayerController.gd"
+}, {
+"base": "SpriteComponent",
+"class": "Render",
+"language": "GDScript",
+"path": "res://scripts/components/general/Render.gd"
 }, {
 "base": "TileMap",
 "class": "Room",
@@ -37,13 +52,16 @@ _global_script_classes=[ {
 "base": "Sprite",
 "class": "SpriteComponent",
 "language": "GDScript",
-"path": "res://scripts/components/SpriteComponent.gd"
+"path": "res://scripts/components/general/SpriteComponent.gd"
 } ]
 _global_script_class_icons={
+"Destructible": "",
 "Entity": "",
 "Matrix": "",
 "Node2DComponent": "",
 "NodeComponent": "",
+"PlayerController": "",
+"Render": "",
 "Room": "",
 "SpriteComponent": ""
 }

@@ -2,7 +2,8 @@ extends Node
 class_name NodeComponent
 
 signal emit_event(event_name, data)
-signal queue_parent_free
+
+var parent: Entity
 
 func get_event_handlers():
 	return []
@@ -10,7 +11,7 @@ func get_event_handlers():
 func get_event_emitters():
 	return []
 
-func emit_event(event_name, data):
+func emit_event(event_name, data=null):
 	emit_signal("emit_event", event_name, data)
 
 func added_to_parent(parent: Entity):

@@ -16,7 +16,7 @@ var level_props = [
 	{"min_num_of_rooms": 9, "max_num_of_rooms": 11, "enemies": [], "interactables": [], "wall_type": 0},
 	{"min_num_of_rooms": 11, "max_num_of_rooms": 13, "enemies": [], "interactables": [], "wall_type": 0}
 ]
-var dungeon_entities = [preload("res://resources/interactables/Door.tres"), preload("res://resources/interactables/Door.tres")]
+var dungeon_entities = [preload("res://scenes/entities/interactables/Door.tscn"), preload("res://scenes/entities/interactables/Door.tscn")]
 
 func _set_level(value):
 	level = value
@@ -111,7 +111,7 @@ func _generate_level():
 #				enemy_instance.grid_position = entity_grid_position
 #				add_child(enemy_instance)
 			elif used_cell == 2:
-				Globals.current_pc.emit_event("move_to", {"grid_position": entity_grid_position})
+				Globals.current_pc.grid_position = entity_grid_position
 				Events.emit_signal("player_moved", Globals.grid_to_world(entity_grid_position))
 				if !is_a_parent_of(Globals.current_pc):
 					add_child(Globals.current_pc)
@@ -122,8 +122,8 @@ func _generate_level():
 #				entity_instance.grid_position = entity_grid_position
 #				add_child(entity_instance)
 			else:
-				var entity_instance = Entity.new(dungeon_entities[used_cell - 4])
-				entity_instance.emit_event("move_to", {"grid_position": entity_grid_position})
+				var entity_instance: Entity = dungeon_entities[used_cell - 4].instance()
+				entity_instance.grid_position = entity_grid_position
 				add_child(entity_instance)
 		size.y += selected_room.length
 	size.y += 1
