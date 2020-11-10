@@ -31,8 +31,12 @@ func end_turn(_data):
 func moved(data: Dictionary):
 	Events.emit_signal("player_moved", Globals.grid_to_world(data.grid_position))
 
+func get_entity_name(data: Dictionary):
+	data["entity_name"] = "You"
+	data["article"] = ""
+
 func get_event_handlers():
-	return ["start_turn", "end_turn", "moved"]
+	return ["start_turn", "end_turn", "moved", "get_entity_name"]
 
 func get_event_emitters():
 	return ["move"]

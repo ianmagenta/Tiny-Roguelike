@@ -5,7 +5,11 @@ export var entity_name: String
 export var article: String
 
 func get_event_handlers():
-	return ["get_name"]
+	return ["get_entity_name"]
 
 func get_entity_name(data: Dictionary):
-	pass
+	if !data.get("entity_name"):
+		data["entity_name"] = entity_name
+		data["article"] = article
+	else:
+		data["suffixes"] = str(", (", article, " ", entity_name, ")")

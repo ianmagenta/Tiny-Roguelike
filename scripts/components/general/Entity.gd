@@ -76,3 +76,24 @@ func move(data: Dictionary):
 			self.grid_position = new_grid_position
 			prev_direction = data.direction
 			emit_event("moved", {"grid_position": new_grid_position})
+
+func get_entity_name(data: Dictionary):
+	var final_string = ""
+	var prefixes = data.get("prefixes")
+	var article = data.get("article")
+	var entity_name = data.get("entity_name")
+	var color = data.get("color")
+	var capitalize: bool = data.get("capitalize")
+	if prefixes:
+		final_string += prefixes
+	if article:
+		if capitalize:
+			final_string += str(article, " ")
+		else:
+			final_string += str(article.to_lower(), " ")
+	if entity_name:
+		if color:
+			final_string += str("[color=#", color.to_html(false), "]", entity_name, "[/color]")
+		else:
+			final_string += entity_name
+	data["bbcode"] = final_string

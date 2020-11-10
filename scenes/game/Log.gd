@@ -9,6 +9,9 @@ var processing_update = false
 
 onready var tween: Tween = $Tween
 
+func _init():
+	Events.connect("message_emitted", self, "add_message")
+
 func add_message(message: String):
 	message_queue.append(message)
 	if !processing_update:
