@@ -1,9 +1,10 @@
 [gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://scripts/components/player/PlayerController.gd" type="Script" id=1]
+[ext_resource path="res://scripts/components/actor/player/PlayerController.gd" type="Script" id=1]
 [ext_resource path="res://scripts/components/general/Entity.gd" type="Script" id=2]
 [ext_resource path="res://scripts/components/general/Render.gd" type="Script" id=3]
 [ext_resource path="res://resources/images/roguelike_sheet.png" type="Texture" id=4]
+
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 4 )

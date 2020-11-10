@@ -3,12 +3,19 @@ class_name Entity
 
 signal parent_freed(self_reference)
 
+export var health = 1 setget _set_health
+
 var grid_position: Vector2 = Vector2(0,0) setget _set_grid_position
 var prev_direction: Vector2 = Vector2(0,0)
 
 func _ready():
 	for component in get_children():
 		_register_component(component)
+
+func _set_health(new_health):
+	health = new_health
+	if health <= 0:
+		queue_free()
 
 func _set_grid_position(new_grid_position):
 	Globals.entity_map.erase(grid_position)

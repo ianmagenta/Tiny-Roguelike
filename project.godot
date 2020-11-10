@@ -19,10 +19,20 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scripts/components/general/Entity.gd"
 }, {
+"base": "NodeComponent",
+"class": "HealthDestructible",
+"language": "GDScript",
+"path": "res://scripts/components/actor/HealthDestructible.gd"
+}, {
 "base": "RichTextEffect",
 "class": "Matrix",
 "language": "GDScript",
 "path": "res://scripts/resources/text_effects/Matrix.gd"
+}, {
+"base": "NodeComponent",
+"class": "NameTag",
+"language": "GDScript",
+"path": "res://scripts/components/general/NameTag.gd"
 }, {
 "base": "Node2D",
 "class": "Node2DComponent",
@@ -37,7 +47,7 @@ _global_script_classes=[ {
 "base": "NodeComponent",
 "class": "PlayerController",
 "language": "GDScript",
-"path": "res://scripts/components/player/PlayerController.gd"
+"path": "res://scripts/components/actor/player/PlayerController.gd"
 }, {
 "base": "SpriteComponent",
 "class": "Render",
@@ -57,7 +67,9 @@ _global_script_classes=[ {
 _global_script_class_icons={
 "Destructible": "",
 "Entity": "",
+"HealthDestructible": "",
 "Matrix": "",
+"NameTag": "",
 "Node2DComponent": "",
 "NodeComponent": "",
 "PlayerController": "",

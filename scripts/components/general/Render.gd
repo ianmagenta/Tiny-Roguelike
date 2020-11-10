@@ -3,7 +3,7 @@ extends SpriteComponent
 class_name Render
 
 func _init():
-	if Engine.editor_hint:
+	if Engine.editor_hint and !texture:
 		centered = false
 		self_modulate = Color("f2f2f0")
 		texture = AtlasTexture.new()

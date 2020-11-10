@@ -13,3 +13,5 @@ func get_event_handlers():
 
 func space_entered(_data):
 	self.hits_to_destroy -= 1
+	if hits_to_destroy == 0:
+		Events.emit_signal("message_emitted", {})
