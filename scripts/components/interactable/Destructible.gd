@@ -14,8 +14,6 @@ func get_event_handlers():
 func space_entered(data: Dictionary):
 	self.hits_to_destroy -= 1
 	if hits_to_destroy == 0:
-		var entity_name = {"capitalize": true}
-		var parent_name = {"capitalize": false}
-		data.entity.emit_event("get_entity_name", entity_name)
-		parent.emit_event("get_entity_name", parent_name)
+		var entity_name = data.entity.get_bbcode_name()
+		var parent_name = parent.get_bbcode_name(false)
 		Events.emit_signal("message_emitted", str(entity_name.bbcode, " opened ", parent_name.bbcode, "."))

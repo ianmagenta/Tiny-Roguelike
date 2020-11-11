@@ -12,4 +12,5 @@ func get_entity_name(data: Dictionary):
 		data["entity_name"] = entity_name
 		data["article"] = article
 	else:
-		data["suffixes"] = str(", (", article, " ", entity_name, ")")
+		data["tag_name"] = entity_name
+		data["tag_article"] = article

@@ -77,13 +77,14 @@ func move(data: Dictionary):
 			prev_direction = data.direction
 			emit_event("moved", {"grid_position": new_grid_position})
 
-func get_entity_name(data: Dictionary):
+func get_bbcode_name(capitalize=true):
+	var data = {}
+	emit_event("get_entity_name", data)
 	var final_string = ""
 	var prefixes = data.get("prefixes")
 	var article = data.get("article")
 	var entity_name = data.get("entity_name")
 	var color = data.get("color")
-	var capitalize: bool = data.get("capitalize")
 	if prefixes:
 		final_string += prefixes
 	if article:
@@ -97,3 +98,4 @@ func get_entity_name(data: Dictionary):
 		else:
 			final_string += entity_name
 	data["bbcode"] = final_string
+	return data

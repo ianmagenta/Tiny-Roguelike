@@ -10,7 +10,8 @@ func _ready():
 	Globals.message_log = game_sceen.get_node("InterfaceLayer/Interface/MessageFrame/Log")
 	game_sceen.get_node("Dungeon").level += 1
 	Globals.current_pc.emit_event("start_turn")
-#	Globals.message_log.add_message(Globals.current_pc.get_bbcode_name() + " enter the Lurching Labyrinth...")
+	
+	Events.emit_signal("message_emitted", str(Globals.current_pc.get_bbcode_name().bbcode, " enter the Lurching Labrynth..."))
 #	game_sceen.get_node("TurnManager").start()
 
 func _unhandled_input(event):
