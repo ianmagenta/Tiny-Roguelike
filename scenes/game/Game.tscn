@@ -151,20 +151,41 @@ custom_constants/separation = 0
 alignment = 2
 
 [node name="OldText" type="RichTextLabel" parent="InterfaceLayer/Interface/MessageFrame/MessageLog/VBoxContainer"]
-margin_top = 99.0
+margin_top = 1.0
 margin_right = 170.0
 margin_bottom = 113.0
-rect_min_size = Vector2( 170, 0 )
+rect_min_size = Vector2( 170, 14 )
+custom_colors/default_color = Color( 0.72549, 0.709804, 0.764706, 1 )
 bbcode_enabled = true
+bbcode_text = "Message log start!
+
+
+
+
+
+
+"
+text = "Message log start!
+
+
+
+
+
+
+"
 fit_content_height = true
 scroll_active = false
 scroll_following = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Divider" type="RichTextLabel" parent="InterfaceLayer/Interface/MessageFrame/MessageLog/VBoxContainer"]
 margin_top = 113.0
 margin_right = 170.0
 margin_bottom = 127.0
-rect_min_size = Vector2( 170, 0 )
+rect_min_size = Vector2( 170, 14 )
+custom_colors/default_color = Color( 0.72549, 0.709804, 0.764706, 1 )
 bbcode_enabled = true
 bbcode_text = "---------------------"
 text = "---------------------"
@@ -175,7 +196,8 @@ scroll_active = false
 margin_top = 127.0
 margin_right = 170.0
 margin_bottom = 141.0
-rect_min_size = Vector2( 170, 0 )
+rect_min_size = Vector2( 170, 14 )
+custom_colors/default_color = Color( 0.72549, 0.709804, 0.764706, 1 )
 bbcode_enabled = true
 fit_content_height = true
 scroll_active = false
