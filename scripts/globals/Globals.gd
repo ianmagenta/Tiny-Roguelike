@@ -10,7 +10,6 @@ var interact_group: Array
 var ally_group: Array
 var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 var current_pc: Entity
-var message_log: RichTextLabel
 var entity_map: Dictionary = {}
 var player_is_dead = false
 var ai_that_can_move = []

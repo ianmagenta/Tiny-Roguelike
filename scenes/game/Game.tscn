@@ -1,8 +1,8 @@
 [gd_scene load_steps=14 format=2]
 
+[ext_resource path="res://scenes/game/MessageLog.gd" type="Script" id=1]
 [ext_resource path="res://resources/images/roguelike_sheet.png" type="Texture" id=2]
 [ext_resource path="res://scenes/game/Dungeon.gd" type="Script" id=3]
-[ext_resource path="res://scenes/game/Log.gd" type="Script" id=6]
 [ext_resource path="res://scenes/game/MainCamera.gd" type="Script" id=8]
 [ext_resource path="res://resources/themes/ui_theme.tres" type="Theme" id=10]
 [ext_resource path="res://scenes/game/ItemList.gd" type="Script" id=11]
@@ -131,59 +131,57 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Log" type="ScrollContainer" parent="InterfaceLayer/Interface/MessageFrame"]
+[node name="MessageLog" type="ScrollContainer" parent="InterfaceLayer/Interface/MessageFrame"]
 margin_left = 9.0
 margin_top = 6.0
 margin_right = 192.0
-margin_bottom = 147.0
+margin_bottom = 18.0
 rect_min_size = Vector2( 183, 141 )
-rect_clip_content = false
-script = ExtResource( 6 )
+scroll_horizontal_enabled = false
+script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="VBoxContainer" type="VBoxContainer" parent="InterfaceLayer/Interface/MessageFrame/Log"]
-margin_right = 183.0
-margin_bottom = 196.0
-rect_min_size = Vector2( 183, 141 )
+[node name="VBoxContainer" type="VBoxContainer" parent="InterfaceLayer/Interface/MessageFrame/MessageLog"]
+margin_right = 170.0
+margin_bottom = 141.0
+rect_min_size = Vector2( 170, 141 )
+custom_constants/separation = 0
+alignment = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="InterfaceLayer/Interface/MessageFrame/Log/VBoxContainer"]
-margin_right = 183.0
-margin_bottom = 196.0
-rect_min_size = Vector2( 183, 16 )
+[node name="OldText" type="RichTextLabel" parent="InterfaceLayer/Interface/MessageFrame/MessageLog/VBoxContainer"]
+margin_top = 99.0
+margin_right = 170.0
+margin_bottom = 113.0
+rect_min_size = Vector2( 170, 0 )
 bbcode_enabled = true
-bbcode_text = "test test test test
-test test test test
-
-test test test test
-
-test test test test
-
-test test test test
-
-test test test test
-
-test test test test
-test test test test
-"
-text = "test test test test
-test test test test
-
-test test test test
-
-test test test test
-
-test test test test
-
-test test test test
-
-test test test test
-test test test test
-"
 fit_content_height = true
 scroll_active = false
 scroll_following = true
+
+[node name="Divider" type="RichTextLabel" parent="InterfaceLayer/Interface/MessageFrame/MessageLog/VBoxContainer"]
+margin_top = 113.0
+margin_right = 170.0
+margin_bottom = 127.0
+rect_min_size = Vector2( 170, 0 )
+bbcode_enabled = true
+bbcode_text = "---------------------"
+text = "---------------------"
+fit_content_height = true
+scroll_active = false
+
+[node name="NewText" type="RichTextLabel" parent="InterfaceLayer/Interface/MessageFrame/MessageLog/VBoxContainer"]
+margin_top = 127.0
+margin_right = 170.0
+margin_bottom = 141.0
+rect_min_size = Vector2( 170, 0 )
+bbcode_enabled = true
+fit_content_height = true
+scroll_active = false
+scroll_following = true
+
+[node name="Tween" type="Tween" parent="InterfaceLayer/Interface/MessageFrame/MessageLog/VBoxContainer/NewText"]
 
 [node name="ItemList" type="ItemList" parent="InterfaceLayer/Interface"]
 margin_left = 24.0
