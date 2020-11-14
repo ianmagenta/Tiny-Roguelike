@@ -137,6 +137,7 @@ margin_top = 6.0
 margin_right = 192.0
 margin_bottom = 18.0
 rect_min_size = Vector2( 183, 141 )
+rect_clip_content = false
 scroll_horizontal_enabled = false
 script = ExtResource( 1 )
 __meta__ = {

@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://resources/images/roguelike_sheet.png" type="Texture" id=1]
+[ext_resource path="res://scenes/screen/Mouse.gd" type="Script" id=2]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 1 )
+region = Rect2( 304, 144, 16, 16 )
+
+[node name="MouseLayer" type="CanvasLayer"]
+layer = 2
+
+[node name="Mouse" type="Sprite" parent="."]
+self_modulate = Color( 0.94902, 0.94902, 0.941176, 1 )
+texture = SubResource( 1 )
+centered = false
+offset = Vector2( -2, -2 )
+script = ExtResource( 2 )
