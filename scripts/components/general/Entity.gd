@@ -7,6 +7,8 @@ export var health = 1 setget _set_health
 
 var grid_position: Vector2 = Vector2(0,0) setget _set_grid_position
 var prev_direction: Vector2 = Vector2(0,0)
+var bbcode_name: String setget ,_get_bbcode_name
+var entity_name: String setget ,_get_entity_name
 
 func _ready():
 	for component in get_children():
@@ -23,12 +25,39 @@ func _set_grid_position(new_grid_position):
 	position = Globals.grid_to_world(grid_position)
 	Globals.entity_map[grid_position] = self
 
+func _get_entity_name():
+	var data = {}
+	emit_event("get_entity_name", data)
+	if is_in_group("Player"):
+		return str(data.player_article, " ", data.player_name)
+	else:
+		return str(data.entity_name, " ", data.article)
+
+func _get_bbcode_name():
+	var data = {}
+	emit_event("get_entity_name", data)
+	var final_string = ""
+	var prefixes = data.get("prefixes")
+	var article = data.get("article")
+	var entity_name = data.get("entity_name")
+	var color = data.get("color")
+	if article:
+			final_string += str(article, " ")
+	if prefixes:
+		final_string += prefixes
+	if entity_name:
+		if color:
+			final_string += str("[color=#", color.to_html(false), "]", entity_name, "[/color]")
+		else:
+			final_string += entity_name
+	return final_string
+
 func _register_component(component):
 	_register_component_event_handlers(component)
 	_register_component_event_emitters(component)
 	component.parent = self
 	component.connect("emit_event", self, "emit_event")
-	component.added_to_parent(self)
+	component.added_to_parent()
 
 func _register_component_event_handlers(component):
 	for event_handler in component.get_event_handlers():
@@ -42,11 +71,11 @@ func _register_component_event_emitters(component):
 			add_user_signal(event_emitter)
 
 func _disconnect_component(component):
+	component.removed_from_parent()
 	component.disconnect("emit_event", self, "emit_event")
 	component.parent = null
 	for event_handler in component.get_event_handlers():
 		disconnect(event_handler, component, event_handler)
-	component.removed_from_parent(self)
 
 func add_child(node: Node, legible_unique_name=false):
 	.add_child(node, legible_unique_name)
@@ -76,26 +105,3 @@ func move(data: Dictionary):
 			self.grid_position = new_grid_position
 			prev_direction = data.direction
 			emit_event("moved", {"grid_position": new_grid_position})
-
-func get_bbcode_name(capitalize=true):
-	var data = {}
-	emit_event("get_entity_name", data)
-	var final_string = ""
-	var prefixes = data.get("prefixes")
-	var article = data.get("article")
-	var entity_name = data.get("entity_name")
-	var color = data.get("color")
-	if prefixes:
-		final_string += prefixes
-	if article:
-		if capitalize:
-			final_string += str(article, " ")
-		else:
-			final_string += str(article.to_lower(), " ")
-	if entity_name:
-		if color:
-			final_string += str("[color=#", color.to_html(false), "]", entity_name, "[/color]")
-		else:
-			final_string += entity_name
-	data["bbcode"] = final_string
-	return data

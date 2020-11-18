@@ -8,9 +8,9 @@ func get_event_handlers():
 	return ["get_entity_name"]
 
 func get_entity_name(data: Dictionary):
-	if !data.get("entity_name"):
+	if !parent.is_in_group("Player"):
 		data["entity_name"] = entity_name
 		data["article"] = article
 	else:
-		data["tag_name"] = entity_name
-		data["tag_article"] = article
+		data["player_name"] = entity_name
+		data["player_article"] = article

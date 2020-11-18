@@ -35,6 +35,12 @@ func get_entity_name(data: Dictionary):
 	data["entity_name"] = "You"
 	data["article"] = ""
 
+func added_to_parent():
+	parent.add_to_group("Player")
+
+func removed_from_parent():
+	parent.remove_from_group("Player")
+
 func get_event_handlers():
 	return ["start_turn", "end_turn", "moved", "get_entity_name"]
 

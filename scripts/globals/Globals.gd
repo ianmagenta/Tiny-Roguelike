@@ -4,22 +4,10 @@ extends Node
 var tile_size = 16
 var dungeon_size: Vector2
 var dungeon_walls: TileMap
-var player_group: Array
-var ai_group: Array
-var interact_group: Array
-var ally_group: Array
 var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 var current_pc: Entity
 var entity_map: Dictionary = {}
-var player_is_dead = false
 var ai_that_can_move = []
-
-func refresh_entities():
-	var tree = get_tree()
-	player_group = tree.get_nodes_in_group("player")
-	ai_group = tree.get_nodes_in_group("ai")
-	interact_group = tree.get_nodes_in_group("interactable")
-	ally_group = tree.get_nodes_in_group("player_ally")
 
 func grid_to_world(grid_position: Vector2):
 	return Vector2(grid_position.x * tile_size, grid_position.y * tile_size)

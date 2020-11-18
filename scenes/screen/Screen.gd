@@ -9,7 +9,7 @@ func _ready():
 	Globals.current_pc = preload("res://scenes/entities/player_characters/Knight.tscn").instance()
 	game_sceen.get_node("Dungeon").level += 1
 	Globals.current_pc.emit_event("start_turn")
-	Events.emit_signal("message_emitted", str(Globals.current_pc.get_bbcode_name().bbcode, " enter the Lurching Labrynth..."))
+	Events.emit_signal("message_emitted", str(Globals.current_pc.bbcode_name, " enter the Lurching Labrynth..."))
 #	game_sceen.get_node("TurnManager").start()
 
 func _unhandled_input(event):
