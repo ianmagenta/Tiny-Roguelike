@@ -1,0 +1,9 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://scripts/resources/GameEntity.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+entity_type = 0
+scene_name = "NewEntity"
+components = [  ]
