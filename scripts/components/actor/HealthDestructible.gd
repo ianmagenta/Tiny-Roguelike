@@ -6,3 +6,4 @@ func get_event_handlers():
 
 func space_entered(data: Dictionary):
 	data.entity.emit_event("attack", {"target": parent})
+# maybe go back to javascript. I don't know.
